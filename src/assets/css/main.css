@@ -66,14 +66,6 @@ main { display: block; }
 section { padding: 2.5rem 0; border-top: 1px solid var(--line); }
 section:first-of-type { border-top: none; }
 
-/* Utility bar */
-.utility-bar {
-  background: var(--surface-2); border-bottom: 1px solid var(--line);
-  font-size: 0.8rem;
-}
-.utility-bar .wrap { display: flex; align-items: center; justify-content: space-between; padding-top: 0.5rem; padding-bottom: 0.5rem; gap: 1rem; }
-.utility-bar .lang { color: var(--muted); }
-.utility-bar .actions { display: flex; align-items: center; gap: 1rem; }
 .search-link { color: var(--muted); text-decoration: none; }
 .search-link:hover { color: var(--ink); }
 
@@ -95,15 +87,19 @@ section:first-of-type { border-top: none; }
 .btn.ghost { background: transparent; color: var(--ink); border-color: var(--line); }
 .btn.ghost:hover { border-color: var(--muted); }
 
-/* Header & nav */
+/* Header — two tiers: topbar (brand + utilities), navbar (primary nav) */
 .site-header { border-bottom: 1px solid var(--line); background: var(--surface); }
 .wrap-header { max-width: 1320px; margin: 0 auto; padding: 0 1.25rem; }
-.site-header .wrap-header {
-  display: flex; align-items: center; justify-content: space-between;
-  padding-top: 0.9rem; padding-bottom: 0.9rem; gap: 1rem; flex-wrap: wrap; position: relative;
-}
+
+.topbar { background: var(--surface-2); border-bottom: 1px solid var(--line); font-size: 0.8rem; }
+.topbar .wrap-header { display: flex; align-items: center; justify-content: space-between; padding-top: 0.6rem; padding-bottom: 0.6rem; gap: 1rem; flex-wrap: wrap; }
+.topbar-actions { display: flex; align-items: center; gap: 1rem; }
+.lang { color: var(--muted); }
+
 .brand { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; color: var(--ink); font-weight: 700; font-size: 1.1rem; flex: none; }
 .brand .mark { width: 30px; height: 30px; border-radius: 6px; background: var(--red-600); flex: none; }
+
+.navbar .wrap-header { display: flex; align-items: center; padding-top: 0.7rem; padding-bottom: 0.7rem; position: relative; }
 
 .nav-toggle {
   display: none; align-items: center; justify-content: center;
@@ -113,12 +109,12 @@ section:first-of-type { border-top: none; }
 
 /* One tier by design: nowrap on desktop, full collapse to a toggled menu
    below the breakpoint — never a mid-list wrap in between. */
-.primary-nav { display: flex; align-items: center; gap: 1rem; flex-wrap: nowrap; white-space: nowrap; font-size: 0.86rem; font-weight: 500; }
+.primary-nav { display: flex; align-items: center; gap: 1.3rem; flex-wrap: nowrap; white-space: nowrap; font-size: 0.88rem; font-weight: 500; }
 .primary-nav a { text-decoration: none; color: var(--ink); }
 .primary-nav a:hover, .primary-nav a[aria-current="page"] { color: var(--red-600); }
 @media (prefers-color-scheme: dark) { .primary-nav a:hover, .primary-nav a[aria-current="page"] { color: var(--red-400); } }
 
-@media (max-width: 1300px) {
+@media (max-width: 860px) {
   .nav-toggle { display: flex; }
   .primary-nav {
     display: none; flex-basis: 100%; flex-direction: column; align-items: stretch; gap: 0;

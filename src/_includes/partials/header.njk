@@ -1,30 +1,41 @@
 <header class="site-header">
-  <div class="wrap-header">
-    <a class="brand" href="/">
-      <span class="mark" aria-hidden="true"></span>
-      {{ site.title }}
-    </a>
-    <button type="button" class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="primary-nav">
-      <span aria-hidden="true">☰</span>
-    </button>
-    <nav class="primary-nav" id="primary-nav" aria-label="Primary">
-      {% for item in site.nav %}
-        {% if item.dropdown %}
-          <div class="nav-item">
-            <button type="button" aria-haspopup="true" aria-expanded="false">{{ item.label }}</button>
-            <div class="dropdown">
-              {% for d in item.dropdown %}
-                <a href="{{ d.url }}">
-                  {{ d.label }}
-                  <span class="desc">{{ d.desc }}</span>
-                </a>
-              {% endfor %}
+  <div class="topbar">
+    <div class="wrap-header">
+      <a class="brand" href="/">
+        <span class="mark" aria-hidden="true"></span>
+        {{ site.title }}
+      </a>
+      <div class="topbar-actions">
+        <span class="lang">EN</span>
+        <a class="search-link" href="#">Search</a>
+        <a class="btn" href="/report/">Report an Incident/Hazard</a>
+      </div>
+    </div>
+  </div>
+  <div class="navbar">
+    <div class="wrap-header">
+      <button type="button" class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="primary-nav">
+        <span aria-hidden="true">☰</span>
+      </button>
+      <nav class="primary-nav" id="primary-nav" aria-label="Primary">
+        {% for item in site.nav %}
+          {% if item.dropdown %}
+            <div class="nav-item">
+              <button type="button" aria-haspopup="true" aria-expanded="false">{{ item.label }}</button>
+              <div class="dropdown">
+                {% for d in item.dropdown %}
+                  <a href="{{ d.url }}">
+                    {{ d.label }}
+                    <span class="desc">{{ d.desc }}</span>
+                  </a>
+                {% endfor %}
+              </div>
             </div>
-          </div>
-        {% else %}
-          <a href="{{ item.url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.label }}</a>
-        {% endif %}
-      {% endfor %}
-    </nav>
+          {% else %}
+            <a href="{{ item.url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.label }}</a>
+          {% endif %}
+        {% endfor %}
+      </nav>
+    </div>
   </div>
 </header>
