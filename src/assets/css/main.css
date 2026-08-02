@@ -196,7 +196,7 @@ section:first-of-type { border-top: none; }
 a.card { text-decoration: none; color: var(--ink); }
 details.card summary::-webkit-details-marker { display: none; }
 details.card summary { list-style: none; }
-.card .icon { width: 40px; height: 40px; border-radius: 8px; background: var(--surface-2); margin-bottom: 0.3rem; }
+.card .icon { width: 40px; height: 40px; object-fit: contain; margin-bottom: 0.3rem; }
 .card h3, .card h4 { margin-bottom: 0.2em; }
 .card p { font-size: 0.88rem; color: var(--muted); margin-bottom: 0.4em; }
 .card .link { font-size: 0.85rem; font-weight: 600; color: var(--red-600); text-decoration: none; margin-top: auto; }

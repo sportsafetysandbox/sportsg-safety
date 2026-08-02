@@ -4,9 +4,9 @@
     "body": "Practical Safety Resources, Education, Training, and Reporting Tools for Coaches, Partners, Event Operators, and Sport Organisation Staff."
   },
   "cards": [
-    { "type": "Card", "title": "Coaches & Instructors", "body": "Certifications, coaching safety standards, self-assessment.", "url": "/community/#coaches" },
-    { "type": "Card", "title": "Event Operators", "body": "Event safety planning, permit submission, self-assessment.", "url": "/community/#event-operators" },
-    { "type": "Card", "title": "Sport Ecosystem Partners", "body": "NSA and vendor requirements, self-assessment.", "url": "/community/#partners" },
-    { "type": "Card", "title": "Staff Portal", "body": "Internal operations hub — sign in required.", "url": "/staff-portal/" }
+    { "type": "Card", "title": "Coaches & Instructors", "body": "Certifications, coaching safety standards, self-assessment.", "url": "/community/#coaches", "icon": "/assets/images/icon-coaches.png" },
+    { "type": "Card", "title": "Event Operators", "body": "Event safety planning, permit submission, self-assessment.", "url": "/community/#event-operators", "icon": "/assets/images/icon-event-operators.png" },
+    { "type": "Card", "title": "Sport Ecosystem Partners", "body": "NSA and vendor requirements, self-assessment.", "url": "/community/#partners", "icon": "/assets/images/icon-sport-ecosystem.png" },
+    { "type": "Card", "title": "Staff Portal", "body": "Internal operations hub — sign in required.", "url": "/staff-portal/", "icon": "/assets/images/icon-staff-portal.png" }
   ]
 }

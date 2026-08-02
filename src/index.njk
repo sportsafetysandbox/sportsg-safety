@@ -32,7 +32,7 @@ description: "Safety guidance for coaches, partners, event operators, and SportS
     <div class="grid-cards cols-4">
       {% for card in home.cards %}
         <a class="card" href="{{ card.url }}">
-          <span class="icon" aria-hidden="true"></span>
+          <img class="icon" src="{{ card.icon }}" alt="" width="40" height="40">
           <h3>{{ card.title }}</h3>
           <p>{{ card.body }}</p>
           <span class="link">Go →</span>
