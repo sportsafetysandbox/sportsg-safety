@@ -1,0 +1,52 @@
+---
+layout: base.njk
+title: Report an Incident/Hazard
+description: "Report a safety incident or hazard. Feeds into Incident Case Management."
+---
+<div class="wrap" style="padding-top:1.5rem;">
+  <p class="breadcrumb"><a href="/">Home</a> / Report an Incident/Hazard</p>
+</div>
+
+<section>
+  <div class="wrap narrow">
+    <div class="emergency-banner">
+      If this is a life-threatening emergency, call 995 now. Use this form only after the situation is safe.
+    </div>
+
+    <h1>Report an Incident/Hazard</h1>
+
+    <form onsubmit="return false;">
+      <div class="filter-bar">
+        <button type="button" class="btn" aria-pressed="true">Report an incident</button>
+        <button type="button" class="btn outline" aria-pressed="false">Report a hazard</button>
+      </div>
+
+      <div class="grid-cards cols-2">
+        <div class="field"><label for="location">Location</label><input id="location" type="text"></div>
+        <div class="field"><label for="when">Date &amp; time</label><input id="when" type="datetime-local"></div>
+      </div>
+
+      <div class="field"><label for="what">What happened</label><textarea id="what"></textarea></div>
+
+      <div class="checkbox-row"><input type="checkbox" id="injury"><label for="injury">Injury involved</label></div>
+      <div class="checkbox-row"><input type="checkbox" id="anon"><label for="anon">I want to remain anonymous</label></div>
+
+      <div class="grid-cards cols-2">
+        <div class="field"><label for="rname">Your name (optional)</label><input id="rname" type="text"></div>
+        <div class="field"><label for="rcontact">Your contact (optional)</label><input id="rcontact" type="text"></div>
+      </div>
+
+      <div class="field"><label for="attach">Attach photo evidence</label><input id="attach" type="file"></div>
+
+      <div class="checkbox-row">
+        <input type="checkbox" id="consent2">
+        <label for="consent2">I consent to my data being processed per the Privacy Policy</label>
+      </div>
+
+      <button class="btn" type="submit">Submit report</button>
+      <p style="font-size:0.8rem; color:var(--muted); margin-top:0.5rem;">This form isn't wired to a backend yet — submissions aren't stored anywhere. Needs a real intake service before launch.</p>
+    </form>
+
+    <p style="margin-top:2rem; color:var(--muted); font-size:0.9rem;">Your report is logged in Incident Case Management. You'll receive a reference number if contact details are provided; anonymous reports are still investigated.</p>
+  </div>
+</section>

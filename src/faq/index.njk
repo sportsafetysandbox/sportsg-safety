@@ -1,0 +1,62 @@
+---
+layout: base.njk
+title: FAQ & Support
+description: "Frequently asked questions, emergency contacts, and feedback."
+---
+<div class="wrap" style="padding-top:1.5rem;">
+  <p class="breadcrumb"><a href="/">Home</a> / FAQ &amp; Support</p>
+</div>
+
+<section>
+  <div class="wrap">
+    <h1>FAQ &amp; Support</h1>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="filter-bar" data-filter-group="faq-list">
+      <button type="button" class="btn" data-filter="all" aria-pressed="true">All</button>
+      <button type="button" class="btn outline" data-filter="General" aria-pressed="false">General</button>
+      <button type="button" class="btn outline" data-filter="Coaches & Instructors" aria-pressed="false">Coaches &amp; Instructors</button>
+      <button type="button" class="btn outline" data-filter="Partners" aria-pressed="false">Partners</button>
+      <button type="button" class="btn outline" data-filter="Event Operators" aria-pressed="false">Event Operators</button>
+    </div>
+    <div id="faq-list">
+      {% for item in faq %}
+        <details class="card" style="margin-bottom:0.75rem;" data-filter-value="{{ item.category }}">
+          <summary style="cursor:pointer; font-weight:600;">{{ item.question }}</summary>
+          <p style="margin-top:0.5rem;">{{ item.answer }}</p>
+        </details>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2 id="contact">Emergency contacts</h2>
+    <div class="list-row"><span>Life-threatening emergency</span><span class="when">Call 995</span></div>
+    <div class="list-row"><span>Sport safety hotline</span><span class="when">Placeholder number</span></div>
+    <div class="list-row"><span>Urgent, non-emergency</span><a class="link" href="/report/">Report an Incident/Hazard →</a></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>Feedback / enquiry</h2>
+    <form onsubmit="return false;">
+      <div class="grid-cards cols-2">
+        <div class="field"><label for="name">Name</label><input id="name" type="text"></div>
+        <div class="field"><label for="email">Email</label><input id="email" type="email"></div>
+      </div>
+      <div class="field"><label for="message">Message</label><textarea id="message"></textarea></div>
+      <div class="checkbox-row">
+        <input type="checkbox" id="consent">
+        <label for="consent">I consent to my data being processed per the Privacy Policy</label>
+      </div>
+      <button class="btn" type="submit">Submit</button>
+      <p style="font-size:0.8rem; color:var(--muted); margin-top:0.5rem;">This form isn't wired to a backend yet — it's a placeholder.</p>
+    </form>
+  </div>
+</section>

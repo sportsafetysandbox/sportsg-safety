@@ -1,0 +1,47 @@
+[
+  {
+    "section": "Safety Framework",
+    "type": "Framework",
+    "body": "SportSG's safety framework sets out how risk, compliance, and incident management connect across every level of the sport ecosystem — from national policy down to a single training session.",
+    "image": "/assets/images/safety-framework.svg"
+  },
+  {
+    "section": "Integrated Policy",
+    "type": "Policy",
+    "body": "The overarching policy connecting SportSG's individual safety policies into one coherent framework.",
+    "link": "#"
+  },
+  {
+    "section": "Sport Safety Policy",
+    "type": "Policy",
+    "body": "Sets the baseline safety standards expected across all SportSG-supported sport activity.",
+    "link": "#"
+  },
+  {
+    "section": "Safe Sport Policy",
+    "type": "Policy",
+    "body": "Covers safeguarding, athlete welfare, and protection from abuse or harassment in sport.",
+    "link": "#"
+  },
+  {
+    "section": "Workplace Safety and Health Policy",
+    "type": "Policy",
+    "body": "SportSG's Workplace Safety and Health obligations for staff, contractors, and facility operators.",
+    "link": "#"
+  },
+  {
+    "section": "Safety Governance, Roles and Authority",
+    "type": "Narrative",
+    "body": "Safety decisions flow from SportSG's Board through the Safety Governance function to operational teams and facility-level Safety Officers, each with defined authority to act."
+  },
+  {
+    "section": "Legal and Statutory Obligations",
+    "type": "Narrative",
+    "body": "SportSG and its partners operate under Singapore's Workplace Safety and Health Act and related regulations, alongside sport-specific statutory requirements."
+  },
+  {
+    "section": "Duty of Care",
+    "type": "Narrative",
+    "body": "Everyone delivering or hosting sport activity — SportSG staff, coaches, event operators, and partners — shares a duty of care to participants, spectators, and each other."
+  }
+]

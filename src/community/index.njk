@@ -1,0 +1,39 @@
+---
+layout: base.njk
+title: Community Portal
+description: "Safety guidance for coaches, partners, and event operators."
+---
+<div class="wrap" style="padding-top:1.5rem;">
+  <p class="breadcrumb"><a href="/">Home</a> / Community Portal</p>
+</div>
+
+<section>
+  <div class="wrap">
+    <h1>Community Portal</h1>
+    <p class="lede">Choose your role to see safety guidance built for you.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="grid-cards cols-3">
+      {% for item in community %}
+        <div class="card" id="{{ item.id }}">
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.body }}</p>
+          <p class="meta">{{ item.selfAssessment }}{% if item.extra %} · {{ item.extra }}{% endif %}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="actions" style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+      <a class="btn outline" href="/resources/">Safety Resources</a>
+      <a class="btn outline" href="/training/">Training &amp; Certification</a>
+      <a class="btn" href="/report/">Report an Incident/Hazard</a>
+    </div>
+  </div>
+</section>

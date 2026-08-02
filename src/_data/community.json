@@ -1,0 +1,21 @@
+[
+  {
+    "id": "coaches",
+    "title": "Coaches & Instructors",
+    "body": "Certifications, coaching safety standards, and self-assessment tools for anyone coaching under SportSG-supported programmes.",
+    "selfAssessment": "Coach & Instructor Safety Self-Assessment"
+  },
+  {
+    "id": "partners",
+    "title": "Partners & Sport Ecosystem",
+    "body": "Safety requirements and self-assessment for National Sports Associations, facility operators, and vendors.",
+    "selfAssessment": "Partner Safety Self-Assessment"
+  },
+  {
+    "id": "event-operators",
+    "title": "Event Operators",
+    "body": "Event safety planning, permit submission, and self-assessment for anyone running a sporting event.",
+    "selfAssessment": "Event Operator Safety Self-Assessment",
+    "extra": "Event Safety Plan / Permit Submission"
+  }
+]

@@ -1,0 +1,27 @@
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/">
+      <span class="mark" aria-hidden="true"></span>
+      {{ site.title }}
+    </a>
+    <nav class="primary-nav" aria-label="Primary">
+      {% for item in site.nav %}
+        {% if item.dropdown %}
+          <div class="nav-item">
+            <button type="button" aria-haspopup="true" aria-expanded="false">{{ item.label }}</button>
+            <div class="dropdown">
+              {% for d in item.dropdown %}
+                <a href="{{ d.url }}">
+                  {{ d.label }}
+                  <span class="desc">{{ d.desc }}</span>
+                </a>
+              {% endfor %}
+            </div>
+          </div>
+        {% else %}
+          <a href="{{ item.url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.label }}</a>
+        {% endif %}
+      {% endfor %}
+    </nav>
+  </div>
+</header>

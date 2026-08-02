@@ -1,0 +1,37 @@
+---
+layout: base.njk
+title: Safety Resources
+description: "Codes of Practice, Standards, Checklists and Toolkits for the sport ecosystem."
+---
+<div class="wrap" style="padding-top:1.5rem;">
+  <p class="breadcrumb"><a href="/">Home</a> / Safety Resources</p>
+</div>
+
+<section>
+  <div class="wrap">
+    <h1>Safety Resources</h1>
+    <p class="lede">Codes of Practice, Standards, Checklists and Toolkits for everyone in the sport ecosystem.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="filter-bar" data-filter-group="resource-grid">
+      <button type="button" class="btn" data-filter="all" aria-pressed="true">All</button>
+      <button type="button" class="btn outline" data-filter="Codes of Practice" aria-pressed="false">Codes of Practice</button>
+      <button type="button" class="btn outline" data-filter="Standards" aria-pressed="false">Standards</button>
+      <button type="button" class="btn outline" data-filter="Checklists" aria-pressed="false">Checklists</button>
+      <button type="button" class="btn outline" data-filter="Toolkits & Templates" aria-pressed="false">Toolkits &amp; Templates</button>
+    </div>
+    <div class="grid-cards cols-3" id="resource-grid">
+      {% for item in resources %}
+        <div class="card" data-filter-value="{{ item.type }}">
+          <span class="tag type">{{ item.type }}</span>
+          <h3>{{ item.title }}</h3>
+          <p class="meta">{{ item.topic | join(", ") }} · {{ item.audience | join(", ") }}</p>
+          <a class="link" href="{{ item.link }}">View →</a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

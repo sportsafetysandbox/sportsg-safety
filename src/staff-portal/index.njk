@@ -1,0 +1,30 @@
+---
+layout: base.njk
+title: Staff Portal
+description: "Internal operations hub for SportSG management and staff."
+---
+<div class="wrap" style="padding-top:1.5rem;">
+  <p class="breadcrumb"><a href="/">Home</a> / Staff Portal</p>
+</div>
+
+<section>
+  <div class="wrap">
+    <span class="tag">SSO required — not yet built</span>
+    <h1>Staff Portal</h1>
+    <p class="lede">Documentation, incident and compliance management, and internal reporting for SportSG staff.</p>
+    <p style="color:var(--muted); font-size:0.85rem;">This page is a placeholder. Sign-in, role-based access, and live data aren't implemented yet — this needs a real backend before it does anything.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="grid-cards cols-2">
+      {% for mod in staffPortal %}
+        <div class="card">
+          <h3>{{ mod.title }}</h3>
+          <p>{{ mod.body }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

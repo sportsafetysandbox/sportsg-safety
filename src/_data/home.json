@@ -1,0 +1,12 @@
+{
+  "hero": {
+    "title": "Safety guidance for everyone in Singapore sport",
+    "body": "Practical safety resources, training, and reporting tools for coaches, partners, event operators, and SportSG staff."
+  },
+  "cards": [
+    { "type": "Card", "title": "Coaches & Instructors", "body": "Certifications, coaching safety standards, self-assessment.", "url": "/community/#coaches" },
+    { "type": "Card", "title": "Partners & Sport Ecosystem", "body": "NSA and vendor requirements, self-assessment.", "url": "/community/#partners" },
+    { "type": "Card", "title": "Event Operators", "body": "Event safety planning, permit submission, self-assessment.", "url": "/community/#event-operators" },
+    { "type": "Card", "title": "Staff Portal", "body": "Internal operations hub — sign in required.", "url": "/staff-portal/" }
+  ]
+}

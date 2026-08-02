@@ -1,0 +1,52 @@
+---
+layout: base.njk
+title: News, Alerts & Advisories
+description: "Current alerts and standing safety advisories."
+---
+<div class="wrap" style="padding-top:1.5rem;">
+  <p class="breadcrumb"><a href="/">Home</a> / News, Alerts &amp; Advisories</p>
+</div>
+
+<section>
+  <div class="wrap">
+    <h1>News, Alerts &amp; Advisories</h1>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Current alerts</h2>
+    {% for alert in news.alerts %}
+      <div class="list-row">
+        <span>⚠ <a href="{{ alert.link }}">{{ alert.title }}</a></span>
+        <span class="when">{{ alert.date }}</span>
+      </div>
+    {% else %}
+      <p style="color:var(--muted);">No active alerts.</p>
+    {% endfor %}
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Standing advisories</h2>
+    <div class="grid-cards cols-3">
+      {% for item in news.advisories %}
+        <div class="card">
+          <span class="tag">{{ item.topic }}</span>
+          <h3>{{ item.title }}</h3>
+          <a class="link" href="{{ item.link }}">Read →</a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="list-row">
+      <span>Get alerts by email when a new advisory is published.</span>
+      <a class="btn outline" href="#">Subscribe</a>
+    </div>
+  </div>
+</section>

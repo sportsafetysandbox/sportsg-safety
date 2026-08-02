@@ -1,0 +1,58 @@
+---
+layout: base.njk
+description: "Safety guidance for coaches, partners, event operators, and SportSG staff."
+---
+{% if news.alerts.length %}
+<div class="alert-banner">
+  <div class="wrap">
+    <span class="msg">⚠ {{ news.alerts[0].title }}</span>
+    <a href="/news/">View all advisories →</a>
+  </div>
+</div>
+{% endif %}
+
+<section class="hero">
+  <div class="wrap" style="display:grid; grid-template-columns:1fr 1fr; gap:2.5rem; align-items:center;">
+    <div>
+      <span class="eyebrow">Sport Singapore Safety</span>
+      <h1>{{ home.hero.title }}</h1>
+      <p class="lede">{{ home.hero.body }}</p>
+      <div class="actions">
+        <a class="btn" href="/report/">Report an Incident/Hazard</a>
+        <a class="btn outline" href="/resources/">Explore Safety Resources</a>
+      </div>
+    </div>
+    <div class="art" aria-hidden="true"></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Find guidance for your role</h2>
+    <div class="grid-cards cols-4">
+      {% for card in home.cards %}
+        <a class="card" href="{{ card.url }}">
+          <span class="icon" aria-hidden="true"></span>
+          <h3>{{ card.title }}</h3>
+          <p>{{ card.body }}</p>
+          <span class="link">Go →</span>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Latest news &amp; advisories</h2>
+    <div class="grid-cards cols-3">
+      {% for item in news.advisories %}
+        <div class="card">
+          <span class="meta">{{ item.topic }}</span>
+          <h4>{{ item.title }}</h4>
+        </div>
+      {% endfor %}
+    </div>
+    <p style="margin-top:1rem;"><a class="link" href="/news/">View all →</a></p>
+  </div>
+</section>

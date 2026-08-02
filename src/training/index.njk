@@ -1,0 +1,45 @@
+---
+layout: base.njk
+title: Training & Certification
+description: "Courses, workshops, and certification status for coaches, partners, and event operators."
+---
+<div class="wrap" style="padding-top:1.5rem;">
+  <p class="breadcrumb"><a href="/">Home</a> / Training &amp; Certification</p>
+</div>
+
+<section>
+  <div class="wrap">
+    <h1>Training &amp; Certification</h1>
+    <p class="lede">Courses, workshops, and certification status for coaches, partners, and event operators.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>Check your certification status</h2>
+    <form onsubmit="return false;" style="display:flex; gap:0.75rem; align-items:flex-end; flex-wrap:wrap;">
+      <div class="field" style="flex:1; min-width:220px; margin-bottom:0;">
+        <label for="cert-id">Certificate ID or NRIC/FIN last 4</label>
+        <input id="cert-id" type="text" placeholder="e.g. SSO-2024-0123">
+      </div>
+      <button class="btn" type="submit">Check status</button>
+    </form>
+    <p style="font-size:0.8rem; color:var(--muted); margin-top:0.5rem;">This lookup isn't wired to live data yet — it's a placeholder.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Upcoming courses</h2>
+    <div class="grid-cards cols-3">
+      {% for course in training %}
+        <div class="card">
+          <span class="meta">{{ course.date }}</span>
+          <h3>{{ course.title }}</h3>
+          <p>{{ course.type }}</p>
+          <a class="link" href="{{ course.link }}">Register →</a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

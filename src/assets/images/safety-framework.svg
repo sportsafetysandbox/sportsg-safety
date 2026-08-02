@@ -1,0 +1,16 @@
+<svg viewBox="0 0 640 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder diagram of the safety framework tiers: Governance, Policy, Operations, Practice">
+  <rect width="640" height="280" fill="#F2EFE6"/>
+  <g font-family="Arial, sans-serif" font-size="14" fill="#16212C">
+    <rect x="40" y="30" width="560" height="50" rx="8" fill="#FDE8E9" stroke="#B30F17" stroke-width="1"/>
+    <text x="320" y="60" text-anchor="middle">Governance — SportSG Board &amp; Safety Governance function</text>
+
+    <rect x="40" y="95" width="560" height="50" rx="8" fill="#FAC7C9" stroke="#B30F17" stroke-width="1"/>
+    <text x="320" y="125" text-anchor="middle">Policy — Integrated, Sport Safety, Safe Sport, WSH Policies</text>
+
+    <rect x="40" y="160" width="560" height="50" rx="8" fill="#F8969B" stroke="#B30F17" stroke-width="1"/>
+    <text x="320" y="190" text-anchor="middle">Operations — Compliance, Audit, Incident Management</text>
+
+    <rect x="40" y="225" width="560" height="45" rx="8" fill="#F4343D" stroke="#810E16" stroke-width="1"/>
+    <text x="320" y="253" text-anchor="middle" fill="#FFFFFF">Practice — every training session, event, and facility</text>
+  </g>
+</svg>

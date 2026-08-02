@@ -1,0 +1,39 @@
+{
+  "title": "SportSG Safety",
+  "description": "Safety guidance for coaches, partners, event operators, and the wider Singapore sport ecosystem.",
+  "nav": [
+    { "label": "Home", "url": "/" },
+    { "label": "About Sport Safety", "url": "/about/" },
+    {
+      "label": "Staff Portal",
+      "url": "/staff-portal/",
+      "dropdown": [
+        { "label": "Staff Portal", "url": "/staff-portal/", "desc": "Internal operations hub — SSO required" }
+      ]
+    },
+    {
+      "label": "Community Portal",
+      "url": "/community/",
+      "dropdown": [
+        { "label": "For Coaches & Instructors", "url": "/community/#coaches", "desc": "Certifications, standards, self-assessment" },
+        { "label": "For Partners & Sport Ecosystem", "url": "/community/#partners", "desc": "NSA and vendor requirements" },
+        { "label": "For Event Operators", "url": "/community/#event-operators", "desc": "Event safety planning, permits" }
+      ]
+    },
+    { "label": "Safety Resources", "url": "/resources/" },
+    { "label": "Training & Certification", "url": "/training/" },
+    { "label": "News, Alerts & Advisories", "url": "/news/" },
+    { "label": "FAQ & Support", "url": "/faq/" }
+  ],
+  "footer": {
+    "links": [
+      { "label": "Privacy Policy", "url": "#" },
+      { "label": "Terms of Use / PDPA Notice", "url": "#" },
+      { "label": "Sitemap", "url": "#" },
+      { "label": "Contact Us", "url": "/faq/" },
+      { "label": "Related SportSG Sites", "url": "https://www.sportsingapore.gov.sg" },
+      { "label": "Social Media Links", "url": "#" }
+    ],
+    "copyright": "© 2026 Sport Singapore. Placeholder content — not an official SportSG publication."
+  }
+}

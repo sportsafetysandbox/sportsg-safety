@@ -1,0 +1,8 @@
+[
+  { "title": "Facility Safety Inspection Code", "type": "Codes of Practice", "topic": ["Facility"], "audience": ["Event Operators", "Partners"], "link": "#" },
+  { "title": "Sports Equipment Maintenance Standard", "type": "Standards", "topic": ["Equipment"], "audience": ["Coaches"], "link": "#" },
+  { "title": "Pre-Event Safety Checklist", "type": "Checklists", "topic": ["Facility", "Weather"], "audience": ["Event Operators"], "link": "#" },
+  { "title": "Heat Injury Prevention Toolkit", "type": "Toolkits & Templates", "topic": ["Medical", "Weather"], "audience": ["Coaches", "Event Operators"], "link": "#" },
+  { "title": "Water Safety Standard", "type": "Standards", "topic": ["Water"], "audience": ["Coaches"], "link": "#" },
+  { "title": "AED & Medical Emergency Code of Practice", "type": "Codes of Practice", "topic": ["Medical"], "audience": ["Coaches", "Partners", "Event Operators"], "link": "#" }
+]

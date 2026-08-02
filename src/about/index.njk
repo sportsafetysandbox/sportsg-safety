@@ -1,0 +1,64 @@
+---
+layout: base.njk
+title: About Sport Safety
+description: "Mission, governance, and policy framework for sport safety in Singapore."
+---
+<div class="wrap" style="padding-top:1.5rem;">
+  <p class="breadcrumb"><a href="/">Home</a> / About Sport Safety</p>
+</div>
+
+<section>
+  <div class="wrap">
+    <h1>About Sport Safety</h1>
+    <p class="lede">How SportSG structures safety policy, governance, and shared responsibility across the sport ecosystem.</p>
+  </div>
+</section>
+
+{% for row in about %}
+  {% if row.type == "Framework" %}
+    <section>
+      <div class="wrap" style="display:grid; grid-template-columns:1fr 1fr; gap:2rem; align-items:center;">
+        <div>
+          <h2>{{ row.section }}</h2>
+          <p>{{ row.body }}</p>
+        </div>
+        <img src="{{ row.image }}" alt="Diagram of the safety framework tiers: governance, policy, operations, practice">
+      </div>
+    </section>
+  {% endif %}
+{% endfor %}
+
+<section>
+  <div class="wrap">
+    <h2>Policies</h2>
+    <div class="grid-cards cols-2">
+      {% for row in about %}
+        {% if row.type == "Policy" %}
+          <div class="card">
+            <h3>{{ row.section }}</h3>
+            <p>{{ row.body }}</p>
+            <a class="link" href="{{ row.link }}">View document →</a>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    {% for row in about %}
+      {% if row.type == "Narrative" %}
+        <h2>{{ row.section }}</h2>
+        <p>{{ row.body }}</p>
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="list-row"><span>Sport safety enquiries</span><a class="link" href="/faq/">See FAQ &amp; Support →</a></div>
+    <div class="list-row"><span>Urgent safety escalation</span><a class="link" href="/report/">Report an Incident/Hazard →</a></div>
+  </div>
+</section>
