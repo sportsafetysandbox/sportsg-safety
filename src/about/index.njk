@@ -17,10 +17,10 @@ description: "Mission, governance, and policy framework for sport safety in Sing
 {% for row in about %}
   {% if row.type == "Framework" %}
     <section>
-      <div class="wrap" style="display:grid; grid-template-columns:1fr 1fr; gap:2rem; align-items:center;">
+      <div class="wrap" style="display:grid; grid-template-columns:1fr 1fr; gap:2rem; align-items:start;">
         <div>
           <h2>{{ row.section }}</h2>
-          <p>{{ row.body }}</p>
+          {% for para in row.body.split('\n\n') %}<p>{{ para }}</p>{% endfor %}
         </div>
         <img src="{{ row.image }}" alt="Diagram of the safety framework tiers: governance, policy, operations, practice">
       </div>
@@ -36,7 +36,7 @@ description: "Mission, governance, and policy framework for sport safety in Sing
         {% if row.type == "Policy" %}
           <div class="card">
             <h3>{{ row.section }}</h3>
-            <p>{{ row.body }}</p>
+            {% for para in row.body.split('\n\n') %}<p>{{ para }}</p>{% endfor %}
             <a class="link" href="{{ row.link }}">View document →</a>
           </div>
         {% endif %}
@@ -50,7 +50,7 @@ description: "Mission, governance, and policy framework for sport safety in Sing
     {% for row in about %}
       {% if row.type == "Narrative" %}
         <h2>{{ row.section }}</h2>
-        <p>{{ row.body }}</p>
+        {% for para in row.body.split('\n\n') %}<p>{{ para }}</p>{% endfor %}
       {% endif %}
     {% endfor %}
   </div>
