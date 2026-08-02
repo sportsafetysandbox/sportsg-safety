@@ -7,7 +7,12 @@
       </a>
       <div class="topbar-actions">
         <span class="lang">EN</span>
-        <a class="search-link" href="#">Search</a>
+        <form class="search-form" role="search" action="#" onsubmit="return false;">
+          <input type="search" class="search-input" name="q" placeholder="Search" aria-label="Search">
+          <button type="submit" class="search-submit" aria-label="Search">
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="6.5" stroke="currentColor" stroke-width="1.6"/><line x1="13.6" y1="13.6" x2="18" y2="18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </button>
+        </form>
         <a class="btn" href="/report/">Report an Incident/Hazard</a>
       </div>
     </div>

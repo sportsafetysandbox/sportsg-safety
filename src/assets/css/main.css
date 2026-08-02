@@ -66,8 +66,22 @@ main { display: block; }
 section { padding: 2.5rem 0; border-top: 1px solid var(--line); }
 section:first-of-type { border-top: none; }
 
-.search-link { color: var(--muted); text-decoration: none; }
-.search-link:hover { color: var(--ink); }
+.search-form {
+  display: flex; align-items: center; height: 34px;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 999px; overflow: hidden;
+}
+.search-input {
+  border: none; background: none; outline: none; font: inherit; color: var(--ink);
+  padding: 0 0.3rem 0 0.9rem; width: 130px; font-size: 0.82rem;
+}
+.search-input::placeholder { color: var(--muted); }
+.search-submit {
+  display: flex; align-items: center; justify-content: center; flex: none;
+  width: 34px; height: 34px; border: none; background: none; color: var(--muted);
+  cursor: pointer; border-radius: 50%;
+}
+.search-submit:hover { color: var(--ink); background: var(--surface-2); }
+.search-submit svg { width: 16px; height: 16px; }
 
 /* Buttons */
 .btn {
