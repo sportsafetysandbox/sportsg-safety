@@ -1,3 +1,12 @@
+const navToggle = document.querySelector(".nav-toggle");
+const primaryNav = document.getElementById("primary-nav");
+if (navToggle && primaryNav) {
+  navToggle.addEventListener("click", () => {
+    const isOpen = primaryNav.classList.toggle("open");
+    navToggle.setAttribute("aria-expanded", String(isOpen));
+  });
+}
+
 document.querySelectorAll(".nav-item > button").forEach((btn) => {
   btn.addEventListener("click", () => {
     const item = btn.closest(".nav-item");

@@ -1,10 +1,13 @@
 <header class="site-header">
-  <div class="wrap">
+  <div class="wrap-header">
     <a class="brand" href="/">
       <span class="mark" aria-hidden="true"></span>
       {{ site.title }}
     </a>
-    <nav class="primary-nav" aria-label="Primary">
+    <button type="button" class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="primary-nav">
+      <span aria-hidden="true">☰</span>
+    </button>
+    <nav class="primary-nav" id="primary-nav" aria-label="Primary">
       {% for item in site.nav %}
         {% if item.dropdown %}
           <div class="nav-item">

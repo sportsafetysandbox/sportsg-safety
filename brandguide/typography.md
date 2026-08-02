@@ -1,18 +1,16 @@
 # Typography
 
-**Status:** public spec, verifiable — see [README](./README.md). This is the one file in this folder that isn't a guess.
+**Status:** decided for this project — overrides the SGDS public spec below by explicit choice.
 
-**Source:** [Singapore Government Design System — Typography](https://www.designsystem.tech.gov.sg/foundations/typography)
-
-## Typeface
-
-**Inter**, for both headings and body text — one typeface, weight does the differentiating work. Chosen by SGDS for its tall x-height and screen readability, which is why most `.gov.sg` sites already use it.
+**Typeface in use: Segoe UI** (system font, no webfont load needed).
 
 ```css
-font-family: "Inter", -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+font-family: "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
 ```
 
-Load via Google Fonts or self-host — either is fine for the actual GitHub Pages build (unlike the Claude Artifact mockups earlier in this project, which can't reach font CDNs).
+Segoe UI renders natively on Windows; other platforms fall through to their own native system font (`system-ui`/`-apple-system`/`Roboto`) rather than a mismatched face. No Google Fonts or self-hosted webfont required — one less external request.
+
+**Reference — Singapore Government Design System spec:** [designsystem.tech.gov.sg/foundations/typography](https://www.designsystem.tech.gov.sg/foundations/typography) specifies **Inter** for both headings and body text, chosen for its tall x-height and screen readability (why most `.gov.sg` sites use it). Worth knowing if this project is ever reconciled against an actual official SportSG spec, but this project currently uses Segoe UI instead by deliberate choice.
 
 ## Weights
 
@@ -31,5 +29,5 @@ Minor Third (1.200) ratio for headings/displays, Perfect Fifth (1.500) line-heig
 
 SportSG's own description of their wordmark font is a bold italic — that's almost certainly a custom or licensed logotype face, not Inter, and not something to imitate outright without the real spec. For this project:
 
-- Use Inter (regular weight, not italic) for all real UI text — body copy, nav, forms, everything readable.
-- Reserve italics for a light editorial touch only — e.g. a pull-quote or tagline near the hero — not for buttons, nav, or anything functional. Never fake the actual logotype by setting "SportSG Safety" in bold italic Inter; that reads as an attempt to mimic the real mark rather than a distinct placeholder (see [logo.md](./logo.md)).
+- Use Segoe UI (regular weight, not italic) for all real UI text — body copy, nav, forms, everything readable.
+- Reserve italics for a light editorial touch only — e.g. a pull-quote or tagline near the hero — not for buttons, nav, or anything functional. Never fake the actual logotype by setting "SportSG Safety" in bold italic Segoe UI; that reads as an attempt to mimic the real mark rather than a distinct placeholder (see [logo.md](./logo.md)).
