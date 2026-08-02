@@ -31,8 +31,8 @@ description: "Safety guidance for coaches, partners, event operators, and SportS
     <h2>Find guidance for your role</h2>
     <div class="grid-cards cols-4">
       {% for card in home.cards %}
-        <a class="card" href="{{ card.url }}">
-          <img class="icon" src="{{ card.icon }}" alt="" width="40" height="40">
+        <a class="card audience-card" href="{{ card.url }}">
+          <img class="icon" src="{{ card.icon }}" alt="" width="120" height="120">
           <h3>{{ card.title }}</h3>
           <p>{{ card.body }}</p>
           <span class="link">Go →</span>
