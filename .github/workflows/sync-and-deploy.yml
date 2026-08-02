@@ -36,11 +36,12 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # Skipped entirely until NOTION_TOKEN is added as a repo secret — the
-      # site still builds and deploys from whatever is currently in
-      # src/_data/*.json (hand-written placeholders until then).
+      # Always runs, but scripts/fetch-notion.js exits cleanly on its own
+      # when NOTION_TOKEN is empty — the site still builds and deploys from
+      # whatever is currently in src/_data/*.json (placeholders until then).
+      # (Can't gate this with `if: secrets.NOTION_TOKEN != ''` — the
+      # `secrets` context isn't allowed in `if:` conditions.)
       - name: Sync content from Notion
-        if: ${{ secrets.NOTION_TOKEN != '' }}
         env:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
           NOTION_DB_ABOUT: ${{ vars.NOTION_DB_ABOUT }}
