@@ -198,7 +198,7 @@ details.card summary::-webkit-details-marker { display: none; }
 details.card summary { list-style: none; }
 .card .icon { width: 40px; height: 40px; object-fit: contain; margin-bottom: 0.3rem; }
 
-.audience-card .icon { width: 120px; height: 120px; margin-bottom: 0.6rem; }
+.audience-card .icon { width: 84px; height: 84px; margin-bottom: 0.6rem; }
 .audience-card h3 { font-size: 1rem; font-weight: 600; }
 .audience-card p { font-size: 0.8rem; }
 .audience-card .link { font-size: 0.78rem; }
