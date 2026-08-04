@@ -4,7 +4,6 @@
     "body": "Integrated Safety Management System (ISMS) Manual, Integrated Safety Operational Manual, SOP Document Repository, Sport Centre Safety Folder.",
     "links": [
       { "label": "Sport Centre Safety Folder", "url": "/staff-portal/sport-centre-safety-folder/" },
-      { "label": "Sport Centre Details", "url": "/staff-portal/sport-centre-details/" }
     ]
   },
   {
@@ -18,5 +17,13 @@
   {
     "title": "Content & Insights",
     "body": "Content Management, Reporting & Analytics."
+  },
+  {
+    "title": "Operational Dashboard",
+    "body": "Live operational views and monitoring tools for sport centres.",
+    "links": [
+      { "label": "Sport Centre Details", "url": "/staff-portal/sport-centre-details/" },
+      { "label": "Sport Centre Weather Monitor", "url": "https://sportsafetysandbox.github.io/heatstress/sportcentre-heat-sg.html" }
+    ]
   }
 ]
