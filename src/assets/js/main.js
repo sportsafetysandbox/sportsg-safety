@@ -40,6 +40,54 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
+// Policy modal
+const policyModal = document.getElementById("policy-modal");
+if (policyModal) {
+  const modalTitle = document.getElementById("policy-modal-title");
+  const modalDesc = document.getElementById("policy-modal-desc");
+  const modalDownload = document.getElementById("policy-modal-download");
+  const modalIframe = document.getElementById("policy-modal-iframe");
+  const modalUnavailable = document.getElementById("policy-modal-unavailable");
+  const modalClose = document.getElementById("policy-modal-close");
+
+  function openPolicyModal(title, body, link) {
+    modalTitle.textContent = title;
+    modalDesc.textContent = body;
+    const hasDoc = link && link !== "#";
+    modalIframe.src = hasDoc ? link : "";
+    modalIframe.hidden = !hasDoc;
+    modalUnavailable.hidden = hasDoc;
+    modalDownload.href = hasDoc ? link : "#";
+    modalDownload.style.opacity = hasDoc ? "" : "0.4";
+    modalDownload.style.pointerEvents = hasDoc ? "" : "none";
+    policyModal.hidden = false;
+    document.body.style.overflow = "hidden";
+    modalClose.focus();
+  }
+
+  function closePolicyModal() {
+    policyModal.hidden = true;
+    modalIframe.src = "";
+    document.body.style.overflow = "";
+  }
+
+  document.querySelectorAll(".policy-card").forEach((card) => {
+    card.addEventListener("click", () => {
+      openPolicyModal(
+        card.dataset.policyTitle,
+        card.dataset.policyBody,
+        card.dataset.policyLink
+      );
+    });
+  });
+
+  modalClose.addEventListener("click", closePolicyModal);
+  policyModal.querySelector(".policy-modal__backdrop").addEventListener("click", closePolicyModal);
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !policyModal.hidden) closePolicyModal();
+  });
+}
+
 // Generic filter-bar: a [data-filter-group="<id>"] bar filters items with
 // [data-filter-value] inside the container with that id.
 document.querySelectorAll("[data-filter-group]").forEach((group) => {

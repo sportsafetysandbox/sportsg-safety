@@ -219,6 +219,58 @@ details.card summary { list-style: none; }
 .pillar-list { margin: 0.4rem 0 0; padding-left: 1.2rem; font-size: 0.82rem; color: var(--muted); }
 .pillar-list li { margin-bottom: 0.25rem; }
 
+/* Policy cards */
+.policy-card {
+  cursor: pointer; text-align: left; width: 100%;
+  font: inherit; background: var(--surface);
+  border: 1px solid var(--line); border-radius: 12px; padding: 1.25rem;
+  display: flex; flex-direction: column; gap: 0.4rem;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.policy-card:hover { border-color: var(--red-400); box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+.policy-card h3 { font-size: 1rem; font-weight: 600; margin: 0; color: var(--ink); }
+.policy-card p { font-size: 0.82rem; color: var(--muted); margin: 0; }
+.policy-card .link { font-size: 0.82rem; font-weight: 600; color: var(--red-600); margin-top: auto; }
+@media (prefers-color-scheme: dark) { .policy-card .link { color: var(--red-400); } }
+
+/* Policy modal */
+.policy-modal { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 1rem; }
+.policy-modal[hidden] { display: none; }
+.policy-modal__backdrop { position: absolute; inset: 0; background: rgba(0,0,0,0.55); backdrop-filter: blur(3px); }
+.policy-modal__panel {
+  position: relative; z-index: 1; background: var(--surface);
+  border: 1px solid var(--line); border-radius: 16px;
+  width: 100%; max-width: 860px; max-height: 90vh;
+  display: flex; flex-direction: column; overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.18);
+}
+.policy-modal__header {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--line); flex-shrink: 0;
+}
+.policy-modal__title { margin: 0; font-size: 1.1rem; font-weight: 700; }
+.policy-modal__actions { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
+.policy-modal__close {
+  display: flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; border: 1px solid var(--line); border-radius: 8px;
+  background: none; font-size: 1rem; color: var(--muted); cursor: pointer;
+}
+.policy-modal__close:hover { background: var(--surface-2); color: var(--ink); }
+.policy-modal__body { display: flex; flex-direction: column; flex: 1; overflow: hidden; }
+.policy-modal__desc { padding: 0.9rem 1.5rem; margin: 0; font-size: 0.88rem; color: var(--muted); border-bottom: 1px solid var(--line); flex-shrink: 0; }
+.policy-modal__viewer { flex: 1; position: relative; min-height: 0; }
+.policy-modal__viewer iframe { width: 100%; height: 100%; border: none; display: block; }
+.policy-modal__unavailable {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 1rem; padding: 3rem 2rem; text-align: center; color: var(--muted); height: 100%;
+}
+.policy-modal__unavailable svg { opacity: 0.4; }
+.policy-modal__unavailable p { font-size: 0.9rem; max-width: 36ch; margin: 0; }
+@media (max-width: 600px) {
+  .policy-modal__header { flex-direction: column; align-items: flex-start; }
+  .policy-modal__panel { max-height: 95vh; }
+}
+
 /* Tags/pills */
 .tag {
   display: inline-block; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.03em;
