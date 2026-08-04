@@ -329,6 +329,7 @@ details.card summary { list-style: none; }
 /* Framework diagram trigger */
 .framework-trigger {
   display: block; width: 100%; padding: 0; border: none; background: none;
+  -webkit-appearance: none; appearance: none;
   cursor: zoom-in; border-radius: var(--radius); overflow: hidden; position: relative;
 }
 .framework-trigger img { width: 100%; height: auto; display: block; border-radius: var(--radius); transition: opacity 0.15s; }
