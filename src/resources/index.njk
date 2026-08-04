@@ -26,7 +26,7 @@ description: "Code of Practice, Standards, Checklists and Toolkits for the sport
     <div class="grid-cards cols-4" id="resource-grid">
       {% for item in resources %}
         <div class="card resource-card" data-filter-value="{{ item.type }}">
-          <span class="tag type">{{ item.type }}</span>
+          <span class="tag type" data-type="{{ item.type }}">{{ item.type }}</span>
           <h3>{{ item.title }}</h3>
           <p class="meta">{{ item.topic | join(", ") }} · {{ item.audience | join(", ") }}</p>
           {% if item.cover %}

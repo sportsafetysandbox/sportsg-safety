@@ -389,8 +389,16 @@ details.card summary { list-style: none; }
   display: inline-block; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.03em;
   padding: 0.2rem 0.55rem; border-radius: 999px; background: var(--surface-2); color: var(--muted);
 }
-.tag.type { background: #d1fae5; color: #065f46; }
-@media (prefers-color-scheme: dark) { .tag.type { background: #064e3b; color: #6ee7b7; } }
+.tag.type[data-type="Code of Practice"] { background: #d1fae5; color: #065f46; }
+.tag.type[data-type="Standards"]        { background: #f3f4f6; color: #374151; }
+.tag.type[data-type="Checklists"]       { background: #dbeafe; color: #1e40af; }
+.tag.type[data-type="Toolkits & Templates"] { background: #ede9fe; color: #5b21b6; }
+@media (prefers-color-scheme: dark) {
+  .tag.type[data-type="Code of Practice"]    { background: #064e3b; color: #6ee7b7; }
+  .tag.type[data-type="Standards"]           { background: #1f2937; color: #d1d5db; }
+  .tag.type[data-type="Checklists"]          { background: #1e3a5f; color: #93c5fd; }
+  .tag.type[data-type="Toolkits & Templates"]{ background: #2e1065; color: #c4b5fd; }
+}
 
 /* Filter bar */
 .filter-bar { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
