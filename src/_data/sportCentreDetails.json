@@ -1,0 +1,184 @@
+{
+  "centres": [
+    {
+      "number": 1, "zone": "North",
+      "name": "Bukit Canberra Sport Centre",
+      "address": "21 Canberra Link, Singapore 756973",
+      "phone": "6374 5342",
+      "onSite": ["Bukit Canberra Swimming Complex", "Bukit Canberra ActiveSG Gym", "Bukit Canberra Sport Hall"],
+      "offSite": []
+    },
+    {
+      "number": 2, "zone": "North",
+      "name": "Woodlands Sport Centre",
+      "address": "1 Woodlands Street 13, Singapore 738597",
+      "phone": "6269 4192",
+      "onSite": ["Woodlands Stadium", "Woodlands Sport Hall"],
+      "offSite": ["Woodlands Swimming Complex — 3 Woodlands Street 13, Singapore 738600", "Woodlands ActiveSG Gym — confirm current facility address"]
+    },
+    {
+      "number": 3, "zone": "North",
+      "name": "Yio Chu Kang Sport Centre",
+      "address": "200 Ang Mo Kio Avenue 9, Singapore 569770",
+      "phone": "6482 4980",
+      "onSite": ["Yio Chu Kang Swimming Complex", "Yio Chu Kang ActiveSG Gym", "Yio Chu Kang Stadium", "Yio Chu Kang Sport Hall", "Yio Chu Kang Tennis Centre", "Yio Chu Kang Squash Centre"],
+      "offSite": []
+    },
+    {
+      "number": 4, "zone": "North",
+      "name": "Yishun Sport Centre",
+      "address": "101 Yishun Avenue 1, Singapore 769130",
+      "phone": "6756 7416",
+      "onSite": ["Yishun Stadium", "Yishun Sport Hall", "Yishun ActiveSG Gym", "Yishun Tennis Centre"],
+      "offSite": ["Yishun Swimming Complex — 351 Yishun Avenue 3, Singapore 769057"]
+    },
+    {
+      "number": 5, "zone": "Northeast",
+      "name": "Bishan Sport Centre",
+      "address": "5 Bishan Street 14, Singapore 579783",
+      "phone": "6352 6631",
+      "onSite": ["Bishan Swimming Complex — 1 Bishan Street 14, Singapore 579778", "Bishan Clubhouse — 3 Bishan Street 14, Singapore 579780", "Bishan Sport Hall — 5 Bishan Street 14, Singapore 579783", "Bishan Stadium — 7 Bishan Street 14, Singapore 579784", "Bishan ActiveSG Gym"],
+      "offSite": ["ActiveSG Sport Park @ Teck Ghee Swimming Complex — 1771 Ang Mo Kio Avenue 1, Singapore 569978", "ActiveSG Sport Park @ Teck Ghee Gym — 1771 Ang Mo Kio Avenue 1, Singapore 569978", "ActiveSG Gym @ Ang Mo Kio Community Centre — 795 Ang Mo Kio Avenue 1, Singapore 569976"]
+    },
+    {
+      "number": 6, "zone": "Northeast",
+      "name": "Hougang Sport Centre",
+      "address": "93 Hougang Avenue 4, Singapore 538832",
+      "phone": "6315 8671",
+      "onSite": ["Hougang Swimming Complex — 95 Hougang Avenue 4, Singapore 538830", "Hougang ActiveSG Gym", "Hougang Stadium", "Hougang Sport Hall", "Hougang Tennis Centre"],
+      "offSite": []
+    },
+    {
+      "number": 7, "zone": "Northeast",
+      "name": "Sengkang Sport Centre",
+      "address": "57 Anchorvale Road, Singapore 544964",
+      "phone": "6315 3574 / 6315 3575",
+      "onSite": ["Sengkang Swimming Complex", "Sengkang ActiveSG Gym", "Sengkang Sport Hall", "Sengkang Hockey Pitch"],
+      "offSite": ["ActiveSG Gym @ Fernvale Square — 51A Sengkang West Avenue, Singapore 797384"]
+    },
+    {
+      "number": 8, "zone": "Northeast",
+      "name": "Serangoon Sport Centre",
+      "address": "35 Yio Chu Kang Road, Singapore 545552",
+      "phone": "6288 4606",
+      "onSite": ["Serangoon Swimming Complex", "Serangoon Stadium", "Serangoon Sport Hall", "Serangoon Tennis Centre"],
+      "offSite": ["ActiveSG Gym @ Serangoon Central — 264 Serangoon Central, Singapore 550264"]
+    },
+    {
+      "number": 9, "zone": "East",
+      "name": "Heartbeat @ Bedok ActiveSG Sport Centre",
+      "address": "11 Bedok North Street 1, Singapore 469662",
+      "phone": "6443 5511",
+      "onSite": ["Heartbeat @ Bedok ActiveSG Swimming Complex", "Heartbeat @ Bedok ActiveSG Gym", "Heartbeat @ Bedok Sport Hall", "Heartbeat @ Bedok Tennis Centre"],
+      "offSite": ["Bedok Stadium — 1 Bedok North Street 2, Singapore 469642"]
+    },
+    {
+      "number": 10, "zone": "East",
+      "name": "Kallang Sport Centre",
+      "address": "8 Stadium Boulevard, Singapore 397804",
+      "phone": "6348 1291",
+      "onSite": ["Kallang Tennis Centre", "Kallang Squash Centre", "Kallang Netball Centre", "Kallang Field", "Kallang Futsal Centre", "Home of Athletics", "Kallang Hockey Centre"],
+      "offSite": ["Katong Swimming Complex — 111 Wilkinson Road, Singapore 436752", "Geylang East Swimming Complex — 601 Aljunied Avenue 1, Singapore 389862", "Katong ActiveSG Gym"]
+    },
+    {
+      "number": 11, "zone": "East",
+      "name": "Pasir Ris Sport Centre",
+      "address": "120 Pasir Ris Central, Singapore 519640",
+      "phone": "6583 8557 / 6583 2696",
+      "onSite": ["Pasir Ris Swimming Complex", "Pasir Ris ActiveSG Gym", "Pasir Ris Sport Hall", "Pasir Ris Tennis Centre"],
+      "offSite": []
+    },
+    {
+      "number": 12, "zone": "East",
+      "name": "Tampines Sport Centre",
+      "address": "1 Tampines Walk, Singapore 528523",
+      "phone": "6385 3718",
+      "onSite": ["Tampines Swimming Complex", "Tampines ActiveSG Gym", "Tampines Sport Hall", "Tampines Stadium"],
+      "offSite": ["Tampines Tennis Centre — verify current address and operational allocation"]
+    },
+    {
+      "number": 13, "zone": "Central",
+      "name": "Clementi Sport Centre",
+      "address": "518 Clementi Avenue 3, Singapore 129907",
+      "phone": "6776 2560",
+      "onSite": ["Clementi Swimming Complex — 520 Clementi Avenue 3, Singapore 129908", "Clementi ActiveSG Gym", "Clementi Stadium", "Clementi Sport Hall", "Clementi Tennis Centre"],
+      "offSite": []
+    },
+    {
+      "number": 14, "zone": "Central",
+      "name": "Delta Sport Centre",
+      "address": "900 Tiong Bahru Road, Singapore 158790",
+      "phone": "6203 9246",
+      "onSite": ["Delta Swimming Complex", "Delta ActiveSG Gym", "Delta Sport Hall", "Delta Hockey Pitch"],
+      "offSite": []
+    },
+    {
+      "number": 15, "zone": "Central",
+      "name": "Jalan Besar Sport Centre",
+      "address": "100 Tyrwhitt Road, Singapore 207542",
+      "phone": "6293 9058",
+      "onSite": ["Jalan Besar Swimming Complex", "Jalan Besar ActiveSG Gym", "Jalan Besar Stadium"],
+      "offSite": []
+    },
+    {
+      "number": 16, "zone": "Central",
+      "name": "Queenstown Sport Centre",
+      "address": "473 Stirling Road, Singapore 148948",
+      "phone": "—",
+      "onSite": ["Queenstown Swimming Complex", "Queenstown ActiveSG Gym", "Queenstown Stadium", "Queenstown Sport Hall"],
+      "offSite": ["ActiveSG Gym @ Enabling Village — 20 Lengkok Bahru, Singapore 159053"]
+    },
+    {
+      "number": 17, "zone": "Central",
+      "name": "Toa Payoh Sport Centre",
+      "address": "301 Lorong 6 Toa Payoh, Singapore 319392",
+      "phone": "6259 2916",
+      "onSite": ["Toa Payoh Swimming Complex", "Toa Payoh Stadium", "Toa Payoh Sport Hall", "Toa Payoh Tennis Centre", "Toa Payoh Squash Centre"],
+      "offSite": ["ActiveSG Gym @ Toa Payoh — 127A Lorong 1 Toa Payoh, Singapore 319899", "ActiveSG Gym @ Toa Payoh West Community Centre — 200 Lorong 2 Toa Payoh, Singapore 319642", "MOE (Evans) Swimming Complex", "ActiveSG Courts @ Farrer Park"]
+    },
+    {
+      "number": 18, "zone": "West",
+      "name": "Bukit Gombak Sport Centre",
+      "address": "810 Bukit Batok West Avenue 5, Singapore 659088",
+      "phone": "6896 2193",
+      "onSite": ["Bukit Gombak ActiveSG Gym", "Bukit Gombak Stadium", "Bukit Gombak Sport Hall"],
+      "offSite": ["Bukit Batok Swimming Complex — 2 Bukit Batok Street 22, Singapore 659581", "Bukit Batok ActiveSG Gym — verify current address"]
+    },
+    {
+      "number": 19, "zone": "West",
+      "name": "Choa Chu Kang Sport Centre",
+      "address": "1 Choa Chu Kang Street 53, Singapore 689236",
+      "phone": "6767 1735 / 6767 4576",
+      "onSite": ["Choa Chu Kang Swimming Complex", "Choa Chu Kang ActiveSG Gym", "Choa Chu Kang Stadium", "Choa Chu Kang Sport Hall", "Choa Chu Kang Tennis Centre"],
+      "offSite": ["Senja-Cashew Swimming Complex", "Senja-Cashew ActiveSG Gym"]
+    },
+    {
+      "number": 20, "zone": "West",
+      "name": "Jurong East Sport Centre",
+      "address": "21 Jurong East Street 31, Singapore 609517",
+      "phone": "6563 5052",
+      "onSite": ["Jurong East Swimming Complex", "Jurong East ActiveSG Gym", "Jurong East Stadium", "Jurong East Sport Hall", "Jurong East Tennis Centre"],
+      "offSite": ["Jurong Lake Gardens Pool", "Jurong Lake Gardens Gym", "ActiveSG Sport Village @ Jurong Town — 2 International Road, Singapore 619618"]
+    },
+    {
+      "number": 21, "zone": "West",
+      "name": "Jurong West Sport Centre",
+      "address": "20 Jurong West Street 93, Singapore 648965",
+      "phone": "6515 5332 / 6515 5331",
+      "onSite": ["Jurong West Swimming Complex", "Jurong West ActiveSG Gym", "Jurong West Stadium", "Jurong West Sport Hall", "Jurong West Tennis Centre"],
+      "offSite": ["ActiveSG Hockey Village @ Boon Lay — verify current address and operational allocation"]
+    }
+  ],
+  "zones": ["North", "Northeast", "East", "Central", "West"],
+  "scope": [
+    "Swimming complexes", "Fitness gyms", "Stadiums", "Indoor sport halls",
+    "Tennis centres", "Fields", "Futsal centres", "Squash centres",
+    "Hockey centres", "Outdoor netball centres"
+  ],
+  "classification": [
+    { "label": "On-site", "meaning": "Located within the principal Sport Centre address." },
+    { "label": "Adjoining", "meaning": "Located within the same sport precinct but carrying a separate street number or entrance." },
+    { "label": "Off-site", "meaning": "Located away from the principal Sport Centre and operationally assigned to that Sport Centre." },
+    { "label": "Verify internally", "meaning": "Public information indicates a likely association, but the management allocation should be confirmed against the internal register." }
+  ]
+}

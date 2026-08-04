@@ -1,0 +1,237 @@
+---
+layout: base.njk
+title: Sport Centre Details
+description: "Directory of all managed sport centres, their facilities, and location classification."
+---
+<div class="wrap" style="padding-top:1.5rem;">
+  <p class="breadcrumb"><a href="/">Home</a> / <a href="/staff-portal/">Staff Portal</a> / Sport Centre Details</p>
+</div>
+
+<section>
+  <div class="wrap">
+    <span class="eyebrow">Documentation & Policy</span>
+    <h1>Sport Centre Details</h1>
+    <p class="lede">Directory of all managed sport centres and their associated facilities, organised by geographical zone.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="zone-filter" role="group" aria-label="Filter by zone">
+      <button class="zone-btn active" data-zone="all">All Zones</button>
+      {% for zone in sportCentreDetails.zones %}
+        <button class="zone-btn" data-zone="{{ zone }}">{{ zone }}</button>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    {% for zone in sportCentreDetails.zones %}
+      <div class="zone-group" data-zone-group="{{ zone }}">
+        <h2 class="zone-heading">{{ zone }}</h2>
+        <div class="folder-accordion">
+          {% for centre in sportCentreDetails.centres %}
+            {% if centre.zone === zone %}
+              <details class="folder-item centre-item" data-zone="{{ centre.zone }}">
+                <summary class="folder-item__summary">
+                  <span class="folder-section-num">{{ centre.number }}</span>
+                  <span class="folder-item__title">{{ centre.name }}</span>
+                  <span class="folder-item__chevron" aria-hidden="true">›</span>
+                </summary>
+                <div class="folder-item__body centre-body">
+                  <div class="centre-meta">
+                    <div class="centre-meta__row">
+                      <span class="centre-meta__label">Address</span>
+                      <span class="centre-meta__value">{{ centre.address }}</span>
+                    </div>
+                    {% if centre.phone and centre.phone !== "—" %}
+                    <div class="centre-meta__row">
+                      <span class="centre-meta__label">Phone</span>
+                      <span class="centre-meta__value">{{ centre.phone }}</span>
+                    </div>
+                    {% endif %}
+                  </div>
+
+                  {% if centre.onSite.length > 0 %}
+                  <h4 class="folder-item__heading">On-site Facilities</h4>
+                  <ul class="facility-list">
+                    {% for f in centre.onSite %}
+                      <li>{{ f }}</li>
+                    {% endfor %}
+                  </ul>
+                  {% endif %}
+
+                  {% if centre.offSite.length > 0 %}
+                  <h4 class="folder-item__heading">Off-site / Managed Facilities</h4>
+                  <ul class="facility-list">
+                    {% for f in centre.offSite %}
+                      <li>{{ f }}</li>
+                    {% endfor %}
+                  </ul>
+                  {% endif %}
+                </div>
+              </details>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Facility Scope</h2>
+    <p style="margin-bottom:1rem;">The following facility types fall within the scope of managed sport centres:</p>
+    <ul class="scope-list">
+      {% for item in sportCentreDetails.scope %}
+        <li>{{ item }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Location Classification</h2>
+    <p style="margin-bottom:1.5rem;">Facilities are classified by their physical relationship to the principal Sport Centre address:</p>
+    <div class="classification-table">
+      <div class="classification-table__header">
+        <span>Classification</span>
+        <span>Definition</span>
+      </div>
+      {% for row in sportCentreDetails.classification %}
+        <div class="classification-table__row">
+          <span class="classification-label">{{ row.label }}</span>
+          <span>{{ row.meaning }}</span>
+        </div>
+      {% endfor %}
+    </div>
+    <p style="margin-top:1rem; color:var(--muted); font-size:0.85rem;">This directory should be verified against the internal register. Allocations marked "verify internally" reflect publicly available information only.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="list-row"><span>Back to Staff Portal</span><a class="link" href="/staff-portal/">Staff Portal →</a></div>
+    <div class="list-row"><span>Safety documentation for your centre</span><a class="link" href="/staff-portal/sport-centre-safety-folder/">Sport Centre Safety Folder →</a></div>
+  </div>
+</section>
+
+<style>
+.zone-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+.zone-btn {
+  padding: 0.375rem 1rem;
+  border: 1.5px solid var(--border);
+  border-radius: 2rem;
+  background: transparent;
+  color: var(--ink);
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+.zone-btn:hover { border-color: var(--red-600); color: var(--red-700); }
+.zone-btn.active {
+  background: var(--red-600);
+  border-color: var(--red-600);
+  color: #fff;
+}
+.zone-heading {
+  margin: 2rem 0 0.75rem;
+  font-size: 1.1rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.4rem;
+}
+.zone-group[hidden] { display: none; }
+.centre-body { display: grid; gap: 1rem; }
+.centre-meta { display: flex; flex-direction: column; gap: 0.35rem; margin-bottom: 0.5rem; }
+.centre-meta__row { display: flex; gap: 1rem; font-size: 0.9rem; }
+.centre-meta__label { min-width: 4.5rem; color: var(--muted); font-weight: 500; }
+.centre-meta__value { color: var(--ink); }
+.facility-list {
+  margin: 0.25rem 0 0 1rem;
+  padding: 0;
+  font-size: 0.9rem;
+  line-height: 1.8;
+  color: var(--ink);
+}
+.scope-list {
+  columns: 2;
+  column-gap: 2rem;
+  margin: 0 0 0 1rem;
+  font-size: 0.9rem;
+  line-height: 2;
+}
+@media (max-width: 600px) { .scope-list { columns: 1; } }
+.classification-table {
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  font-size: 0.9rem;
+}
+.classification-table__header {
+  display: grid;
+  grid-template-columns: 9rem 1fr;
+  gap: 1rem;
+  padding: 0.65rem 1rem;
+  background: var(--surface-alt, var(--surface));
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  border-bottom: 1px solid var(--border);
+}
+.classification-table__row {
+  display: grid;
+  grid-template-columns: 9rem 1fr;
+  gap: 1rem;
+  padding: 0.65rem 1rem;
+  border-bottom: 1px solid var(--border);
+  align-items: start;
+}
+.classification-table__row:last-child { border-bottom: none; }
+.classification-label {
+  font-weight: 600;
+  color: var(--red-700);
+}
+@media (max-width: 480px) {
+  .classification-table__header,
+  .classification-table__row {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+  }
+}
+</style>
+
+<script>
+(function () {
+  var btns = document.querySelectorAll(".zone-btn");
+  var groups = document.querySelectorAll(".zone-group");
+  btns.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      btns.forEach(function (b) { b.classList.remove("active"); });
+      btn.classList.add("active");
+      var zone = btn.dataset.zone;
+      groups.forEach(function (g) {
+        if (zone === "all" || g.dataset.zoneGroup === zone) {
+          g.removeAttribute("hidden");
+        } else {
+          g.setAttribute("hidden", "");
+        }
+      });
+    });
+  });
+})();
+</script>
