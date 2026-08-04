@@ -1,8 +1,27 @@
 ---
 layout: base.njk
 title: Sport Centre Details
-description: "Directory of all managed sport centres, their facilities, and location classification."
+description: "Directory of all managed sport centres, their facilities, and evacuation routes."
 ---
+
+{# Hidden JSON data stores for each centre — read by the evacuation modal JS #}
+{% for centre in sportCentreDetails.centres %}
+<script id="evac-data-{{ centre.number }}" type="application/json">
+{
+  "name": {{ centre.name | dump }},
+  "address": {{ centre.address | dump }},
+  "hospital": {{ centre.evacuation.hospital | dump }},
+  "hospitalAddress": {{ centre.evacuation.hospitalAddress | dump }},
+  "hospitalHotline": {{ centre.evacuation.hospitalHotline | dump }},
+  "distance": {{ centre.evacuation.distance | dump }},
+  "ambulanceTime": {{ centre.evacuation.ambulanceTime | dump }},
+  "routeNarration": {{ centre.evacuation.routeNarration | dump }},
+  "mapsUrl": {{ centre.evacuation.mapsUrl | dump }},
+  "embedUrl": {{ centre.evacuation.embedUrl | dump }}
+}
+</script>
+{% endfor %}
+
 <div class="wrap" style="padding-top:1.5rem;">
   <p class="breadcrumb"><a href="/">Home</a> / <a href="/staff-portal/">Staff Portal</a> / Sport Centre Details</p>
 </div>
@@ -57,20 +76,26 @@ description: "Directory of all managed sport centres, their facilities, and loca
                   {% if centre.onSite.length > 0 %}
                   <h4 class="folder-item__heading">On-site Facilities</h4>
                   <ul class="facility-list">
-                    {% for f in centre.onSite %}
-                      <li>{{ f }}</li>
-                    {% endfor %}
+                    {% for f in centre.onSite %}<li>{{ f }}</li>{% endfor %}
                   </ul>
                   {% endif %}
 
                   {% if centre.offSite.length > 0 %}
                   <h4 class="folder-item__heading">Off-site / Managed Facilities</h4>
                   <ul class="facility-list">
-                    {% for f in centre.offSite %}
-                      <li>{{ f }}</li>
-                    {% endfor %}
+                    {% for f in centre.offSite %}<li>{{ f }}</li>{% endfor %}
                   </ul>
                   {% endif %}
+
+                  <div class="centre-evac-bar">
+                    <span class="centre-evac-bar__hospital">
+                      <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" style="vertical-align:-2px;margin-right:4px"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"/></svg>Nearest ER: <strong>{{ centre.evacuation.hospital }}</strong>
+                    </span>
+                    <span class="centre-evac-bar__time">{{ centre.evacuation.ambulanceTime }} by ambulance</span>
+                    <button class="evac-btn btn btn--red btn--sm" data-centre-id="{{ centre.number }}" type="button">
+                      Evacuation Route
+                    </button>
+                  </div>
                 </div>
               </details>
             {% endif %}
@@ -86,9 +111,7 @@ description: "Directory of all managed sport centres, their facilities, and loca
     <h2>Facility Scope</h2>
     <p style="margin-bottom:1rem;">The following facility types fall within the scope of managed sport centres:</p>
     <ul class="scope-list">
-      {% for item in sportCentreDetails.scope %}
-        <li>{{ item }}</li>
-      {% endfor %}
+      {% for item in sportCentreDetails.scope %}<li>{{ item }}</li>{% endfor %}
     </ul>
   </div>
 </section>
@@ -120,7 +143,78 @@ description: "Directory of all managed sport centres, their facilities, and loca
   </div>
 </section>
 
+{# ── Evacuation Route Modal ────────────────────────────────────────────── #}
+<div id="evac-modal" class="evac-modal" hidden aria-modal="true" role="dialog" aria-labelledby="evac-modal-title">
+  <div class="evac-modal__backdrop" id="evac-modal-backdrop"></div>
+  <div class="evac-modal__panel">
+
+    <div class="evac-modal__header">
+      <div class="evac-modal__header-text">
+        <p class="evac-modal__eyebrow">Evacuation Route</p>
+        <h2 class="evac-modal__title" id="evac-modal-title"></h2>
+      </div>
+      <button class="evac-modal__close" id="evac-modal-close" aria-label="Close evacuation route">&#x2715;</button>
+    </div>
+
+    <div class="evac-modal__map-wrap">
+      <iframe id="evac-modal-map"
+        class="evac-modal__map"
+        src="about:blank"
+        loading="lazy"
+        allowfullscreen
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Evacuation route map"
+        frameborder="0"></iframe>
+      <a id="evac-maps-open" href="#" target="_blank" rel="noopener noreferrer" class="evac-map-overlay-link" aria-label="Open full route in Google Maps">
+        Open full route in Google Maps ↗
+      </a>
+    </div>
+
+    <div class="evac-modal__body">
+      <div class="evac-detail-grid">
+        <div class="evac-detail evac-detail--full">
+          <span class="evac-detail__label">Nearest Medical Facility</span>
+          <span class="evac-detail__value evac-detail__value--hospital" id="evac-hospital-name"></span>
+        </div>
+        <div class="evac-detail">
+          <span class="evac-detail__label">Address</span>
+          <span class="evac-detail__value" id="evac-hospital-address"></span>
+        </div>
+        <div class="evac-detail">
+          <span class="evac-detail__label">ER Hotline</span>
+          <span class="evac-detail__value evac-detail__value--hotline" id="evac-hospital-hotline"></span>
+        </div>
+        <div class="evac-detail">
+          <span class="evac-detail__label">Distance</span>
+          <span class="evac-detail__value" id="evac-distance"></span>
+        </div>
+        <div class="evac-detail">
+          <span class="evac-detail__label">Time via Ambulance</span>
+          <span class="evac-detail__value evac-detail__value--time" id="evac-time"></span>
+        </div>
+      </div>
+
+      <div class="evac-route-section">
+        <h3 class="evac-route-section__heading">Evacuation Route Narration</h3>
+        <p id="evac-narration" class="evac-route-section__text"></p>
+        <p class="evac-route-section__note">Route is indicative. Confirm current traffic conditions and road closures before travel. Actual ambulance routing is subject to SCDF operational decisions and prevailing road conditions.</p>
+      </div>
+
+      <div class="evac-modal__actions">
+        <a id="evac-maps-link" href="#" target="_blank" rel="noopener noreferrer" class="btn btn--ghost">
+          Open in Google Maps ↗
+        </a>
+        <button class="btn btn--red" id="evac-print-btn" type="button">
+          Download PDF (A4)
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 <style>
+/* ── Zone filter ──────────────────────────────────────────────────────── */
 .zone-filter {
   display: flex;
   flex-wrap: wrap;
@@ -138,14 +232,10 @@ description: "Directory of all managed sport centres, their facilities, and loca
   transition: background 0.15s, border-color 0.15s, color 0.15s;
 }
 .zone-btn:hover { border-color: var(--red-600); color: var(--red-700); }
-.zone-btn.active {
-  background: var(--red-600);
-  border-color: var(--red-600);
-  color: #fff;
-}
+.zone-btn.active { background: var(--red-600); border-color: var(--red-600); color: #fff; }
 .zone-heading {
   margin: 2rem 0 0.75rem;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   color: var(--muted);
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -154,69 +244,175 @@ description: "Directory of all managed sport centres, their facilities, and loca
   padding-bottom: 0.4rem;
 }
 .zone-group[hidden] { display: none; }
+
+/* ── Centre card body ─────────────────────────────────────────────────── */
 .centre-body { display: grid; gap: 1rem; }
-.centre-meta { display: flex; flex-direction: column; gap: 0.35rem; margin-bottom: 0.5rem; }
+.centre-meta { display: flex; flex-direction: column; gap: 0.35rem; }
 .centre-meta__row { display: flex; gap: 1rem; font-size: 0.9rem; }
 .centre-meta__label { min-width: 4.5rem; color: var(--muted); font-weight: 500; }
-.centre-meta__value { color: var(--ink); }
-.facility-list {
-  margin: 0.25rem 0 0 1rem;
-  padding: 0;
-  font-size: 0.9rem;
-  line-height: 1.8;
+.facility-list { margin: 0.25rem 0 0 1rem; padding: 0; font-size: 0.9rem; line-height: 1.8; }
+
+/* ── Evacuation bar inside accordion ─────────────────────────────────── */
+.centre-evac-bar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding: 0.65rem 1rem;
+  background: color-mix(in srgb, var(--red-600) 6%, transparent);
+  border: 1px solid color-mix(in srgb, var(--red-600) 20%, transparent);
+  border-radius: 0.4rem;
+  font-size: 0.85rem;
   color: var(--ink);
 }
+.centre-evac-bar__hospital { flex: 1; min-width: 12rem; }
+.centre-evac-bar__hospital strong { color: var(--red-700); }
+.centre-evac-bar__time { color: var(--muted); white-space: nowrap; }
+.btn--red {
+  background: var(--red-600);
+  color: #fff;
+  border-color: var(--red-600);
+  font-weight: 600;
+}
+.btn--red:hover { background: var(--red-700); border-color: var(--red-700); }
+.btn--sm { padding: 0.3rem 0.85rem; font-size: 0.8rem; }
+
+/* ── Facility / scope lists ───────────────────────────────────────────── */
 .scope-list {
-  columns: 2;
-  column-gap: 2rem;
-  margin: 0 0 0 1rem;
-  font-size: 0.9rem;
-  line-height: 2;
+  columns: 2; column-gap: 2rem;
+  margin: 0 0 0 1rem; font-size: 0.9rem; line-height: 2;
 }
 @media (max-width: 600px) { .scope-list { columns: 1; } }
-.classification-table {
-  border: 1px solid var(--border);
-  border-radius: 0.5rem;
-  overflow: hidden;
-  font-size: 0.9rem;
-}
+
+/* ── Classification table ────────────────────────────────────────────── */
+.classification-table { border: 1px solid var(--border); border-radius: 0.5rem; overflow: hidden; font-size: 0.9rem; }
 .classification-table__header {
-  display: grid;
-  grid-template-columns: 9rem 1fr;
-  gap: 1rem;
+  display: grid; grid-template-columns: 9rem 1fr; gap: 1rem;
   padding: 0.65rem 1rem;
   background: var(--surface-alt, var(--surface));
-  font-weight: 600;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--muted);
+  font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted);
   border-bottom: 1px solid var(--border);
 }
 .classification-table__row {
-  display: grid;
-  grid-template-columns: 9rem 1fr;
-  gap: 1rem;
-  padding: 0.65rem 1rem;
-  border-bottom: 1px solid var(--border);
-  align-items: start;
+  display: grid; grid-template-columns: 9rem 1fr; gap: 1rem;
+  padding: 0.65rem 1rem; border-bottom: 1px solid var(--border); align-items: start;
 }
 .classification-table__row:last-child { border-bottom: none; }
-.classification-label {
-  font-weight: 600;
-  color: var(--red-700);
-}
+.classification-label { font-weight: 600; color: var(--red-700); }
 @media (max-width: 480px) {
   .classification-table__header,
-  .classification-table__row {
-    grid-template-columns: 1fr;
-    gap: 0.25rem;
-  }
+  .classification-table__row { grid-template-columns: 1fr; gap: 0.25rem; }
+}
+
+/* ── Evacuation Modal ─────────────────────────────────────────────────── */
+.evac-modal {
+  position: fixed; inset: 0; z-index: 1000;
+  display: flex; align-items: flex-start; justify-content: center;
+  padding: 1.5rem 1rem;
+  overflow-y: auto;
+}
+.evac-modal__backdrop {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(2px);
+  cursor: pointer;
+}
+.evac-modal__panel {
+  position: relative; z-index: 1;
+  background: var(--surface);
+  border-radius: 0.75rem;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  width: 100%;
+  max-width: 760px;
+  overflow: hidden;
+  display: flex; flex-direction: column;
+}
+.evac-modal__header {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  padding: 1.25rem 1.5rem 1rem;
+  background: var(--red-700);
+  color: #fff;
+  gap: 1rem;
+}
+.evac-modal__eyebrow {
+  font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.1em; opacity: 0.8; margin-bottom: 0.2rem;
+}
+.evac-modal__title { font-size: 1.15rem; font-weight: 700; color: #fff; margin: 0; }
+.evac-modal__close {
+  flex-shrink: 0; background: rgba(255,255,255,0.15); border: none;
+  color: #fff; font-size: 1.1rem; line-height: 1;
+  width: 2rem; height: 2rem; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: background 0.15s;
+}
+.evac-modal__close:hover { background: rgba(255,255,255,0.3); }
+
+/* Map */
+.evac-modal__map-wrap { position: relative; width: 100%; height: 300px; background: #e8ecef; }
+.evac-modal__map { width: 100%; height: 100%; border: none; display: block; }
+.evac-map-overlay-link {
+  position: absolute; bottom: 0.5rem; right: 0.5rem;
+  background: rgba(255,255,255,0.92); color: var(--red-700);
+  font-size: 0.78rem; font-weight: 600; padding: 0.3rem 0.65rem;
+  border-radius: 0.25rem; text-decoration: none;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+.evac-map-overlay-link:hover { background: #fff; }
+
+/* Body */
+.evac-modal__body { padding: 1.25rem 1.5rem 1.5rem; display: flex; flex-direction: column; gap: 1.25rem; }
+.evac-detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+.evac-detail--full { grid-column: 1 / -1; }
+.evac-detail { display: flex; flex-direction: column; gap: 0.2rem; }
+.evac-detail__label { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); }
+.evac-detail__value { font-size: 0.95rem; color: var(--ink); font-weight: 500; }
+.evac-detail__value--hospital { font-size: 1.05rem; font-weight: 700; color: var(--red-700); }
+.evac-detail__value--hotline { font-size: 1rem; font-weight: 700; font-variant-numeric: tabular-nums; color: var(--red-700); }
+.evac-detail__value--time { font-weight: 700; color: var(--red-700); }
+
+/* Route narration */
+.evac-route-section {
+  border-top: 1px solid var(--border);
+  padding-top: 1rem;
+}
+.evac-route-section__heading {
+  font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.5rem;
+}
+.evac-route-section__text { font-size: 0.95rem; line-height: 1.65; color: var(--ink); margin-bottom: 0.6rem; }
+.evac-route-section__note { font-size: 0.78rem; color: var(--muted); font-style: italic; }
+
+/* Actions */
+.evac-modal__actions { display: flex; gap: 0.75rem; flex-wrap: wrap; border-top: 1px solid var(--border); padding-top: 1rem; }
+.evac-modal__actions .btn { flex: 1; min-width: 10rem; text-align: center; justify-content: center; }
+
+@media (max-width: 540px) {
+  .evac-modal { padding: 0; align-items: flex-end; }
+  .evac-modal__panel { border-radius: 0.75rem 0.75rem 0 0; max-width: 100%; }
+  .evac-detail-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Print / PDF styles ───────────────────────────────────────────────── */
+@media print {
+  @page { size: A4; margin: 15mm; }
+  body > * { display: none !important; }
+  #evac-modal { display: block !important; position: static !important; padding: 0 !important; overflow: visible !important; background: #fff !important; }
+  .evac-modal__backdrop { display: none !important; }
+  .evac-modal__panel { position: static !important; box-shadow: none !important; max-width: 100% !important; border-radius: 0 !important; border: 1px solid #ccc; }
+  .evac-modal__close { display: none !important; }
+  .evac-modal__actions { display: none !important; }
+  .evac-map-overlay-link { display: none !important; }
+  .evac-modal__map-wrap { height: 220px !important; border: 1px solid #ccc; page-break-inside: avoid; }
+  .evac-modal__header { background: #c0392b !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .evac-detail-grid { grid-template-columns: 1fr 1fr; }
+  .evac-route-section { page-break-inside: avoid; }
 }
 </style>
 
 <script>
 (function () {
+  /* ── Zone filter ─────────────────────────────────────────────────── */
   var btns = document.querySelectorAll(".zone-btn");
   var groups = document.querySelectorAll(".zone-group");
   btns.forEach(function (btn) {
@@ -232,6 +428,70 @@ description: "Directory of all managed sport centres, their facilities, and loca
         }
       });
     });
+  });
+
+  /* ── Evacuation modal ────────────────────────────────────────────── */
+  var modal      = document.getElementById("evac-modal");
+  var backdrop   = document.getElementById("evac-modal-backdrop");
+  var closeBtn   = document.getElementById("evac-modal-close");
+  var mapFrame   = document.getElementById("evac-modal-map");
+  var printBtn   = document.getElementById("evac-print-btn");
+
+  var fields = {
+    title:   document.getElementById("evac-modal-title"),
+    hospital:document.getElementById("evac-hospital-name"),
+    address: document.getElementById("evac-hospital-address"),
+    hotline: document.getElementById("evac-hospital-hotline"),
+    distance:document.getElementById("evac-distance"),
+    time:    document.getElementById("evac-time"),
+    narration:document.getElementById("evac-narration"),
+    mapsLink:  document.getElementById("evac-maps-link"),
+    mapsOpen:  document.getElementById("evac-maps-open")
+  };
+
+  function openModal(id) {
+    var src = document.getElementById("evac-data-" + id);
+    if (!src) return;
+    var d;
+    try { d = JSON.parse(src.textContent); } catch (e) { return; }
+
+    fields.title.textContent    = d.name;
+    fields.hospital.textContent = d.hospital;
+    fields.address.textContent  = d.hospitalAddress;
+    fields.hotline.textContent  = d.hospitalHotline;
+    fields.distance.textContent = d.distance;
+    fields.time.textContent     = d.ambulanceTime;
+    fields.narration.textContent= d.routeNarration;
+    fields.mapsLink.href        = d.mapsUrl;
+    fields.mapsOpen.href        = d.mapsUrl;
+    mapFrame.src                = d.embedUrl;
+
+    modal.hidden = false;
+    document.body.style.overflow = "hidden";
+    closeBtn.focus();
+  }
+
+  function closeModal() {
+    modal.hidden = true;
+    mapFrame.src = "about:blank";
+    document.body.style.overflow = "";
+  }
+
+  document.querySelectorAll(".evac-btn").forEach(function (btn) {
+    btn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      openModal(btn.dataset.centreId);
+    });
+  });
+
+  closeBtn.addEventListener("click", closeModal);
+  backdrop.addEventListener("click", closeModal);
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && !modal.hidden) closeModal();
+  });
+
+  printBtn.addEventListener("click", function () {
+    window.print();
   });
 })();
 </script>

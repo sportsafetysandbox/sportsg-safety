@@ -6,7 +6,17 @@
       "address": "21 Canberra Link, Singapore 756973",
       "phone": "6374 5342",
       "onSite": ["Bukit Canberra Swimming Complex", "Bukit Canberra ActiveSG Gym", "Bukit Canberra Sport Hall"],
-      "offSite": []
+      "offSite": [],
+      "evacuation": {
+        "hospital": "Woodlands Hospital",
+        "hospitalAddress": "17 Woodlands Drive 17, Singapore 737628",
+        "hospitalHotline": "6363 3000",
+        "distance": "Approx. 5 km",
+        "ambulanceTime": "Approx. 8–12 min",
+        "routeNarration": "Exit via Canberra Link and proceed towards Sembawang Road. Continue through Gambas Avenue towards Woodlands Avenue 12, proceed to Woodlands Avenue 1, and turn into Woodlands Drive 17 towards Woodlands Hospital Emergency Department.",
+        "mapsUrl": "https://www.google.com/maps/dir/?api=1&origin=21%20Canberra%20Link%2C%20Singapore%20756973&destination=Woodlands%20Hospital%2C%2017%20Woodlands%20Drive%2017%2C%20Singapore%20737628&travelmode=driving",
+        "embedUrl": "https://maps.google.com/maps?saddr=21+Canberra+Link,+Singapore+756973&daddr=Woodlands+Hospital,+17+Woodlands+Drive+17,+Singapore+737628&output=embed"
+      }
     },
     {
       "number": 2, "zone": "North",
@@ -14,7 +24,17 @@
       "address": "1 Woodlands Street 13, Singapore 738597",
       "phone": "6269 4192",
       "onSite": ["Woodlands Stadium", "Woodlands Sport Hall"],
-      "offSite": ["Woodlands Swimming Complex — 3 Woodlands Street 13, Singapore 738600", "Woodlands ActiveSG Gym — confirm current facility address"]
+      "offSite": ["Woodlands Swimming Complex — 3 Woodlands Street 13, Singapore 738600", "Woodlands ActiveSG Gym — confirm current facility address"],
+      "evacuation": {
+        "hospital": "Woodlands Hospital",
+        "hospitalAddress": "17 Woodlands Drive 17, Singapore 737628",
+        "hospitalHotline": "6363 3000",
+        "distance": "Approx. 4 km",
+        "ambulanceTime": "Approx. 7–10 min",
+        "routeNarration": "Exit via Woodlands Street 13 and proceed towards Woodlands Avenue 3. Continue towards Woodlands Avenue 1, turn into Woodlands Drive 17, and follow the hospital signs to the Emergency Department.",
+        "mapsUrl": "https://www.google.com/maps/dir/?api=1&origin=1%20Woodlands%20Street%2013%2C%20Singapore%20738597&destination=Woodlands%20Hospital%2C%2017%20Woodlands%20Drive%2017%2C%20Singapore%20737628&travelmode=driving",
+        "embedUrl": "https://maps.google.com/maps?saddr=1+Woodlands+Street+13,+Singapore+738597&daddr=Woodlands+Hospital,+17+Woodlands+Drive+17,+Singapore+737628&output=embed"
+      }
     },
     {
       "number": 3, "zone": "North",
@@ -22,7 +42,17 @@
       "address": "200 Ang Mo Kio Avenue 9, Singapore 569770",
       "phone": "6482 4980",
       "onSite": ["Yio Chu Kang Swimming Complex", "Yio Chu Kang ActiveSG Gym", "Yio Chu Kang Stadium", "Yio Chu Kang Sport Hall", "Yio Chu Kang Tennis Centre", "Yio Chu Kang Squash Centre"],
-      "offSite": []
+      "offSite": [],
+      "evacuation": {
+        "hospital": "Khoo Teck Puat Hospital",
+        "hospitalAddress": "90 Yishun Central, Singapore 768828",
+        "hospitalHotline": "6555 8000",
+        "distance": "Approx. 8 km",
+        "ambulanceTime": "Approx. 12–16 min",
+        "routeNarration": "Exit onto Ang Mo Kio Avenue 9 and proceed towards Yio Chu Kang Road. Continue north via Lentor Avenue and Yishun Avenue 2, then turn towards Yishun Central and follow the signs to Khoo Teck Puat Hospital Emergency Department.",
+        "mapsUrl": "https://www.google.com/maps/dir/?api=1&origin=200%20Ang%20Mo%20Kio%20Avenue%209%2C%20Singapore%20569770&destination=Khoo%20Teck%20Puat%20Hospital%2C%2090%20Yishun%20Central%2C%20Singapore%20768828&travelmode=driving",
+        "embedUrl": "https://maps.google.com/maps?saddr=200+Ang+Mo+Kio+Avenue+9,+Singapore+569770&daddr=Khoo+Teck+Puat+Hospital,+90+Yishun+Central,+Singapore+768828&output=embed"
+      }
     },
     {
       "number": 4, "zone": "North",
@@ -30,7 +60,17 @@
       "address": "101 Yishun Avenue 1, Singapore 769130",
       "phone": "6756 7416",
       "onSite": ["Yishun Stadium", "Yishun Sport Hall", "Yishun ActiveSG Gym", "Yishun Tennis Centre"],
-      "offSite": ["Yishun Swimming Complex — 351 Yishun Avenue 3, Singapore 769057"]
+      "offSite": ["Yishun Swimming Complex — 351 Yishun Avenue 3, Singapore 769057"],
+      "evacuation": {
+        "hospital": "Khoo Teck Puat Hospital",
+        "hospitalAddress": "90 Yishun Central, Singapore 768828",
+        "hospitalHotline": "6555 8000",
+        "distance": "Approx. 3 km",
+        "ambulanceTime": "Approx. 5–8 min",
+        "routeNarration": "Exit onto Yishun Avenue 1 and proceed towards Yishun Avenue 2. Continue towards Yishun Central, enter the hospital precinct, and follow the signs to the Emergency Department.",
+        "mapsUrl": "https://www.google.com/maps/dir/?api=1&origin=101%20Yishun%20Avenue%201%2C%20Singapore%20769130&destination=Khoo%20Teck%20Puat%20Hospital%2C%2090%20Yishun%20Central%2C%20Singapore%20768828&travelmode=driving",
+        "embedUrl": "https://maps.google.com/maps?saddr=101+Yishun+Avenue+1,+Singapore+769130&daddr=Khoo+Teck+Puat+Hospital,+90+Yishun+Central,+Singapore+768828&output=embed"
+      }
     },
     {
       "number": 5, "zone": "Northeast",
@@ -38,7 +78,17 @@
       "address": "5 Bishan Street 14, Singapore 579783",
       "phone": "6352 6631",
       "onSite": ["Bishan Swimming Complex — 1 Bishan Street 14, Singapore 579778", "Bishan Clubhouse — 3 Bishan Street 14, Singapore 579780", "Bishan Sport Hall — 5 Bishan Street 14, Singapore 579783", "Bishan Stadium — 7 Bishan Street 14, Singapore 579784", "Bishan ActiveSG Gym"],
-      "offSite": ["ActiveSG Sport Park @ Teck Ghee Swimming Complex — 1771 Ang Mo Kio Avenue 1, Singapore 569978", "ActiveSG Sport Park @ Teck Ghee Gym — 1771 Ang Mo Kio Avenue 1, Singapore 569978", "ActiveSG Gym @ Ang Mo Kio Community Centre — 795 Ang Mo Kio Avenue 1, Singapore 569976"]
+      "offSite": ["ActiveSG Sport Park @ Teck Ghee Swimming Complex — 1771 Ang Mo Kio Avenue 1, Singapore 569978", "ActiveSG Sport Park @ Teck Ghee Gym — 1771 Ang Mo Kio Avenue 1, Singapore 569978", "ActiveSG Gym @ Ang Mo Kio Community Centre — 795 Ang Mo Kio Avenue 1, Singapore 569976"],
+      "evacuation": {
+        "hospital": "Tan Tock Seng Hospital",
+        "hospitalAddress": "11 Jalan Tan Tock Seng, Singapore 308433",
+        "hospitalHotline": "6357 8754",
+        "distance": "Approx. 7 km",
+        "ambulanceTime": "Approx. 10–15 min",
+        "routeNarration": "Exit via Bishan Street 14 and proceed towards Bishan Road. Continue via Braddell Road towards Thomson Road, proceed south to Jalan Tan Tock Seng, and follow signs to the Emergency Department.",
+        "mapsUrl": "https://www.google.com/maps/dir/?api=1&origin=5%20Bishan%20Street%2014%2C%20Singapore%20579783&destination=Tan%20Tock%20Seng%20Hospital%2C%2011%20Jalan%20Tan%20Tock%20Seng%2C%20Singapore%20308433&travelmode=driving",
+        "embedUrl": "https://maps.google.com/maps?saddr=5+Bishan+Street+14,+Singapore+579783&daddr=Tan+Tock+Seng+Hospital,+11+Jalan+Tan+Tock+Seng,+Singapore+308433&output=embed"
+      }
     },
     {
       "number": 6, "zone": "Northeast",
@@ -46,7 +96,17 @@
       "address": "93 Hougang Avenue 4, Singapore 538832",
       "phone": "6315 8671",
       "onSite": ["Hougang Swimming Complex — 95 Hougang Avenue 4, Singapore 538830", "Hougang ActiveSG Gym", "Hougang Stadium", "Hougang Sport Hall", "Hougang Tennis Centre"],
-      "offSite": []
+      "offSite": [],
+      "evacuation": {
+        "hospital": "Sengkang General Hospital",
+        "hospitalAddress": "110 Sengkang East Way, Singapore 544886",
+        "hospitalHotline": "6930 5000",
+        "distance": "Approx. 6 km",
+        "ambulanceTime": "Approx. 10–14 min",
+        "routeNarration": "Exit via Hougang Avenue 4 and proceed towards Hougang Avenue 8. Continue north towards Sengkang East Road, turn into Sengkang East Way, and follow signs to Sengkang General Hospital Emergency Department.",
+        "mapsUrl": "https://www.google.com/maps/dir/?api=1&origin=93%20Hougang%20Avenue%204%2C%20Singapore%20538832&destination=Sengkang%20General%20Hospital%2C%20110%20Sengkang%20East%20Way%2C%20Singapore%20544886&travelmode=driving",
+        "embedUrl": "https://maps.google.com/maps?saddr=93+Hougang+Avenue+4,+Singapore+538832&daddr=Sengkang+General+Hospital,+110+Sengkang+East+Way,+Singapore+544886&output=embed"
+      }
     },
     {
       "number": 7, "zone": "Northeast",
@@ -54,7 +114,17 @@
       "address": "57 Anchorvale Road, Singapore 544964",
       "phone": "6315 3574 / 6315 3575",
       "onSite": ["Sengkang Swimming Complex", "Sengkang ActiveSG Gym", "Sengkang Sport Hall", "Sengkang Hockey Pitch"],
-      "offSite": ["ActiveSG Gym @ Fernvale Square — 51A Sengkang West Avenue, Singapore 797384"]
+      "offSite": ["ActiveSG Gym @ Fernvale Square — 51A Sengkang West Avenue, Singapore 797384"],
+      "evacuation": {
+        "hospital": "Sengkang General Hospital",
+        "hospitalAddress": "110 Sengkang East Way, Singapore 544886",
+        "hospitalHotline": "6930 5000",
+        "distance": "Approx. 3 km",
+        "ambulanceTime": "Approx. 6–9 min",
+        "routeNarration": "Exit via Anchorvale Road and proceed towards Sengkang East Road. Turn into Sengkang East Way and continue directly to the hospital Emergency Department entrance.",
+        "mapsUrl": "https://www.google.com/maps/dir/?api=1&origin=57%20Anchorvale%20Road%2C%20Singapore%20544964&destination=Sengkang%20General%20Hospital%2C%20110%20Sengkang%20East%20Way%2C%20Singapore%20544886&travelmode=driving",
+        "embedUrl": "https://maps.google.com/maps?saddr=57+Anchorvale+Road,+Singapore+544964&daddr=Sengkang+General+Hospital,+110+Sengkang+East+Way,+Singapore+544886&output=embed"
+      }
     },
     {
       "number": 8, "zone": "Northeast",
@@ -62,7 +132,17 @@
       "address": "35 Yio Chu Kang Road, Singapore 545552",
       "phone": "6288 4606",
       "onSite": ["Serangoon Swimming Complex", "Serangoon Stadium", "Serangoon Sport Hall", "Serangoon Tennis Centre"],
-      "offSite": ["ActiveSG Gym @ Serangoon Central — 264 Serangoon Central, Singapore 550264"]
+      "offSite": ["ActiveSG Gym @ Serangoon Central — 264 Serangoon Central, Singapore 550264"],
+      "evacuation": {
+        "hospital": "Sengkang General Hospital",
+        "hospitalAddress": "110 Sengkang East Way, Singapore 544886",
+        "hospitalHotline": "6930 5000",
+        "distance": "Approx. 7 km",
+        "ambulanceTime": "Approx. 11–16 min",
+        "routeNarration": "Exit onto Yio Chu Kang Road and proceed towards Buangkok Green. Continue via Sengkang East Road, turn into Sengkang East Way, and follow signs to the Emergency Department.",
+        "mapsUrl": "https://www.google.com/maps/dir/?api=1&origin=35%20Yio%20Chu%20Kang%20Road%2C%20Singapore%20545552&destination=Sengkang%20General%20Hospital%2C%20110%20Sengkang%20East%20Way%2C%20Singapore%20544886&travelmode=driving",
+        "embedUrl": "https://maps.google.com/maps?saddr=35+Yio+Chu+Kang+Road,+Singapore+545552&daddr=Sengkang+General+Hospital,+110+Sengkang+East+Way,+Singapore+544886&output=embed"
+      }
     },
     {
       "number": 9, "zone": "East",
@@ -70,7 +150,17 @@
       "address": "11 Bedok North Street 1, Singapore 469662",
       "phone": "6443 5511",
       "onSite": ["Heartbeat @ Bedok ActiveSG Swimming Complex", "Heartbeat @ Bedok ActiveSG Gym", "Heartbeat @ Bedok Sport Hall", "Heartbeat @ Bedok Tennis Centre"],
-      "offSite": ["Bedok Stadium — 1 Bedok North Street 2, Singapore 469642"]
+      "offSite": ["Bedok Stadium — 1 Bedok North Street 2, Singapore 469642"],
+      "evacuation": {
+        "hospital": "Changi General Hospital",
+        "hospitalAddress": "2 Simei Street 3, Singapore 529889",
+        "hospitalHotline": "6788 8833",
+        "distance": "Approx. 6 km",
+        "ambulanceTime": "Approx. 10–14 min",
+        "routeNarration": "Exit via Bedok North Street 1 and proceed towards Bedok North Road. Continue east towards Upper Changi Road, enter Simei Street 3, and follow signs to Changi General Hospital Emergency Department.",
+        "mapsUrl": "https://www.google.com/maps/dir/?api=1&origin=11%20Bedok%20North%20Street%201%2C%20Singapore%20469662&destination=Changi%20General%20Hospital%2C%202%20Simei%20Street%203%2C%20Singapore%20529889&travelmode=driving",
+        "embedUrl": "https://maps.google.com/maps?saddr=11+Bedok+North+Street+1,+Singapore+469662&daddr=Changi+General+Hospital,+2+Simei+Street+3,+Singapore+529889&output=embed"
+      }
     },
     {
       "number": 10, "zone": "East",
@@ -78,7 +168,17 @@
       "address": "8 Stadium Boulevard, Singapore 397804",
       "phone": "6348 1291",
       "onSite": ["Kallang Tennis Centre", "Kallang Squash Centre", "Kallang Netball Centre", "Kallang Field", "Kallang Futsal Centre", "Home of Athletics", "Kallang Hockey Centre"],
-      "offSite": ["Katong Swimming Complex — 111 Wilkinson Road, Singapore 436752", "Geylang East Swimming Complex — 601 Aljunied Avenue 1, Singapore 389862", "Katong ActiveSG Gym"]
+      "offSite": ["Katong Swimming Complex — 111 Wilkinson Road, Singapore 436752", "Geylang East Swimming Complex — 601 Aljunied Avenue 1, Singapore 389862", "Katong ActiveSG Gym"],
+      "evacuation": {
+        "hospital": "Singapore General Hospital",
+        "hospitalAddress": "Outram Road, Singapore 169608",
+        "hospitalHotline": "6222 3322",
+        "distance": "Approx. 7 km",
+        "ambulanceTime": "Approx. 10–15 min",
+        "routeNarration": "Exit via Stadium Boulevard and proceed towards Nicoll Highway. Continue towards the city via Republic Boulevard and the central road network, proceed towards Outram Road, and follow signs to Singapore General Hospital Emergency Department.",
+        "mapsUrl": "https://www.google.com/maps/dir/?api=1&origin=8%20Stadium%20Boulevard%2C%20Singapore%20397804&destination=Singapore%20General%20Hospital%2C%20Outram%20Road%2C%20Singapore%20169608&travelmode=driving",
+        "embedUrl": "https://maps.google.com/maps?saddr=8+Stadium+Boulevard,+Singapore+397804&daddr=Singapore+General+Hospital,+Outram+Road,+Singapore+169608&output=embed"
+      }
     },
     {
       "number": 11, "zone": "East",
@@ -86,7 +186,17 @@
       "address": "120 Pasir Ris Central, Singapore 519640",
       "phone": "6583 8557 / 6583 2696",
       "onSite": ["Pasir Ris Swimming Complex", "Pasir Ris ActiveSG Gym", "Pasir Ris Sport Hall", "Pasir Ris Tennis Centre"],
-      "offSite": []
+      "offSite": [],
+      "evacuation": {
+        "hospital": "Changi General Hospital",
+        "hospitalAddress": "2 Simei Street 3, Singapore 529889",
+        "hospitalHotline": "6788 8833",
+        "distance": "Approx. 7 km",
+        "ambulanceTime": "Approx. 11–16 min",
+        "routeNarration": "Exit via Pasir Ris Central and proceed towards Pasir Ris Drive 1. Continue via Tampines Avenue 7 and Tampines Avenue 5 towards Simei Avenue, turn into Simei Street 3, and proceed to the Emergency Department.",
+        "mapsUrl": "https://www.google.com/maps/dir/?api=1&origin=120%20Pasir%20Ris%20Central%2C%20Singapore%20519640&destination=Changi%20General%20Hospital%2C%202%20Simei%20Street%203%2C%20Singapore%20529889&travelmode=driving",
+        "embedUrl": "https://maps.google.com/maps?saddr=120+Pasir+Ris+Central,+Singapore+519640&daddr=Changi+General+Hospital,+2+Simei+Street+3,+Singapore+529889&output=embed"
+      }
     },
     {
       "number": 12, "zone": "East",
@@ -94,7 +204,17 @@
       "address": "1 Tampines Walk, Singapore 528523",
       "phone": "6385 3718",
       "onSite": ["Tampines Swimming Complex", "Tampines ActiveSG Gym", "Tampines Sport Hall", "Tampines Stadium"],
-      "offSite": ["Tampines Tennis Centre — verify current address and operational allocation"]
+      "offSite": ["Tampines Tennis Centre — verify current address and operational allocation"],
+      "evacuation": {
+        "hospital": "Changi General Hospital",
+        "hospitalAddress": "2 Simei Street 3, Singapore 529889",
+        "hospitalHotline": "6788 8833",
+        "distance": "Approx. 4 km",
+        "ambulanceTime": "Approx. 7–11 min",
+        "routeNarration": "Exit via Tampines Walk and proceed towards Tampines Avenue 5. Continue towards Simei Avenue, turn into Simei Street 3, and follow signs to the Emergency Department.",
+        "mapsUrl": "https://www.google.com/maps/dir/?api=1&origin=1%20Tampines%20Walk%2C%20Singapore%20528523&destination=Changi%20General%20Hospital%2C%202%20Simei%20Street%203%2C%20Singapore%20529889&travelmode=driving",
+        "embedUrl": "https://maps.google.com/maps?saddr=1+Tampines+Walk,+Singapore+528523&daddr=Changi+General+Hospital,+2+Simei+Street+3,+Singapore+529889&output=embed"
+      }
     },
     {
       "number": 13, "zone": "Central",
@@ -102,7 +222,17 @@
       "address": "518 Clementi Avenue 3, Singapore 129907",
       "phone": "6776 2560",
       "onSite": ["Clementi Swimming Complex — 520 Clementi Avenue 3, Singapore 129908", "Clementi ActiveSG Gym", "Clementi Stadium", "Clementi Sport Hall", "Clementi Tennis Centre"],
-      "offSite": []
+      "offSite": [],
+      "evacuation": {
+        "hospital": "National University Hospital",
+        "hospitalAddress": "5 Lower Kent Ridge Road, Singapore 119074",
+        "hospitalHotline": "6908 2222",
+        "distance": "Approx. 5 km",
+        "ambulanceTime": "Approx. 8–12 min",
+        "routeNarration": "Exit via Clementi Avenue 3 and proceed towards Commonwealth Avenue West. Continue towards Clementi Road, turn towards Lower Kent Ridge Road, and follow signs to the NUH Emergency Department.",
+        "mapsUrl": "https://www.google.com/maps/dir/?api=1&origin=518%20Clementi%20Avenue%203%2C%20Singapore%20129907&destination=National%20University%20Hospital%2C%205%20Lower%20Kent%20Ridge%20Road%2C%20Singapore%20119074&travelmode=driving",
+        "embedUrl": "https://maps.google.com/maps?saddr=518+Clementi+Avenue+3,+Singapore+129907&daddr=National+University+Hospital,+5+Lower+Kent+Ridge+Road,+Singapore+119074&output=embed"
+      }
     },
     {
       "number": 14, "zone": "Central",
@@ -110,7 +240,17 @@
       "address": "900 Tiong Bahru Road, Singapore 158790",
       "phone": "6203 9246",
       "onSite": ["Delta Swimming Complex", "Delta ActiveSG Gym", "Delta Sport Hall", "Delta Hockey Pitch"],
-      "offSite": []
+      "offSite": [],
+      "evacuation": {
+        "hospital": "Singapore General Hospital",
+        "hospitalAddress": "Outram Road, Singapore 169608",
+        "hospitalHotline": "6222 3322",
+        "distance": "Approx. 3 km",
+        "ambulanceTime": "Approx. 6–9 min",
+        "routeNarration": "Exit onto Tiong Bahru Road and proceed east towards Outram Road. Enter the Singapore General Hospital campus and follow the signs to the Emergency Department.",
+        "mapsUrl": "https://www.google.com/maps/dir/?api=1&origin=900%20Tiong%20Bahru%20Road%2C%20Singapore%20158790&destination=Singapore%20General%20Hospital%2C%20Outram%20Road%2C%20Singapore%20169608&travelmode=driving",
+        "embedUrl": "https://maps.google.com/maps?saddr=900+Tiong+Bahru+Road,+Singapore+158790&daddr=Singapore+General+Hospital,+Outram+Road,+Singapore+169608&output=embed"
+      }
     },
     {
       "number": 15, "zone": "Central",
@@ -118,7 +258,17 @@
       "address": "100 Tyrwhitt Road, Singapore 207542",
       "phone": "6293 9058",
       "onSite": ["Jalan Besar Swimming Complex", "Jalan Besar ActiveSG Gym", "Jalan Besar Stadium"],
-      "offSite": []
+      "offSite": [],
+      "evacuation": {
+        "hospital": "Tan Tock Seng Hospital",
+        "hospitalAddress": "11 Jalan Tan Tock Seng, Singapore 308433",
+        "hospitalHotline": "6357 8754",
+        "distance": "Approx. 3 km",
+        "ambulanceTime": "Approx. 6–10 min",
+        "routeNarration": "Exit via Tyrwhitt Road and proceed towards Jalan Besar. Continue towards Balestier Road and Moulmein Road, turn into Jalan Tan Tock Seng, and follow signs to the Emergency Department.",
+        "mapsUrl": "https://www.google.com/maps/dir/?api=1&origin=100%20Tyrwhitt%20Road%2C%20Singapore%20207542&destination=Tan%20Tock%20Seng%20Hospital%2C%2011%20Jalan%20Tan%20Tock%20Seng%2C%20Singapore%20308433&travelmode=driving",
+        "embedUrl": "https://maps.google.com/maps?saddr=100+Tyrwhitt+Road,+Singapore+207542&daddr=Tan+Tock+Seng+Hospital,+11+Jalan+Tan+Tock+Seng,+Singapore+308433&output=embed"
+      }
     },
     {
       "number": 16, "zone": "Central",
@@ -126,7 +276,17 @@
       "address": "473 Stirling Road, Singapore 148948",
       "phone": "—",
       "onSite": ["Queenstown Swimming Complex", "Queenstown ActiveSG Gym", "Queenstown Stadium", "Queenstown Sport Hall"],
-      "offSite": ["ActiveSG Gym @ Enabling Village — 20 Lengkok Bahru, Singapore 159053"]
+      "offSite": ["ActiveSG Gym @ Enabling Village — 20 Lengkok Bahru, Singapore 159053"],
+      "evacuation": {
+        "hospital": "National University Hospital",
+        "hospitalAddress": "5 Lower Kent Ridge Road, Singapore 119074",
+        "hospitalHotline": "6908 2222",
+        "distance": "Approx. 6 km",
+        "ambulanceTime": "Approx. 9–13 min",
+        "routeNarration": "Exit via Stirling Road and proceed towards Queensway. Continue via Alexandra Road and South Buona Vista Road towards Lower Kent Ridge Road, then follow signs to the NUH Emergency Department.",
+        "mapsUrl": "https://www.google.com/maps/dir/?api=1&origin=473%20Stirling%20Road%2C%20Singapore%20148948&destination=National%20University%20Hospital%2C%205%20Lower%20Kent%20Ridge%20Road%2C%20Singapore%20119074&travelmode=driving",
+        "embedUrl": "https://maps.google.com/maps?saddr=473+Stirling+Road,+Singapore+148948&daddr=National+University+Hospital,+5+Lower+Kent+Ridge+Road,+Singapore+119074&output=embed"
+      }
     },
     {
       "number": 17, "zone": "Central",
@@ -134,7 +294,17 @@
       "address": "301 Lorong 6 Toa Payoh, Singapore 319392",
       "phone": "6259 2916",
       "onSite": ["Toa Payoh Swimming Complex", "Toa Payoh Stadium", "Toa Payoh Sport Hall", "Toa Payoh Tennis Centre", "Toa Payoh Squash Centre"],
-      "offSite": ["ActiveSG Gym @ Toa Payoh — 127A Lorong 1 Toa Payoh, Singapore 319899", "ActiveSG Gym @ Toa Payoh West Community Centre — 200 Lorong 2 Toa Payoh, Singapore 319642", "MOE (Evans) Swimming Complex", "ActiveSG Courts @ Farrer Park"]
+      "offSite": ["ActiveSG Gym @ Toa Payoh — 127A Lorong 1 Toa Payoh, Singapore 319899", "ActiveSG Gym @ Toa Payoh West Community Centre — 200 Lorong 2 Toa Payoh, Singapore 319642", "MOE (Evans) Swimming Complex", "ActiveSG Courts @ Farrer Park"],
+      "evacuation": {
+        "hospital": "Tan Tock Seng Hospital",
+        "hospitalAddress": "11 Jalan Tan Tock Seng, Singapore 308433",
+        "hospitalHotline": "6357 8754",
+        "distance": "Approx. 4 km",
+        "ambulanceTime": "Approx. 7–11 min",
+        "routeNarration": "Exit via Lorong 6 Toa Payoh and proceed towards Thomson Road. Continue south towards Moulmein Road, turn into Jalan Tan Tock Seng, and follow signs to the Emergency Department.",
+        "mapsUrl": "https://www.google.com/maps/dir/?api=1&origin=301%20Lorong%206%20Toa%20Payoh%2C%20Singapore%20319392&destination=Tan%20Tock%20Seng%20Hospital%2C%2011%20Jalan%20Tan%20Tock%20Seng%2C%20Singapore%20308433&travelmode=driving",
+        "embedUrl": "https://maps.google.com/maps?saddr=301+Lorong+6+Toa+Payoh,+Singapore+319392&daddr=Tan+Tock+Seng+Hospital,+11+Jalan+Tan+Tock+Seng,+Singapore+308433&output=embed"
+      }
     },
     {
       "number": 18, "zone": "West",
@@ -142,7 +312,17 @@
       "address": "810 Bukit Batok West Avenue 5, Singapore 659088",
       "phone": "6896 2193",
       "onSite": ["Bukit Gombak ActiveSG Gym", "Bukit Gombak Stadium", "Bukit Gombak Sport Hall"],
-      "offSite": ["Bukit Batok Swimming Complex — 2 Bukit Batok Street 22, Singapore 659581", "Bukit Batok ActiveSG Gym — verify current address"]
+      "offSite": ["Bukit Batok Swimming Complex — 2 Bukit Batok Street 22, Singapore 659581", "Bukit Batok ActiveSG Gym — verify current address"],
+      "evacuation": {
+        "hospital": "Ng Teng Fong General Hospital",
+        "hospitalAddress": "1 Jurong East Street 21, Singapore 609606",
+        "hospitalHotline": "6908 2222",
+        "distance": "Approx. 8 km",
+        "ambulanceTime": "Approx. 12–17 min",
+        "routeNarration": "Exit via Bukit Batok West Avenue 5 and proceed towards Bukit Batok Road. Continue towards Jurong Town Hall Road, turn into Jurong East Street 21, and follow signs to Ng Teng Fong General Hospital Emergency Department.",
+        "mapsUrl": "https://www.google.com/maps/dir/?api=1&origin=810%20Bukit%20Batok%20West%20Avenue%205%2C%20Singapore%20659088&destination=Ng%20Teng%20Fong%20General%20Hospital%2C%201%20Jurong%20East%20Street%2021%2C%20Singapore%20609606&travelmode=driving",
+        "embedUrl": "https://maps.google.com/maps?saddr=810+Bukit+Batok+West+Avenue+5,+Singapore+659088&daddr=Ng+Teng+Fong+General+Hospital,+1+Jurong+East+Street+21,+Singapore+609606&output=embed"
+      }
     },
     {
       "number": 19, "zone": "West",
@@ -150,7 +330,17 @@
       "address": "1 Choa Chu Kang Street 53, Singapore 689236",
       "phone": "6767 1735 / 6767 4576",
       "onSite": ["Choa Chu Kang Swimming Complex", "Choa Chu Kang ActiveSG Gym", "Choa Chu Kang Stadium", "Choa Chu Kang Sport Hall", "Choa Chu Kang Tennis Centre"],
-      "offSite": ["Senja-Cashew Swimming Complex", "Senja-Cashew ActiveSG Gym"]
+      "offSite": ["Senja-Cashew Swimming Complex", "Senja-Cashew ActiveSG Gym"],
+      "evacuation": {
+        "hospital": "Ng Teng Fong General Hospital",
+        "hospitalAddress": "1 Jurong East Street 21, Singapore 609606",
+        "hospitalHotline": "6908 2222",
+        "distance": "Approx. 10 km",
+        "ambulanceTime": "Approx. 14–20 min",
+        "routeNarration": "Exit via Choa Chu Kang Street 53 and proceed towards Choa Chu Kang Way. Continue south via Bukit Batok Road towards Jurong Town Hall Road, turn into Jurong East Street 21, and proceed to the Emergency Department.",
+        "mapsUrl": "https://www.google.com/maps/dir/?api=1&origin=1%20Choa%20Chu%20Kang%20Street%2053%2C%20Singapore%20689236&destination=Ng%20Teng%20Fong%20General%20Hospital%2C%201%20Jurong%20East%20Street%2021%2C%20Singapore%20609606&travelmode=driving",
+        "embedUrl": "https://maps.google.com/maps?saddr=1+Choa+Chu+Kang+Street+53,+Singapore+689236&daddr=Ng+Teng+Fong+General+Hospital,+1+Jurong+East+Street+21,+Singapore+609606&output=embed"
+      }
     },
     {
       "number": 20, "zone": "West",
@@ -158,7 +348,17 @@
       "address": "21 Jurong East Street 31, Singapore 609517",
       "phone": "6563 5052",
       "onSite": ["Jurong East Swimming Complex", "Jurong East ActiveSG Gym", "Jurong East Stadium", "Jurong East Sport Hall", "Jurong East Tennis Centre"],
-      "offSite": ["Jurong Lake Gardens Pool", "Jurong Lake Gardens Gym", "ActiveSG Sport Village @ Jurong Town — 2 International Road, Singapore 619618"]
+      "offSite": ["Jurong Lake Gardens Pool", "Jurong Lake Gardens Gym", "ActiveSG Sport Village @ Jurong Town — 2 International Road, Singapore 619618"],
+      "evacuation": {
+        "hospital": "Ng Teng Fong General Hospital",
+        "hospitalAddress": "1 Jurong East Street 21, Singapore 609606",
+        "hospitalHotline": "6908 2222",
+        "distance": "Approx. 2 km",
+        "ambulanceTime": "Approx. 4–7 min",
+        "routeNarration": "Exit via Jurong East Street 31 and proceed towards Jurong East Central. Turn into Jurong East Street 21 and follow signs to Ng Teng Fong General Hospital Emergency Department.",
+        "mapsUrl": "https://www.google.com/maps/dir/?api=1&origin=21%20Jurong%20East%20Street%2031%2C%20Singapore%20609517&destination=Ng%20Teng%20Fong%20General%20Hospital%2C%201%20Jurong%20East%20Street%2021%2C%20Singapore%20609606&travelmode=driving",
+        "embedUrl": "https://maps.google.com/maps?saddr=21+Jurong+East+Street+31,+Singapore+609517&daddr=Ng+Teng+Fong+General+Hospital,+1+Jurong+East+Street+21,+Singapore+609606&output=embed"
+      }
     },
     {
       "number": 21, "zone": "West",
@@ -166,7 +366,17 @@
       "address": "20 Jurong West Street 93, Singapore 648965",
       "phone": "6515 5332 / 6515 5331",
       "onSite": ["Jurong West Swimming Complex", "Jurong West ActiveSG Gym", "Jurong West Stadium", "Jurong West Sport Hall", "Jurong West Tennis Centre"],
-      "offSite": ["ActiveSG Hockey Village @ Boon Lay — verify current address and operational allocation"]
+      "offSite": ["ActiveSG Hockey Village @ Boon Lay — verify current address and operational allocation"],
+      "evacuation": {
+        "hospital": "Ng Teng Fong General Hospital",
+        "hospitalAddress": "1 Jurong East Street 21, Singapore 609606",
+        "hospitalHotline": "6908 2222",
+        "distance": "Approx. 7 km",
+        "ambulanceTime": "Approx. 10–15 min",
+        "routeNarration": "Exit via Jurong West Street 93 and proceed towards Pioneer Road North. Continue towards Boon Lay Way and Jurong Town Hall Road, turn into Jurong East Street 21, and follow signs to the Emergency Department.",
+        "mapsUrl": "https://www.google.com/maps/dir/?api=1&origin=20%20Jurong%20West%20Street%2093%2C%20Singapore%20648965&destination=Ng%20Teng%20Fong%20General%20Hospital%2C%201%20Jurong%20East%20Street%2021%2C%20Singapore%20609606&travelmode=driving",
+        "embedUrl": "https://maps.google.com/maps?saddr=20+Jurong+West+Street+93,+Singapore+648965&daddr=Ng+Teng+Fong+General+Hospital,+1+Jurong+East+Street+21,+Singapore+609606&output=embed"
+      }
     }
   ],
   "zones": ["North", "Northeast", "East", "Central", "West"],
