@@ -23,7 +23,9 @@ description: "Mission, governance, and policy framework for sport safety in Sing
           {% for para in row.body.split('\n\n') %}<p>{{ para }}</p>{% endfor %}
           <a class="btn outline" href="/safety-framework/" style="margin-top:0.5rem;">Read More →</a>
         </div>
-        <img src="{{ row.image }}" alt="Safety framework diagram" style="border-radius:8px;">
+        <button class="framework-trigger" type="button" aria-label="View enlarged Safety Framework diagram">
+          <img src="{{ row.image }}" alt="Safety framework diagram">
+        </button>
       </div>
     </section>
   {% endif %}
@@ -61,6 +63,24 @@ description: "Mission, governance, and policy framework for sport safety in Sing
     </div>
   {% endif %}
 {% endfor %}
+
+<!-- Framework diagram modal -->
+<div class="framework-modal" id="framework-modal" role="dialog" aria-modal="true" aria-labelledby="framework-modal-title" hidden>
+  <div class="framework-modal__backdrop"></div>
+  <div class="framework-modal__panel">
+    <div class="framework-modal__header">
+      <h2 id="framework-modal-title" class="framework-modal__title">Safety Framework</h2>
+      <button class="framework-modal__close" id="framework-modal-close" aria-label="Close">✕</button>
+    </div>
+    <div class="framework-modal__body">
+      {% for row in about %}
+        {% if row.type == "Framework" %}
+          <img src="/assets/images/safety-framework.svg" alt="Safety framework diagram — enlarged view">
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
 
 <!-- Policy modal -->
 <div class="policy-modal" id="policy-modal" role="dialog" aria-modal="true" aria-labelledby="policy-modal-title" hidden>

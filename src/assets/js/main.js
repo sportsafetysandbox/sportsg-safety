@@ -95,6 +95,32 @@ if (policyModal) {
   });
 }
 
+// Framework diagram modal
+const frameworkModal = document.getElementById("framework-modal");
+if (frameworkModal) {
+  const frameworkClose = document.getElementById("framework-modal-close");
+
+  function openFrameworkModal() {
+    frameworkModal.hidden = false;
+    document.body.style.overflow = "hidden";
+    frameworkClose.focus();
+  }
+
+  function closeFrameworkModal() {
+    frameworkModal.hidden = true;
+    document.body.style.overflow = "";
+  }
+
+  const frameworkTrigger = document.querySelector(".framework-trigger");
+  if (frameworkTrigger) frameworkTrigger.addEventListener("click", openFrameworkModal);
+
+  frameworkClose.addEventListener("click", closeFrameworkModal);
+  frameworkModal.querySelector(".framework-modal__backdrop").addEventListener("click", closeFrameworkModal);
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !frameworkModal.hidden) closeFrameworkModal();
+  });
+}
+
 // Generic filter-bar: a [data-filter-group="<id>"] bar filters items with
 // [data-filter-value] inside the container with that id.
 document.querySelectorAll("[data-filter-group]").forEach((group) => {
