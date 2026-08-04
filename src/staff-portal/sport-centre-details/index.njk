@@ -4,22 +4,22 @@ title: Sport Centre Details
 description: "Directory of all managed sport centres, their facilities, and evacuation routes."
 ---
 
-{# Hidden JSON data stores for each centre — read by the evacuation modal JS #}
+{# Hidden JSON data stores — dump entire object then mark safe to avoid HTML-entity encoding #}
 {% for centre in sportCentreDetails.centres %}
-<script id="evac-data-{{ centre.number }}" type="application/json">
-{
-  "name": {{ centre.name | dump }},
-  "address": {{ centre.address | dump }},
-  "hospital": {{ centre.evacuation.hospital | dump }},
-  "hospitalAddress": {{ centre.evacuation.hospitalAddress | dump }},
-  "hospitalHotline": {{ centre.evacuation.hospitalHotline | dump }},
-  "distance": {{ centre.evacuation.distance | dump }},
-  "ambulanceTime": {{ centre.evacuation.ambulanceTime | dump }},
-  "routeNarration": {{ centre.evacuation.routeNarration | dump }},
-  "mapsUrl": {{ centre.evacuation.mapsUrl | dump }},
-  "embedUrl": {{ centre.evacuation.embedUrl | dump }}
-}
-</script>
+{% set _evac = centre.evacuation %}
+{% set _d = {
+  name: centre.name,
+  address: centre.address,
+  hospital: _evac.hospital,
+  hospitalAddress: _evac.hospitalAddress,
+  hospitalHotline: _evac.hospitalHotline,
+  distance: _evac.distance,
+  ambulanceTime: _evac.ambulanceTime,
+  routeNarration: _evac.routeNarration,
+  mapsUrl: _evac.mapsUrl,
+  embedUrl: _evac.embedUrl
+} %}
+<script id="evac-data-{{ centre.number }}" type="application/json">{{ _d | dump | safe }}</script>
 {% endfor %}
 
 <div class="wrap" style="padding-top:1.5rem;">
