@@ -75,7 +75,7 @@ description: "Mission, governance, and policy framework for sport safety in Sing
     <div class="framework-modal__body">
       {% for row in about %}
         {% if row.type == "Framework" %}
-          <img src="/assets/images/safety-framework.svg" alt="Safety framework diagram — enlarged view">
+          <img src="{{ row.image }}" alt="Safety framework diagram — enlarged view">
         {% endif %}
       {% endfor %}
     </div>
