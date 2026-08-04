@@ -26,14 +26,14 @@ description: "Code of Practice, Standards, Checklists and Toolkits for the sport
     <div class="grid-cards cols-4" id="resource-grid">
       {% for item in resources %}
         <div class="card resource-card" data-filter-value="{{ item.type }}">
+          <span class="tag type">{{ item.type }}</span>
+          <h3>{{ item.title }}</h3>
+          <p class="meta">{{ item.topic | join(", ") }} · {{ item.audience | join(", ") }}</p>
           {% if item.cover %}
             <a href="{{ item.link }}" target="_blank" rel="noopener noreferrer" class="resource-card__cover-link" tabindex="-1" aria-hidden="true">
               <img src="{{ item.cover }}" alt="Cover — {{ item.title }}" class="resource-card__cover">
             </a>
           {% endif %}
-          <span class="tag type">{{ item.type }}</span>
-          <h3>{{ item.title }}</h3>
-          <p class="meta">{{ item.topic | join(", ") }} · {{ item.audience | join(", ") }}</p>
           <a class="link" href="{{ item.link }}"{% if item.link != "#" %} target="_blank" rel="noopener noreferrer"{% endif %}>View →</a>
         </div>
       {% endfor %}
