@@ -18,7 +18,7 @@ description: "Current alerts and standing safety advisories."
     <h2>Current alerts</h2>
     {% for alert in news.alerts %}
       <div class="list-row">
-        <span>⚠ <a href="{{ alert.link }}">{{ alert.title }}</a></span>
+        <span>⚠ <a href="{{ alert.link }}"{% if alert.link != "#" %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ alert.title }}</a></span>
         <span class="when">{{ alert.date }}</span>
       </div>
     {% else %}
