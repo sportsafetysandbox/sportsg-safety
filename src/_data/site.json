@@ -31,9 +31,9 @@
       { "label": "Terms of Use / PDPA Notice", "url": "#" },
       { "label": "Sitemap", "url": "#" },
       { "label": "Contact Us", "url": "/faq/" },
-      { "label": "Related SportSG Sites", "url": "https://www.sportsingapore.gov.sg" },
+      { "label": "Related Sites", "url": "#" },
       { "label": "Social Media Links", "url": "#" }
     ],
-    "copyright": "© 2026 Sport Singapore. Placeholder content — not an official SportSG publication."
+    "copyright": "© 2026 Sport Safety Portal."
   }
 }
