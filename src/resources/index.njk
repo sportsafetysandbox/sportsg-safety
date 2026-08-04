@@ -23,7 +23,7 @@ description: "Code of Practice, Standards, Checklists and Toolkits for the sport
       <button type="button" class="btn outline" data-filter="Checklists" aria-pressed="false">Checklists</button>
       <button type="button" class="btn outline" data-filter="Toolkits & Templates" aria-pressed="false">Toolkits &amp; Templates</button>
     </div>
-    <div class="grid-cards cols-3" id="resource-grid">
+    <div class="grid-cards cols-4" id="resource-grid">
       {% for item in resources %}
         <div class="card resource-card" data-filter-value="{{ item.type }}">
           {% if item.cover %}
