@@ -1,0 +1,72 @@
+---
+layout: base.njk
+title: Safety Framework
+description: "The integrated framework of pillars, domains, and responsibilities that guide safety across all sport activities."
+---
+<div class="wrap" style="padding-top:1.5rem;">
+  <p class="breadcrumb"><a href="/">Home</a> / <a href="/about/">About Sport Safety</a> / Safety Framework</p>
+</div>
+
+<section>
+  <div class="wrap">
+    <span class="eyebrow">About Sport Safety</span>
+    <h1>Safety Framework</h1>
+    <p class="lede">{{ safetyFramework.intro }}</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap" style="display:grid; grid-template-columns:1fr 1fr; gap:2.5rem; align-items:start;">
+    <div>
+      <h2>The Framework at a Glance</h2>
+      <p>The framework is structured as a wheel with <strong>Safety — Vision, Mission &amp; Targets</strong> at its core, surrounded by three integrated domains: <strong>Sport Safety</strong>, <strong>Safe Sport</strong>, and <strong>Workplace Safety</strong>.</p>
+      <p>Six key pillars — Commitment, Culture, Competencies, Controls, Collaboration, and Communication — translate the core intent into organisational practice. These are supported by twelve outer domains that define the operating environment: from Leadership &amp; Governance through to Duty of Care.</p>
+      <p>Together, the pillars and domains provide a complete picture of what a safety-mature sport organisation looks like.</p>
+    </div>
+    <img src="/assets/images/safety-framework.png" alt="Safety framework wheel diagram showing six pillars and twelve operating domains" style="border-radius:8px; width:100%;">
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>The Six Pillars</h2>
+    <p style="margin-bottom:1.5rem;">Each pillar represents a dimension of organisational safety practice. Strong performance across all six is required for a mature safety system.</p>
+    <div class="grid-cards cols-3">
+      {% for pillar in safetyFramework.pillars %}
+        <div class="card pillar-card">
+          <div class="pillar-dot" style="background:{{ pillar.colour }};"></div>
+          <h3>{{ pillar.name }}</h3>
+          <p>{{ pillar.body }}</p>
+          <ul class="pillar-list">
+            {% for el in pillar.elements %}
+              <li>{{ el }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>The Twelve Operating Domains</h2>
+    <p style="margin-bottom:1.5rem;">The outer ring of the framework defines the broader organisational environment within which the six pillars operate. Each domain represents a function or context that shapes how safety is managed.</p>
+    <div class="grid-cards cols-2">
+      {% for domain in safetyFramework.domains %}
+        <div class="card">
+          <h4>{{ domain.name }}</h4>
+          <p>{{ domain.body }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="list-row"><span>Back to About Sport Safety</span><a class="link" href="/about/">About Sport Safety →</a></div>
+    <div class="list-row"><span>Report a safety concern</span><a class="link" href="/report/">Report an Incident/Hazard →</a></div>
+    <div class="list-row"><span>Explore safety resources</span><a class="link" href="/resources/">Safety Resources →</a></div>
+  </div>
+</section>

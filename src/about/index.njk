@@ -21,6 +21,7 @@ description: "Mission, governance, and policy framework for sport safety in Sing
         <div>
           <h2>{{ row.section }}</h2>
           {% for para in row.body.split('\n\n') %}<p>{{ para }}</p>{% endfor %}
+          <a class="btn outline" href="/safety-framework/" style="margin-top:0.5rem;">Read More →</a>
         </div>
         <img src="{{ row.image }}" alt="Safety framework diagram" style="border-radius:8px;">
       </div>

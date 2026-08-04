@@ -1,0 +1,91 @@
+{
+  "intro": "The Safety Framework sets out the integrated system of principles, practices, and responsibilities that guide how safety is planned, managed, and continuously improved across all sport activities and operations.",
+  "pillars": [
+    {
+      "name": "Commitment",
+      "colour": "#1565a7",
+      "body": "Leadership commitment is the foundation of effective safety management. It means that those at the top of the organisation — boards, executives, and managers — visibly champion safety, allocate adequate resources, and hold themselves accountable for outcomes.",
+      "elements": ["Board and executive sponsorship", "Safety as a standing agenda item", "Adequate resourcing of safety functions", "Visible leadership behaviour"]
+    },
+    {
+      "name": "Culture",
+      "colour": "#5fa02e",
+      "body": "A strong safety culture exists when every individual — staff, coaches, contractors, and volunteers — internalises safety as a shared value rather than a compliance obligation. Culture is built through consistent leadership behaviour, open reporting, and learning from incidents.",
+      "elements": ["Psychological safety to raise concerns", "Open incident reporting without blame", "Learning reviews after near-misses", "Recognition of safe behaviours"]
+    },
+    {
+      "name": "Competencies",
+      "colour": "#7b3fa0",
+      "body": "Safe sport delivery depends on people having the knowledge, skills, and judgement to identify hazards, apply controls, and respond to emergencies. Competency is built through structured training, credentialing, and regular refreshers.",
+      "elements": ["Role-specific safety training", "Mandatory certifications for coaches and instructors", "Emergency response drills", "Continuous professional development"]
+    },
+    {
+      "name": "Controls",
+      "colour": "#1ea1c8",
+      "body": "Controls are the physical, procedural, and administrative measures that reduce the likelihood and severity of harm. Effective control means applying the hierarchy — eliminate the hazard first, then substitute, engineer, administrate, and lastly use PPE.",
+      "elements": ["Hazard identification and risk assessment", "Hierarchy of controls", "Standard operating procedures", "Equipment inspection and maintenance"]
+    },
+    {
+      "name": "Collaboration",
+      "colour": "#e07b2a",
+      "body": "No single person or team owns safety. Collaboration means partners, contractors, national sport associations, and facility operators work together through shared standards, joint planning, and mutual accountability.",
+      "elements": ["Partner safety agreements", "Joint safety planning for events", "Shared incident reporting systems", "Cross-organisation safety committees"]
+    },
+    {
+      "name": "Communication",
+      "colour": "#f0b800",
+      "body": "Safety information must reach the right people at the right time. This covers everything from pre-event safety briefings and signage to ongoing reporting of hazards, near-misses, and incidents — and the feedback loop that closes the loop on action taken.",
+      "elements": ["Pre-activity safety briefings", "Clear hazard signage", "Incident and near-miss reporting channels", "Safety updates and advisories"]
+    }
+  ],
+  "domains": [
+    {
+      "name": "Leadership & Governance",
+      "body": "The board and executive layer sets safety direction, approves policy, and monitors performance through defined governance structures and reporting lines."
+    },
+    {
+      "name": "Policy & Strategy",
+      "body": "Policies translate governance intent into binding requirements. Strategy sets the multi-year direction for safety improvement aligned to Vision 2030."
+    },
+    {
+      "name": "Innovation & Technology",
+      "body": "Technology and data are leveraged to improve hazard detection, incident reporting, training delivery, and safety performance monitoring."
+    },
+    {
+      "name": "Competence & Capability",
+      "body": "Building the human capital needed to deliver safe sport — through training pipelines, credentialing schemes, and succession planning for safety-critical roles."
+    },
+    {
+      "name": "Stakeholder Expectations",
+      "body": "Understanding and responding to the safety expectations of athletes, participants, partners, regulators, and the public."
+    },
+    {
+      "name": "Risk Management",
+      "body": "Systematic identification, assessment, treatment, and monitoring of risks across all sport programmes, events, and facilities."
+    },
+    {
+      "name": "Planning & Assurance",
+      "body": "Operational safety plans, audit programmes, and assurance reviews that verify controls are in place and effective."
+    },
+    {
+      "name": "Performance & Improvement",
+      "body": "Tracking safety KPIs, learning from incidents, and driving continuous improvement across the organisation."
+    },
+    {
+      "name": "Information & Intelligence",
+      "body": "Collecting and analysing safety data — incidents, near-misses, audits, and benchmarks — to generate actionable insights."
+    },
+    {
+      "name": "Regulatory Obligations",
+      "body": "Compliance with the Workplace Safety and Health Act, sport-specific statutory requirements, and applicable codes of practice."
+    },
+    {
+      "name": "Operational Management",
+      "body": "Day-to-day safety management of facilities, programmes, and events — the operational layer where policy is put into practice."
+    },
+    {
+      "name": "Duty of Care",
+      "body": "The legal and ethical responsibility shared by all who deliver or host sport to take reasonable steps to prevent foreseeable harm."
+    }
+  ]
+}
