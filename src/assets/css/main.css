@@ -389,8 +389,8 @@ details.card summary { list-style: none; }
   display: inline-block; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.03em;
   padding: 0.2rem 0.55rem; border-radius: 999px; background: var(--surface-2); color: var(--muted);
 }
-.tag.type { background: var(--red-100); color: var(--red-800); }
-@media (prefers-color-scheme: dark) { .tag.type { background: var(--red-900); color: var(--red-200); } }
+.tag.type { background: #d1fae5; color: #065f46; }
+@media (prefers-color-scheme: dark) { .tag.type { background: #064e3b; color: #6ee7b7; } }
 
 /* Filter bar */
 .filter-bar { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
