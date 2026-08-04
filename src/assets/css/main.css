@@ -209,6 +209,10 @@ details.card summary { list-style: none; }
 @media (prefers-color-scheme: dark) { .card .link { color: var(--red-400); } }
 .card .meta { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
 
+/* Safety Framework */
+.framework-layers { margin: 0.75rem 0 1rem; padding-left: 1.4rem; }
+.framework-layers li { margin-bottom: 0.6rem; line-height: 1.5; }
+
 /* Safety Framework pillar cards */
 .pillar-card { gap: 0.6rem; }
 .pillar-dot { width: 14px; height: 14px; border-radius: 50%; flex: none; }

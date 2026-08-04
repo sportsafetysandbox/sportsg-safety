@@ -1,28 +1,52 @@
 {
-  "intro": "The Safety Framework sets out the integrated system of principles, practices, and responsibilities that guide how safety is planned, managed, and continuously improved across all sport activities and operations.",
-  "pillars": [
+  "intro": "The Safety Framework sets out the integrated system of principles, practices, and responsibilities that guide how safety is planned, managed, and continuously improved across all sport activities and operations. It is informed by the ISO 31000 Risk Management principles and the ISO 45001 Occupational Health and Safety Management System standards.",
+  "standards": [
+    {
+      "name": "ISO 31000 — Risk Management",
+      "body": "Provides principles and guidelines for risk management applicable across any organisation. The Framework draws on ISO 31000 to ensure that risk identification, assessment, treatment, and monitoring are embedded systematically into all sport safety planning and operations."
+    },
+    {
+      "name": "ISO 45001 — Occupational Health and Safety Management Systems",
+      "body": "Specifies requirements for an occupational health and safety (OHS) management system. The Framework aligns with ISO 45001 to support the organisation in providing safe and healthy workplaces, preventing work-related injury and illness, and proactively improving OHS performance."
+    }
+  ],
+  "domains": [
+    {
+      "name": "Sport Safety",
+      "body": "Covers the safety of athletes, participants, coaches, officials, and spectators across all sport programmes, facilities, and events — including physical hazards, environmental risks, equipment standards, and emergency preparedness."
+    },
+    {
+      "name": "Safe Sport",
+      "body": "Addresses safeguarding, athlete welfare, and protection from abuse, harassment, and exploitation in sport. Ensures that all individuals can participate in an environment that is safe, fair, and free from harm."
+    },
+    {
+      "name": "Workplace Safety",
+      "body": "Covers the occupational health and safety of staff, volunteers, contractors, and other workers involved in sport delivery — aligned to the Workplace Safety and Health Act and ISO 45001 requirements."
+    }
+  ],
+  "drivers": [
     {
       "name": "Commitment",
       "colour": "#1565a7",
-      "body": "Leadership commitment is the foundation of effective safety management. It means that those at the top of the organisation — boards, executives, and managers — visibly champion safety, allocate adequate resources, and hold themselves accountable for outcomes.",
+      "body": "Leadership commitment is the foundation of effective safety management. Boards, executives, and managers visibly champion safety, allocate adequate resources, and hold themselves accountable for outcomes.",
       "elements": ["Board and executive sponsorship", "Safety as a standing agenda item", "Adequate resourcing of safety functions", "Visible leadership behaviour"]
     },
     {
       "name": "Culture",
       "colour": "#5fa02e",
-      "body": "A strong safety culture exists when every individual — staff, coaches, contractors, and volunteers — internalises safety as a shared value rather than a compliance obligation. Culture is built through consistent leadership behaviour, open reporting, and learning from incidents.",
+      "body": "A strong safety culture exists when every individual internalises safety as a shared value rather than a compliance obligation — built through open reporting, consistent behaviour, and learning from incidents.",
       "elements": ["Psychological safety to raise concerns", "Open incident reporting without blame", "Learning reviews after near-misses", "Recognition of safe behaviours"]
     },
     {
       "name": "Competencies",
       "colour": "#7b3fa0",
-      "body": "Safe sport delivery depends on people having the knowledge, skills, and judgement to identify hazards, apply controls, and respond to emergencies. Competency is built through structured training, credentialing, and regular refreshers.",
+      "body": "Safe sport delivery depends on people having the knowledge, skills, and judgement to identify hazards, apply controls, and respond to emergencies — built through structured training and credentialing.",
       "elements": ["Role-specific safety training", "Mandatory certifications for coaches and instructors", "Emergency response drills", "Continuous professional development"]
     },
     {
       "name": "Controls",
       "colour": "#1ea1c8",
-      "body": "Controls are the physical, procedural, and administrative measures that reduce the likelihood and severity of harm. Effective control means applying the hierarchy — eliminate the hazard first, then substitute, engineer, administrate, and lastly use PPE.",
+      "body": "Controls are the physical, procedural, and administrative measures that reduce the likelihood and severity of harm, applied through the hierarchy of controls — eliminate, substitute, engineer, administrate, protect.",
       "elements": ["Hazard identification and risk assessment", "Hierarchy of controls", "Standard operating procedures", "Equipment inspection and maintenance"]
     },
     {
@@ -34,18 +58,18 @@
     {
       "name": "Communication",
       "colour": "#f0b800",
-      "body": "Safety information must reach the right people at the right time. This covers everything from pre-event safety briefings and signage to ongoing reporting of hazards, near-misses, and incidents — and the feedback loop that closes the loop on action taken.",
+      "body": "Safety information must reach the right people at the right time — from pre-event briefings and hazard signage to incident reporting channels and the feedback loop that closes action taken.",
       "elements": ["Pre-activity safety briefings", "Clear hazard signage", "Incident and near-miss reporting channels", "Safety updates and advisories"]
     }
   ],
-  "domains": [
+  "enablers": [
     {
       "name": "Leadership & Governance",
       "body": "The board and executive layer sets safety direction, approves policy, and monitors performance through defined governance structures and reporting lines."
     },
     {
       "name": "Policy & Strategy",
-      "body": "Policies translate governance intent into binding requirements. Strategy sets the multi-year direction for safety improvement aligned to Vision 2030."
+      "body": "Policies translate governance intent into binding requirements. Strategy sets the multi-year direction for safety improvement aligned to the organisation's vision."
     },
     {
       "name": "Innovation & Technology",
@@ -56,12 +80,8 @@
       "body": "Building the human capital needed to deliver safe sport — through training pipelines, credentialing schemes, and succession planning for safety-critical roles."
     },
     {
-      "name": "Stakeholder Expectations",
-      "body": "Understanding and responding to the safety expectations of athletes, participants, partners, regulators, and the public."
-    },
-    {
       "name": "Risk Management",
-      "body": "Systematic identification, assessment, treatment, and monitoring of risks across all sport programmes, events, and facilities."
+      "body": "Systematic identification, assessment, treatment, and monitoring of risks across all sport programmes, events, and facilities — aligned to ISO 31000 principles."
     },
     {
       "name": "Planning & Assurance",
@@ -76,16 +96,34 @@
       "body": "Collecting and analysing safety data — incidents, near-misses, audits, and benchmarks — to generate actionable insights."
     },
     {
-      "name": "Regulatory Obligations",
-      "body": "Compliance with the Workplace Safety and Health Act, sport-specific statutory requirements, and applicable codes of practice."
+      "name": "Operational Management",
+      "body": "Day-to-day safety management of facilities, programmes, and events — the operational layer where policy and strategy are put into practice."
+    }
+  ],
+  "environment": [
+    {
+      "name": "Strategic Vision",
+      "body": "The long-term vision that shapes the organisation's safety ambition and direction."
     },
     {
-      "name": "Operational Management",
-      "body": "Day-to-day safety management of facilities, programmes, and events — the operational layer where policy is put into practice."
+      "name": "Organisational Context",
+      "body": "The internal and external factors — structure, culture, resources, and relationships — within which the safety management system operates."
+    },
+    {
+      "name": "Scope and Boundaries",
+      "body": "The defined boundaries of the safety management system: which activities, facilities, people, and operations it covers."
+    },
+    {
+      "name": "Stakeholder Expectations",
+      "body": "Understanding and responding to the safety expectations of athletes, participants, partners, regulators, and the public."
     },
     {
       "name": "Duty of Care",
       "body": "The legal and ethical responsibility shared by all who deliver or host sport to take reasonable steps to prevent foreseeable harm."
+    },
+    {
+      "name": "Legal and Statutory Obligations",
+      "body": "Compliance with the Workplace Safety and Health Act, sport-specific statutory requirements, and applicable codes of practice and regulations."
     }
   ]
 }
