@@ -248,8 +248,11 @@ details.card summary { list-style: none; }
 .policy-modal__header {
   display: flex; align-items: center; justify-content: space-between; gap: 1rem;
   padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--line); flex-shrink: 0;
+  transition: background 0.2s ease;
 }
+.policy-modal__header.is-colored { border-bottom-color: rgba(255,255,255,0.15); }
 .policy-modal__title { margin: 0; font-size: 1.1rem; font-weight: 700; }
+.policy-modal__header.is-colored .policy-modal__title { color: #fff; }
 .policy-modal__actions { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
 .policy-modal__close {
   display: flex; align-items: center; justify-content: center;
@@ -257,6 +260,12 @@ details.card summary { list-style: none; }
   background: none; font-size: 1rem; color: var(--muted); cursor: pointer;
 }
 .policy-modal__close:hover { background: var(--surface-2); color: var(--ink); }
+.policy-modal__header.is-colored .policy-modal__close {
+  border-color: rgba(255,255,255,0.35); color: rgba(255,255,255,0.8);
+}
+.policy-modal__header.is-colored .policy-modal__close:hover {
+  background: rgba(255,255,255,0.15); color: #fff;
+}
 .policy-modal__content {
   flex: 1; overflow-y: auto; padding: 2rem 2.5rem;
   font-size: 0.92rem; line-height: 1.7;

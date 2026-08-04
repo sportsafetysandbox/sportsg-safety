@@ -48,7 +48,9 @@ if (policyModal) {
   const modalContent = document.getElementById("policy-modal-content");
   const modalClose = document.getElementById("policy-modal-close");
 
-  function openPolicyModal(id, title, link) {
+  const modalHeader = policyModal.querySelector(".policy-modal__header");
+
+  function openPolicyModal(id, title, link, color) {
     modalTitle.textContent = title;
     const contentSrc = document.getElementById("policy-content-" + id);
     modalContent.innerHTML = contentSrc ? contentSrc.innerHTML : "";
@@ -56,6 +58,13 @@ if (policyModal) {
     const hasDoc = link && link !== "#";
     modalDownload.href = hasDoc ? link : "#";
     modalDownload.hidden = !hasDoc;
+    if (color) {
+      modalHeader.style.background = color;
+      modalHeader.classList.add("is-colored");
+    } else {
+      modalHeader.style.background = "";
+      modalHeader.classList.remove("is-colored");
+    }
     policyModal.hidden = false;
     document.body.style.overflow = "hidden";
     modalClose.focus();
@@ -63,6 +72,8 @@ if (policyModal) {
 
   function closePolicyModal() {
     policyModal.hidden = true;
+    modalHeader.style.background = "";
+    modalHeader.classList.remove("is-colored");
     document.body.style.overflow = "";
   }
 
@@ -71,7 +82,8 @@ if (policyModal) {
       openPolicyModal(
         card.dataset.policyId,
         card.dataset.policyTitle,
-        card.dataset.policyLink
+        card.dataset.policyLink,
+        card.dataset.policyColor
       );
     });
   });

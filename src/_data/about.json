@@ -9,6 +9,7 @@
     "section": "Integrated Policy",
     "type": "Policy",
     "id": "integrated-policy",
+    "headerColor": "#2c3e50",
     "body": "The overarching policy connecting the organisation's individual safety policies into one coherent framework.",
     "link": "#",
     "content": [
@@ -38,6 +39,7 @@
     "section": "Sport Safety Policy",
     "type": "Policy",
     "id": "sport-safety-policy",
+    "headerColor": "#b71c1c",
     "body": "Sets the baseline safety standards expected across all supported sport activity.",
     "link": "#",
     "content": [
@@ -67,6 +69,7 @@
     "section": "Safe Sport Policy",
     "type": "Policy",
     "id": "safe-sport-policy",
+    "headerColor": "#1a4a7a",
     "body": "Covers safeguarding, athlete welfare, and protection from abuse or harassment in sport.",
     "link": "#",
     "content": [
@@ -96,6 +99,7 @@
     "section": "Workplace Safety and Health Policy",
     "type": "Policy",
     "id": "wsh-policy",
+    "headerColor": "#1b5e20",
     "body": "The organisation's Workplace Safety and Health obligations for staff, contractors, and facility operators.",
     "link": "#",
     "content": [
