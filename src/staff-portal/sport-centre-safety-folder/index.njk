@@ -20,16 +20,19 @@ description: "Index of sections and annexes for the Sport Centre Safety Folder."
   <div class="wrap">
     <h2>Main Sections</h2>
     <p style="margin-bottom:1.5rem;">Eight sections covering the full scope of safety management at the centre.</p>
-    <div class="grid-cards cols-2">
+    <div class="folder-accordion">
       {% for section in sportCentreSafetyFolder.sections %}
-        <a class="card safety-folder-card" href="{{ section.notionUrl }}" target="_blank" rel="noopener">
-          <div class="folder-section-num">{{ section.number }}</div>
-          <div class="folder-card-body">
-            <h3>{{ section.title }}</h3>
+        <details class="folder-item">
+          <summary class="folder-item__summary">
+            <span class="folder-section-num">{{ section.number }}</span>
+            <span class="folder-item__title">{{ section.title }}</span>
+            <span class="folder-item__chevron" aria-hidden="true">›</span>
+          </summary>
+          <div class="folder-item__body">
             <p>{{ section.body }}</p>
+            <a class="link" href="{{ section.notionUrl }}" target="_blank" rel="noopener">Open in Notion →</a>
           </div>
-          <span class="link">Open in Notion →</span>
-        </a>
+        </details>
       {% endfor %}
     </div>
   </div>
@@ -39,16 +42,19 @@ description: "Index of sections and annexes for the Sport Centre Safety Folder."
   <div class="wrap">
     <h2>Annexes</h2>
     <p style="margin-bottom:1.5rem;">Supporting documents — checklists, registers, and plans — referenced by the main sections.</p>
-    <div class="grid-cards cols-3">
+    <div class="folder-accordion">
       {% for annex in sportCentreSafetyFolder.annexes %}
-        <a class="card safety-folder-card" href="{{ annex.notionUrl }}" target="_blank" rel="noopener">
-          <div class="folder-annex-label">Annex {{ annex.label }}</div>
-          <div class="folder-card-body">
-            <h3>{{ annex.title }}</h3>
+        <details class="folder-item">
+          <summary class="folder-item__summary">
+            <span class="folder-annex-label">Annex {{ annex.label }}</span>
+            <span class="folder-item__title">{{ annex.title }}</span>
+            <span class="folder-item__chevron" aria-hidden="true">›</span>
+          </summary>
+          <div class="folder-item__body">
             <p>{{ annex.body }}</p>
+            <a class="link" href="{{ annex.notionUrl }}" target="_blank" rel="noopener">Open in Notion →</a>
           </div>
-          <span class="link">Open in Notion →</span>
-        </a>
+        </details>
       {% endfor %}
     </div>
   </div>
