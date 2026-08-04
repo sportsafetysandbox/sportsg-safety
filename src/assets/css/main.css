@@ -381,7 +381,7 @@ details.card summary { list-style: none; }
 /* Resource card cover image */
 .resource-card h3 { font-size: 1.2rem; }
 .resource-card__cover-link { display: block; margin: 0.5rem -1.25rem; overflow: hidden; border-radius: 0; }
-.resource-card__cover { width: 100%; aspect-ratio: 1 / 1.4; object-fit: cover; object-position: top; display: block; transition: opacity 0.15s; }
+.resource-card__cover { width: 100%; height: auto; display: block; transition: opacity 0.15s; }
 .resource-card__cover-link:hover .resource-card__cover { opacity: 0.88; }
 
 /* Tags/pills */
