@@ -307,38 +307,40 @@ description: "Directory of all managed sport centres, their facilities, and evac
 /* ── Evacuation Modal ─────────────────────────────────────────────────── */
 .evac-modal {
   position: fixed; inset: 0; z-index: 1000;
-  display: flex; align-items: flex-start; justify-content: center;
-  padding: 1.5rem 1rem;
-  overflow-y: auto;
+  display: flex; align-items: center; justify-content: center;
+  padding: 1rem;
 }
 .evac-modal__backdrop {
   position: fixed; inset: 0;
-  background: rgba(0,0,0,0.55);
-  backdrop-filter: blur(2px);
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(3px);
   cursor: pointer;
 }
 .evac-modal__panel {
   position: relative; z-index: 1;
   background: var(--surface);
   border-radius: 0.75rem;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  box-shadow: 0 24px 64px rgba(0,0,0,0.35);
   width: 100%;
-  max-width: 760px;
+  max-width: 1020px;
+  height: 92vh;
+  max-height: 920px;
   overflow: hidden;
   display: flex; flex-direction: column;
 }
 .evac-modal__header {
+  flex-shrink: 0;
   display: flex; align-items: flex-start; justify-content: space-between;
-  padding: 1.25rem 1.5rem 1rem;
+  padding: 1rem 1.5rem 0.9rem;
   background: var(--red-700);
   color: #fff;
   gap: 1rem;
 }
 .evac-modal__eyebrow {
-  font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
-  letter-spacing: 0.1em; opacity: 0.8; margin-bottom: 0.2rem;
+  font-size: 0.72rem; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.1em; opacity: 0.8; margin-bottom: 0.15rem;
 }
-.evac-modal__title { font-size: 1.15rem; font-weight: 700; color: #fff; margin: 0; }
+.evac-modal__title { font-size: 1.1rem; font-weight: 700; color: #fff; margin: 0; }
 .evac-modal__close {
   flex-shrink: 0; background: rgba(255,255,255,0.15); border: none;
   color: #fff; font-size: 1.1rem; line-height: 1;
@@ -348,48 +350,58 @@ description: "Directory of all managed sport centres, their facilities, and evac
 }
 .evac-modal__close:hover { background: rgba(255,255,255,0.3); }
 
-/* Map */
-.evac-modal__map-wrap { position: relative; width: 100%; height: 300px; background: #e8ecef; }
+/* Map — 2/3 of panel height below the header */
+.evac-modal__map-wrap {
+  flex: 2;
+  min-height: 0;
+  position: relative;
+  background: #dde3e8;
+}
 .evac-modal__map { width: 100%; height: 100%; border: none; display: block; }
 .evac-map-overlay-link {
-  position: absolute; bottom: 0.5rem; right: 0.5rem;
-  background: rgba(255,255,255,0.92); color: var(--red-700);
-  font-size: 0.78rem; font-weight: 600; padding: 0.3rem 0.65rem;
-  border-radius: 0.25rem; text-decoration: none;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  position: absolute; bottom: 0.6rem; right: 0.6rem;
+  background: rgba(255,255,255,0.94); color: var(--red-700);
+  font-size: 0.78rem; font-weight: 600; padding: 0.35rem 0.75rem;
+  border-radius: 0.3rem; text-decoration: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  z-index: 2;
 }
 .evac-map-overlay-link:hover { background: #fff; }
 
-/* Body */
-.evac-modal__body { padding: 1.25rem 1.5rem 1.5rem; display: flex; flex-direction: column; gap: 1.25rem; }
-.evac-detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+/* Body — 1/3 of panel height, scrollable */
+.evac-modal__body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 1rem 1.5rem 1.25rem;
+  display: flex; flex-direction: column; gap: 0.9rem;
+}
+.evac-detail-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem 1rem; }
 .evac-detail--full { grid-column: 1 / -1; }
-.evac-detail { display: flex; flex-direction: column; gap: 0.2rem; }
-.evac-detail__label { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); }
-.evac-detail__value { font-size: 0.95rem; color: var(--ink); font-weight: 500; }
-.evac-detail__value--hospital { font-size: 1.05rem; font-weight: 700; color: var(--red-700); }
-.evac-detail__value--hotline { font-size: 1rem; font-weight: 700; font-variant-numeric: tabular-nums; color: var(--red-700); }
+.evac-detail { display: flex; flex-direction: column; gap: 0.15rem; }
+.evac-detail__label { font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); }
+.evac-detail__value { font-size: 0.9rem; color: var(--ink); font-weight: 500; }
+.evac-detail__value--hospital { font-size: 1rem; font-weight: 700; color: var(--red-700); }
+.evac-detail__value--hotline { font-weight: 700; font-variant-numeric: tabular-nums; color: var(--red-700); }
 .evac-detail__value--time { font-weight: 700; color: var(--red-700); }
+@media (max-width: 700px) { .evac-detail-grid { grid-template-columns: 1fr 1fr; } }
 
 /* Route narration */
-.evac-route-section {
-  border-top: 1px solid var(--border);
-  padding-top: 1rem;
-}
+.evac-route-section { border-top: 1px solid var(--border); padding-top: 0.75rem; }
 .evac-route-section__heading {
-  font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.5rem;
+  font-size: 0.68rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.35rem;
 }
-.evac-route-section__text { font-size: 0.95rem; line-height: 1.65; color: var(--ink); margin-bottom: 0.6rem; }
-.evac-route-section__note { font-size: 0.78rem; color: var(--muted); font-style: italic; }
+.evac-route-section__text { font-size: 0.88rem; line-height: 1.6; color: var(--ink); margin-bottom: 0.4rem; }
+.evac-route-section__note { font-size: 0.75rem; color: var(--muted); font-style: italic; }
 
 /* Actions */
-.evac-modal__actions { display: flex; gap: 0.75rem; flex-wrap: wrap; border-top: 1px solid var(--border); padding-top: 1rem; }
-.evac-modal__actions .btn { flex: 1; min-width: 10rem; text-align: center; justify-content: center; }
+.evac-modal__actions { display: flex; gap: 0.65rem; flex-wrap: wrap; border-top: 1px solid var(--border); padding-top: 0.75rem; }
+.evac-modal__actions .btn { flex: 1; min-width: 9rem; text-align: center; justify-content: center; }
 
-@media (max-width: 540px) {
+@media (max-width: 600px) {
   .evac-modal { padding: 0; align-items: flex-end; }
-  .evac-modal__panel { border-radius: 0.75rem 0.75rem 0 0; max-width: 100%; }
+  .evac-modal__panel { border-radius: 0.75rem 0.75rem 0 0; max-width: 100%; height: 95vh; max-height: none; }
   .evac-detail-grid { grid-template-columns: 1fr; }
 }
 
