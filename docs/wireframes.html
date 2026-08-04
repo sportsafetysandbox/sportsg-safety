@@ -1,0 +1,1085 @@
+
+<title>Sport Safety Portal — Wireframes</title>
+<style>
+:root {
+  --red-500: #F4343D;
+  --red-600: #E60F19;
+  --red-700: #B30F17;
+  --red-100: #FDE8E9;
+  --ink: #16212C;
+  --muted: #5B594E;
+  --border: #D8D0B8;
+  --surface: #FFFFFF;
+  --surface-2: #F2EFE6;
+  --ph: #DDE3E8;
+  --ph-text: #7A8C96;
+  --canvas: #EAE6DC;
+  --sb-bg: #16212C;
+  --sb-text: #ECE7D8;
+  --sb-muted: #556070;
+  --shadow: 0 4px 28px rgba(22,33,44,0.14);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --surface: #10161C; --surface-2: #171E26; --border: #2A323B;
+    --ink: #ECE7D8; --muted: #9C978A; --ph: #1E2830; --ph-text: #4A6070;
+    --canvas: #0D1218;
+  }
+}
+:root[data-theme="light"] {
+  --surface: #FFFFFF; --surface-2: #F2EFE6; --border: #D8D0B8;
+  --ink: #16212C; --muted: #5B594E; --ph: #DDE3E8; --ph-text: #7A8C96; --canvas: #EAE6DC;
+}
+:root[data-theme="dark"] {
+  --surface: #10161C; --surface-2: #171E26; --border: #2A323B;
+  --ink: #ECE7D8; --muted: #9C978A; --ph: #1E2830; --ph-text: #4A6070; --canvas: #0D1218;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  display: flex; height: 100vh; overflow: hidden;
+  background: var(--canvas); color: var(--ink);
+}
+
+/* ── Sidebar ──────────────────────────────────────────────────── */
+.sb {
+  width: 210px; flex-shrink: 0;
+  background: var(--sb-bg); color: var(--sb-text);
+  display: flex; flex-direction: column; overflow-y: auto;
+  padding-bottom: 1rem;
+}
+.sb-head {
+  padding: 1rem 1.1rem 0.85rem;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.sb-head-mark {
+  display: inline-block; width: 5px; height: 18px;
+  background: var(--red-500); border-radius: 1px;
+  vertical-align: middle; margin-right: 7px;
+}
+.sb-head-name {
+  font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.09em; color: var(--sb-text); vertical-align: middle;
+}
+.sb-head-sub {
+  font-size: 0.62rem; color: var(--sb-muted); margin-top: 0.3rem;
+  padding-left: 12px;
+}
+.sb-group {
+  padding: 0.75rem 1.1rem 0.2rem;
+  font-size: 0.58rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.1em; color: var(--sb-muted);
+}
+.sb-item {
+  display: block; padding: 0.42rem 1.1rem;
+  font-size: 0.75rem; color: var(--sb-text);
+  cursor: pointer; border-left: 3px solid transparent;
+  transition: background 0.1s, color 0.1s; line-height: 1.3;
+  user-select: none;
+}
+.sb-item:hover { background: rgba(255,255,255,0.05); color: #fff; }
+.sb-item.active {
+  border-left-color: var(--red-500);
+  background: rgba(244,52,61,0.1); color: #fff; font-weight: 600;
+}
+.sb-item .route {
+  display: block; font-size: 0.6rem; color: var(--sb-muted);
+  font-family: "Courier New", monospace; margin-top: 0.1rem;
+}
+
+/* ── Canvas ───────────────────────────────────────────────────── */
+.canvas {
+  flex: 1; overflow-y: auto; padding: 1.5rem 1.75rem;
+  display: flex; flex-direction: column; align-items: center; gap: 0.75rem;
+}
+.canvas-header {
+  width: 100%; max-width: 940px;
+  display: flex; align-items: baseline; gap: 0.75rem;
+}
+.canvas-title { font-size: 0.95rem; font-weight: 700; color: var(--ink); }
+.canvas-route {
+  font-size: 0.7rem; color: var(--muted);
+  font-family: "Courier New", monospace;
+}
+
+/* ── Browser frame ────────────────────────────────────────────── */
+.bf {
+  width: 100%; max-width: 940px;
+  background: var(--surface); border-radius: 7px;
+  box-shadow: var(--shadow); border: 1px solid var(--border); overflow: hidden;
+}
+.bf-chrome {
+  background: #1E2830; padding: 0.45rem 0.75rem;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.bf-dots { display: flex; gap: 5px; }
+.bf-dot { width: 9px; height: 9px; border-radius: 50%; }
+.bf-dot.r { background: #FF5F57; } .bf-dot.y { background: #FFBD2E; } .bf-dot.g { background: #28C840; }
+.bf-url {
+  flex: 1; background: rgba(255,255,255,0.09); border-radius: 4px;
+  padding: 0.18rem 0.55rem; font-size: 0.67rem;
+  color: rgba(255,255,255,0.55); font-family: "Courier New", monospace;
+}
+
+/* ── Wireframe shared components ──────────────────────────────── */
+.wf { font-size: 0.7rem; color: var(--ink); line-height: 1.4; }
+
+.wf-topbar {
+  background: var(--ink); color: #fff;
+  padding: 0.45rem 1.25rem;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.wf-logo { display: flex; align-items: center; gap: 5px; font-weight: 700; font-size: 0.75rem; }
+.wf-logo-mark { width: 4px; height: 16px; background: var(--red-500); border-radius: 1px; flex-shrink: 0; }
+.wf-topbar-right { display: flex; align-items: center; gap: 0.6rem; font-size: 0.62rem; }
+.wf-search-box {
+  background: rgba(255,255,255,0.1); border-radius: 3px;
+  padding: 0.18rem 0.45rem; color: rgba(255,255,255,0.5); font-size: 0.6rem;
+}
+.wf-btn {
+  display: inline-block; padding: 0.25rem 0.6rem;
+  background: var(--red-600); color: #fff;
+  border-radius: 3px; font-size: 0.62rem; font-weight: 600; white-space: nowrap;
+}
+.wf-btn.sm { padding: 0.18rem 0.45rem; font-size: 0.58rem; }
+.wf-btn.outline { background: transparent; border: 1.5px solid var(--border); color: var(--ink); }
+.wf-btn.outline-w { background: transparent; border: 1.5px solid rgba(255,255,255,0.35); color: #fff; }
+.wf-btn.ghost { background: transparent; border: 1.5px solid var(--red-600); color: var(--red-700); }
+
+.wf-navbar {
+  background: var(--surface-2); padding: 0.35rem 1.25rem;
+  display: flex; gap: 0.15rem; align-items: center; flex-wrap: wrap;
+  border-bottom: 1px solid var(--border);
+}
+.wf-nav {
+  padding: 0.22rem 0.45rem; font-size: 0.62rem; color: var(--ink);
+  border-radius: 3px; white-space: nowrap;
+}
+.wf-nav.on { background: var(--red-100); color: var(--red-700); font-weight: 600; }
+
+.wf-alert {
+  background: var(--red-100); border-bottom: 1.5px solid var(--red-500);
+  padding: 0.3rem 1.25rem;
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 0.62rem; color: var(--red-700);
+}
+
+.wf-hero {
+  background: linear-gradient(135deg, #16212C 0%, #1E3048 100%);
+  padding: 1.25rem 1.25rem;
+}
+.wf-hero-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; align-items: center;
+}
+.wf-hero-art { height: 90px; }
+
+.wf-section { padding: 0.9rem 1.25rem; }
+.wf-section + .wf-section { border-top: 1px solid var(--border); }
+
+.wf-eyebrow {
+  font-size: 0.56rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.1em; color: var(--red-600); margin-bottom: 0.2rem;
+}
+.wf-eyebrow.w { color: rgba(244,52,61,0.85); }
+
+.wf-h1 { font-size: 1rem; font-weight: 700; color: var(--ink); margin-bottom: 0.25rem; text-wrap: balance; }
+.wf-h1.w { color: #fff; font-size: 1.05rem; }
+.wf-h2 { font-size: 0.8rem; font-weight: 700; color: var(--ink); margin-bottom: 0.4rem; }
+.wf-h3 { font-size: 0.7rem; font-weight: 700; color: var(--ink); margin-bottom: 0.2rem; }
+.wf-lede { font-size: 0.68rem; color: var(--muted); margin-bottom: 0.6rem; }
+.wf-lede.w { color: rgba(255,255,255,0.6); }
+.wf-body { font-size: 0.65rem; color: var(--muted); line-height: 1.5; }
+
+.wf-bc { font-size: 0.6rem; color: var(--muted); margin-bottom: 0.4rem; }
+.wf-bc a { color: var(--red-600); }
+
+.wf-actions { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: 0.5rem; }
+
+.wf-ph {
+  background: var(--ph); border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--ph-text); font-size: 0.58rem; font-weight: 500;
+}
+
+.g { display: grid; gap: 0.5rem; }
+.c2 { grid-template-columns: 1fr 1fr; }
+.c3 { grid-template-columns: 1fr 1fr 1fr; }
+.c4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+
+.wf-card {
+  background: var(--surface-2); border: 1px solid var(--border);
+  border-radius: 5px; padding: 0.6rem 0.65rem;
+}
+.wf-card-title { font-size: 0.68rem; font-weight: 700; color: var(--ink); margin-bottom: 0.2rem; }
+.wf-card-body { font-size: 0.6rem; color: var(--muted); line-height: 1.4; }
+
+.wf-tag {
+  display: inline-block; padding: 0.12rem 0.35rem;
+  background: var(--red-100); color: var(--red-700);
+  border-radius: 2px; font-size: 0.56rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.05em;
+}
+.wf-badge {
+  display: inline-block; padding: 0.1rem 0.3rem;
+  background: var(--surface-2); border: 1px solid var(--border);
+  border-radius: 2px; font-size: 0.56rem; font-weight: 600; color: var(--muted);
+}
+.wf-link { color: var(--red-600); font-size: 0.65rem; }
+
+.wf-pill {
+  display: inline-block; padding: 0.18rem 0.55rem;
+  border: 1.5px solid var(--border); border-radius: 2rem;
+  font-size: 0.6rem; color: var(--ink); cursor: pointer;
+}
+.wf-pill.on { background: var(--red-600); border-color: var(--red-600); color: #fff; font-weight: 600; }
+.wf-pills { display: flex; gap: 0.35rem; flex-wrap: wrap; margin-bottom: 0.6rem; }
+
+.wf-zone-label {
+  font-size: 0.56rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.08em; color: var(--muted);
+  border-bottom: 1px solid var(--border); padding-bottom: 0.25rem; margin: 0.5rem 0 0.35rem;
+}
+.wf-acc { border: 1px solid var(--border); border-radius: 4px; margin-bottom: 0.3rem; overflow: hidden; }
+.wf-acc-sum {
+  display: flex; align-items: center; gap: 0.4rem;
+  padding: 0.38rem 0.65rem; background: var(--surface-2);
+  font-size: 0.65rem; font-weight: 600; color: var(--ink);
+}
+.wf-acc-num {
+  min-width: 1.4rem; text-align: center;
+  background: var(--red-100); color: var(--red-700);
+  border-radius: 2px; font-size: 0.58rem; font-weight: 700; padding: 0.05rem 0.2rem;
+}
+.wf-acc-body {
+  padding: 0.5rem 0.65rem; background: var(--surface);
+  border-top: 1px solid var(--border); font-size: 0.6rem; color: var(--muted);
+}
+
+.wf-evac-bar {
+  display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;
+  padding: 0.3rem 0.5rem; margin-top: 0.35rem;
+  background: rgba(244,52,61,0.06); border: 1px solid rgba(244,52,61,0.18);
+  border-radius: 3px; font-size: 0.58rem;
+}
+.wf-evac-bar strong { color: var(--red-700); }
+
+.wf-table { border: 1px solid var(--border); border-radius: 4px; overflow: hidden; font-size: 0.62rem; }
+.wf-table-head {
+  display: grid; grid-template-columns: 7rem 1fr; padding: 0.3rem 0.6rem;
+  background: var(--surface-2); font-size: 0.56rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted);
+  border-bottom: 1px solid var(--border);
+}
+.wf-table-row {
+  display: grid; grid-template-columns: 7rem 1fr; padding: 0.3rem 0.6rem;
+  border-bottom: 1px solid var(--border); gap: 0.5rem;
+}
+.wf-table-row:last-child { border-bottom: none; }
+.wf-table-label { font-weight: 600; color: var(--red-700); }
+
+/* Evacuation Modal */
+.wf-modal-bg {
+  background: rgba(16,22,28,0.7); padding: 0.6rem;
+  border-radius: 5px; margin: 0.5rem 0;
+}
+.wf-modal {
+  background: var(--surface); border-radius: 6px;
+  overflow: hidden; border: 1px solid var(--border);
+}
+.wf-modal-head {
+  background: var(--red-700); color: #fff;
+  padding: 0.45rem 0.7rem;
+  display: flex; justify-content: space-between; align-items: flex-start;
+}
+.wf-modal-close {
+  width: 1.5rem; height: 1.5rem; border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.7rem; color: #fff; flex-shrink: 0; cursor: pointer;
+}
+.wf-modal-map { height: 110px; position: relative; }
+.wf-modal-body { display: grid; grid-template-columns: 5fr 7fr; }
+.wf-modal-facts { padding: 0.45rem 0.6rem; border-right: 1px solid var(--border); }
+.wf-modal-narr { padding: 0.45rem 0.6rem; }
+.wf-detail { margin-bottom: 0.3rem; }
+.wf-detail-label {
+  font-size: 0.52rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.07em; color: var(--muted);
+}
+.wf-detail-val { font-size: 0.65rem; color: var(--ink); font-weight: 500; }
+.wf-detail-val.r { color: var(--red-700); font-weight: 700; }
+
+/* Form */
+.wf-field { margin-bottom: 0.5rem; }
+.wf-label { display: block; font-size: 0.6rem; font-weight: 600; color: var(--ink); margin-bottom: 0.18rem; }
+.wf-input {
+  display: block; width: 100%; padding: 0.28rem 0.45rem;
+  border: 1.5px solid var(--border); border-radius: 3px;
+  font-size: 0.62rem; color: var(--muted); background: var(--surface);
+}
+.wf-textarea { height: 52px; resize: none; }
+.wf-select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%235B594E' stroke-width='1.5' fill='none'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.45rem center; }
+
+/* Radio group */
+.wf-radio-group { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.wf-radio {
+  display: flex; align-items: center; gap: 0.3rem;
+  padding: 0.25rem 0.5rem; border: 1.5px solid var(--border);
+  border-radius: 3px; font-size: 0.62rem; cursor: pointer;
+}
+.wf-radio.on { border-color: var(--red-600); background: var(--red-100); color: var(--red-700); font-weight: 600; }
+.wf-radio-dot { width: 8px; height: 8px; border-radius: 50%; border: 1.5px solid currentColor; }
+.wf-radio.on .wf-radio-dot { background: var(--red-600); border-color: var(--red-600); }
+
+/* Accordion Q&A */
+.wf-faq-item { border-bottom: 1px solid var(--border); padding: 0.4rem 0; }
+.wf-faq-q { font-size: 0.68rem; font-weight: 600; color: var(--ink); display: flex; justify-content: space-between; }
+.wf-faq-a { font-size: 0.62rem; color: var(--muted); margin-top: 0.25rem; line-height: 1.45; }
+
+/* Framework diagram */
+.wf-fw-diagram {
+  height: 80px; background: linear-gradient(135deg, var(--red-100), var(--surface-2));
+  border: 1.5px dashed var(--border); border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.62rem; color: var(--muted); margin-bottom: 0.6rem;
+  cursor: pointer; transition: border-color 0.15s, box-shadow 0.15s;
+  position: relative;
+}
+.wf-fw-diagram:hover {
+  border-color: var(--red-500); box-shadow: 0 0 0 3px var(--red-100);
+}
+
+/* Framework enlarged modal */
+.fw-modal-overlay {
+  display: none; position: fixed; inset: 0; z-index: 2000;
+  background: rgba(22,33,44,0.78); backdrop-filter: blur(4px);
+  align-items: center; justify-content: center; padding: 1.5rem;
+}
+.fw-modal-overlay.open { display: flex; }
+.fw-modal-panel {
+  background: var(--surface); border-radius: 10px;
+  max-width: 680px; width: 100%; max-height: 90vh; overflow: auto;
+  box-shadow: 0 28px 72px rgba(0,0,0,0.45);
+  animation: fw-in 0.18s ease;
+}
+@keyframes fw-in {
+  from { opacity: 0; transform: scale(0.95) translateY(8px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+.fw-modal-head {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  padding: 1rem 1.25rem 0.85rem;
+  background: var(--red-700); color: #fff; border-radius: 10px 10px 0 0;
+}
+.fw-modal-close {
+  width: 1.8rem; height: 1.8rem; border-radius: 50%;
+  background: rgba(255,255,255,0.15); border: none;
+  color: #fff; font-size: 0.9rem; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.12s; flex-shrink: 0;
+}
+.fw-modal-close:hover { background: rgba(255,255,255,0.3); }
+.fw-modal-body { padding: 1.25rem; }
+
+/* Framework diagram grid inside modal */
+.fw-central {
+  text-align: center; margin-bottom: 1rem;
+  padding: 0.5rem; border-bottom: 1px solid var(--border);
+}
+.fw-central-label {
+  display: inline-block; background: var(--red-600); color: #fff;
+  font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.1em; padding: 0.3rem 1rem; border-radius: 2rem;
+}
+.fw-central-sub {
+  display: block; font-size: 0.62rem; color: var(--muted); margin-top: 0.35rem;
+}
+.fw-pillars {
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.6rem; margin-bottom: 1rem;
+}
+.fw-pillar {
+  border: 1.5px solid var(--border); border-radius: 5px;
+  padding: 0.6rem 0.65rem; background: var(--surface-2);
+  position: relative;
+}
+.fw-pillar::before {
+  content: attr(data-num);
+  position: absolute; top: -0.55rem; left: 0.5rem;
+  background: var(--red-600); color: #fff;
+  font-size: 0.52rem; font-weight: 700; padding: 0.05rem 0.3rem;
+  border-radius: 2px;
+}
+.fw-pillar-title {
+  font-size: 0.68rem; font-weight: 700; color: var(--ink); margin-bottom: 0.2rem;
+  margin-top: 0.1rem;
+}
+.fw-pillar-body { font-size: 0.58rem; color: var(--muted); line-height: 1.4; }
+.fw-modal-note {
+  font-size: 0.58rem; color: var(--muted); font-style: italic;
+  border-top: 1px solid var(--border); padding-top: 0.6rem; text-align: center;
+}
+
+/* Footer */
+.wf-footer {
+  background: var(--ink); color: rgba(255,255,255,0.4);
+  padding: 0.65rem 1.25rem; font-size: 0.58rem;
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.4rem;
+}
+.wf-footer-links { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+
+/* Annotation chips */
+.ann {
+  display: inline-block; background: #FFE066; color: #5C4A00;
+  border-radius: 2px; padding: 0.05rem 0.28rem;
+  font-size: 0.55rem; font-weight: 700; vertical-align: middle;
+  margin-left: 0.25rem; line-height: 1.4;
+}
+
+/* News pill types */
+.pill-alert { background: var(--red-100); color: var(--red-700); border-color: var(--red-500); }
+.pill-info { background: #E8F0FE; color: #1A56C4; border-color: #A8C0F0; }
+.pill-update { background: #E8F8EE; color: #1A7A45; border-color: #A0D8B8; }
+
+/* Scope list */
+.wf-scope { columns: 2; column-gap: 1rem; margin-left: 1rem; font-size: 0.62rem; color: var(--muted); line-height: 1.9; }
+
+.wf-divider { border: none; border-top: 1px solid var(--border); margin: 0.6rem 0; }
+.wf-note { font-size: 0.58rem; color: var(--muted); font-style: italic; margin-top: 0.35rem; }
+
+.wf-list-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 0.4rem 0; border-bottom: 1px solid var(--border); font-size: 0.65rem;
+}
+.wf-list-row:last-child { border-bottom: none; }
+
+/* Page count badge in sidebar */
+.sb-count {
+  display: inline-block; background: rgba(255,255,255,0.1);
+  border-radius: 10px; padding: 0.05rem 0.35rem;
+  font-size: 0.55rem; color: var(--sb-muted); margin-left: 0.3rem;
+  vertical-align: middle;
+}
+</style>
+
+<div id="app">
+  <aside class="sb">
+    <div class="sb-head">
+      <span class="sb-head-mark"></span>
+      <span class="sb-head-name">Wireframes</span>
+      <div class="sb-head-sub">Sport Safety Portal</div>
+    </div>
+
+    <div class="sb-group">Public <span class="sb-count">9</span></div>
+    <div class="sb-item active" onclick="show('home')">
+      Home <span class="route">/</span>
+    </div>
+    <div class="sb-item" onclick="show('about')">
+      About Sport Safety <span class="route">/about/</span>
+    </div>
+    <div class="sb-item" onclick="show('community')">
+      Community Portal <span class="route">/community/</span>
+    </div>
+    <div class="sb-item" onclick="show('framework')">
+      Safety Framework <span class="route">/safety-framework/</span>
+    </div>
+    <div class="sb-item" onclick="show('resources')">
+      Safety Resources <span class="route">/resources/</span>
+    </div>
+    <div class="sb-item" onclick="show('training')">
+      Training &amp; Certification <span class="route">/training/</span>
+    </div>
+    <div class="sb-item" onclick="show('news')">
+      News, Alerts &amp; Advisories <span class="route">/news/</span>
+    </div>
+    <div class="sb-item" onclick="show('faq')">
+      FAQ &amp; Support <span class="route">/faq/</span>
+    </div>
+    <div class="sb-item" onclick="show('report')">
+      Report an Incident/Hazard <span class="route">/report/</span>
+    </div>
+
+    <div class="sb-group">Staff Portal <span class="sb-count">3</span></div>
+    <div class="sb-item" onclick="show('staff')">
+      Staff Portal <span class="route">/staff-portal/</span>
+    </div>
+    <div class="sb-item" onclick="show('centres')">
+      Sport Centre Details <span class="route">/staff-portal/sport-centre-details/</span>
+    </div>
+    <div class="sb-item" onclick="show('folder')">
+      Sport Centre Safety Folder <span class="route">/staff-portal/sport-centre-safety-folder/</span>
+    </div>
+  </aside>
+
+  <main class="canvas">
+    <div class="canvas-header">
+      <span class="canvas-title" id="pg-title">Home</span>
+      <span class="canvas-route" id="pg-route">sportsg-safety.gov.sg/</span>
+    </div>
+    <div class="bf">
+      <div class="bf-chrome">
+        <div class="bf-dots">
+          <div class="bf-dot r"></div><div class="bf-dot y"></div><div class="bf-dot g"></div>
+        </div>
+        <div class="bf-url" id="bf-url">sportsg-safety.gov.sg/</div>
+      </div>
+      <div id="wf" class="wf"></div>
+    </div>
+  </main>
+</div>
+
+<script>
+function openFwModal() {
+  var m = document.getElementById('fw-modal');
+  if (m) { m.classList.add('open'); document.body.style.overflow = 'hidden'; }
+}
+function closeFwModal() {
+  var m = document.getElementById('fw-modal');
+  if (m) { m.classList.remove('open'); document.body.style.overflow = ''; }
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeFwModal();
+});
+
+function fwModal() {
+  var pillars = [
+    ['Governance','Policies, responsibilities, and accountability structures across sport organisations and venues.'],
+    ['Risk Management','Systematic identification, assessment, and mitigation of safety hazards in sport environments.'],
+    ['Standards &amp; Compliance','Minimum safety requirements for coaches, event operators, and national sport associations.'],
+    ['Incident Response','Procedures for managing, reporting, and following up on sport-related incidents and near-misses.'],
+    ['Training &amp; Capability','Certification pathways and continuing education to maintain safety competence across roles.'],
+    ['Culture &amp; Communication','Building safety awareness and open reporting culture across the sport community.']
+  ];
+  return '<div id="fw-modal" class="fw-modal-overlay" onclick="if(event.target===this)closeFwModal();">'
+    + '<div class="fw-modal-panel">'
+    + '<div class="fw-modal-head">'
+    + '<div><div style="font-size:0.58rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;opacity:0.7;margin-bottom:0.2rem;">Sport Singapore</div>'
+    + '<div style="font-size:1rem;font-weight:700;">Sport Safety Framework</div></div>'
+    + '<button class="fw-modal-close" onclick="closeFwModal()">&#x2715;</button>'
+    + '</div>'
+    + '<div class="fw-modal-body">'
+    + '<div class="fw-central"><span class="fw-central-label">Sport Safety</span>'
+    + '<span class="fw-central-sub">An integrated framework governing safety across all levels of Singapore\'s sport ecosystem</span></div>'
+    + '<div class="fw-pillars">'
+    + pillars.map(function(p, i) {
+        return '<div class="fw-pillar" data-num="0'+(i+1)+'">'
+          + '<div class="fw-pillar-title">'+p[0]+'</div>'
+          + '<div class="fw-pillar-body">'+p[1]+'</div>'
+          + '</div>';
+      }).join('')
+    + '</div>'
+    + '<div class="fw-modal-note">Diagram asset: /assets/images/safety-framework.svg &nbsp;·&nbsp; Click outside or press Esc to close <span class="ann">Wireframe representation</span></div>'
+    + '</div></div></div>';
+}
+
+function header(active) {
+  var nav = [
+    ['Home','/'],['About Sport Safety','/about/'],['Staff Portal ▾','/staff-portal/'],
+    ['Community Portal ▾','/community/'],['Safety Resources','/resources/'],
+    ['Training &amp; Certification','/training/'],['News, Alerts &amp; Advisories','/news/'],
+    ['FAQ &amp; Support','/faq/']
+  ];
+  return '<div class="wf-topbar">'
+    + '<div class="wf-logo"><div class="wf-logo-mark"></div>Sport Safety Portal</div>'
+    + '<div class="wf-topbar-right">'
+    + '<span style="color:rgba(255,255,255,0.45);font-size:0.62rem;">EN</span>'
+    + '<div class="wf-search-box">🔍 Search</div>'
+    + '<div class="wf-btn">Report an Incident/Hazard</div>'
+    + '</div></div>'
+    + '<div class="wf-navbar">'
+    + nav.map(function(n){ return '<div class="wf-nav'+(n[1]===active?' on':'')+'">' + n[0] + '</div>'; }).join('')
+    + '</div>';
+}
+
+function footer() {
+  return '<div class="wf-footer">'
+    + '<div class="wf-footer-links">'
+    + ['Privacy Policy','Terms of Use / PDPA Notice','Sitemap','Contact Us','Related Sites','Social Media'].map(function(l){ return '<span>'+l+'</span>'; }).join('')
+    + '</div><span>© 2026 Sport Safety Portal</span></div>';
+}
+
+var pages = {
+
+home: {
+  title: 'Home',
+  route: '/',
+  url: 'sportsg-safety.gov.sg/',
+  html: function() { return ''
+    + header('/')
+    + '<div class="wf-alert">⚠ Heat Advisory — All outdoor sport activities to observe rest intervals every 20 min &nbsp;<span class="wf-link">View all advisories →</span> <span class="ann">Alert Banner</span></div>'
+    + '<div class="wf-hero"><div class="wf-hero-grid">'
+    + '<div><div class="wf-eyebrow w">Sport Safety</div>'
+    + '<div class="wf-h1 w">Safety guidance for Singapore\'s sport ecosystem</div>'
+    + '<div class="wf-lede w">For coaches, event operators, NSA partners, and SportSG staff. Find standards, certifications, training, and incident tools.</div>'
+    + '<div class="wf-actions"><div class="wf-btn">Report an Incident/Hazard</div><div class="wf-btn outline-w">Explore Safety Resources</div></div></div>'
+    + '<div class="wf-ph wf-hero-art">Hero art / sport safety illustration</div>'
+    + '</div></div>'
+    + '<div class="wf-section"><div class="wf-h2">Find guidance for your role <span class="ann">4 audience cards</span></div>'
+    + '<div class="g c4">'
+    + ['Coaches &amp; Instructors','Sport Ecosystem Partners','Event Operators','SportSG Staff'].map(function(t, i){
+        var desc = ['Certifications, standards, self-assessment','NSA and vendor requirements','Event safety planning, permits','Internal operations hub'][i];
+        return '<div class="wf-card"><div class="wf-ph" style="height:32px;margin-bottom:0.35rem;">Icon</div>'
+          + '<div class="wf-card-title">'+t+'</div><div class="wf-card-body">'+desc+'</div>'
+          + '<div class="wf-link" style="margin-top:0.35rem;">Go →</div></div>';
+      }).join('')
+    + '</div></div>'
+    + '<div class="wf-section"><div class="wf-h2">Latest news &amp; advisories</div>'
+    + '<div class="g c3">'
+    + [['Heat Advisory','Outdoor Activity Rest Interval Guidelines'],['Training Update','First Aid Certification Renewal Deadline'],['Policy','Updated Event Safety Planning Requirements']].map(function(a){
+        return '<div class="wf-card"><div class="wf-badge">'+a[0]+'</div><div class="wf-card-title" style="margin-top:0.3rem;">'+a[1]+'</div></div>';
+      }).join('')
+    + '</div><div style="margin-top:0.4rem;"><span class="wf-link">View all →</span></div></div>'
+    + footer();
+  }
+},
+
+about: {
+  title: 'About Sport Safety',
+  route: '/about/',
+  url: 'sportsg-safety.gov.sg/about/',
+  html: function() { return ''
+    + header('/about/')
+    + '<div class="wf-section">'
+    + '<div class="wf-bc"><a>Home</a> / About Sport Safety</div>'
+    + '<div class="wf-eyebrow">About</div>'
+    + '<div class="wf-h1">About Sport Safety</div>'
+    + '<div class="wf-lede">Singapore\'s national framework for sport safety standards, compliance, and culture — administered by Sport Singapore.</div>'
+    + '</div>'
+    + '<div class="wf-section" style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">'
+    + '<div><div class="wf-h2">Our Mission</div>'
+    + '<div class="wf-body">To cultivate a safe sport ecosystem in Singapore where participants, practitioners, and operators can engage in sport with confidence. We establish standards, enable compliance, and build safety culture across the sport community.</div></div>'
+    + '<div><div class="wf-h2">Who We Serve</div>'
+    + '<div class="wf-body">Coaches and instructors, national sports associations, event operators, venue operators, and sport volunteers across Singapore\'s public and community sport network.</div></div>'
+    + '</div>'
+    + '<div class="wf-section">'
+    + '<div class="wf-h2">The Safety Framework</div>'
+    + '<div class="wf-fw-diagram" onclick="openFwModal()" title="Click to enlarge" role="button" tabindex="0">'
+    + '<div style="text-align:center;">'
+    + '<div style="font-size:0.65rem;font-weight:600;color:var(--muted);">Safety Framework diagram</div>'
+    + '<div style="font-size:0.6rem;color:var(--red-600);margin-top:0.2rem;">🔍 Click to enlarge</div>'
+    + '</div></div>'
+    + fwModal()
+    + '<div class="g c3">'
+    + [['Standards &amp; Compliance','Minimum safety requirements for each sport practitioner category'],['Incident Reporting','Confidential reporting and follow-up for incidents and hazards'],['Training &amp; Certification','Pathways to qualify and maintain safety competence']].map(function(a){
+        return '<div class="wf-card"><div class="wf-card-title">'+a[0]+'</div><div class="wf-card-body">'+a[1]+'</div></div>';
+      }).join('')
+    + '</div></div>'
+    + '<div class="wf-section">'
+    + '<div class="wf-h2">Related</div>'
+    + '<div class="wf-list-row"><span>Read the full Safety Framework</span><span class="wf-link">Safety Framework →</span></div>'
+    + '<div class="wf-list-row"><span>Explore certifications and training</span><span class="wf-link">Training &amp; Certification →</span></div>'
+    + '<div class="wf-list-row"><span>Download resources and guides</span><span class="wf-link">Safety Resources →</span></div>'
+    + '</div>'
+    + footer();
+  }
+},
+
+community: {
+  title: 'Community Portal',
+  route: '/community/',
+  url: 'sportsg-safety.gov.sg/community/',
+  html: function() { return ''
+    + header('/community/')
+    + '<div class="wf-section">'
+    + '<div class="wf-bc"><a>Home</a> / Community Portal</div>'
+    + '<div class="wf-h1">Community Portal</div>'
+    + '<div class="wf-lede">Choose your role to see safety guidance built for you.</div>'
+    + '</div>'
+    + '<div class="wf-section">'
+    + '<div class="g c3">'
+    + [
+        ['For Coaches &amp; Instructors','id:coaches','Minimum safety competencies, coaching standards, and certification requirements for sport practitioners. Includes self-assessment tools and renewal timelines.','Certification self-assessment'],
+        ['For Partners &amp; Sport Ecosystem','id:partners','Safety obligations for National Sports Associations, sport vendors, and affiliated organisations operating within SportSG\'s network.','Compliance checklist'],
+        ['For Event Operators','id:event-operators','Event safety planning requirements, risk assessment templates, permit guidance, and medical coverage standards for organised sport events.','Event safety template']
+      ].map(function(a){
+        return '<div class="wf-card" id="'+a[1]+'">'
+          + '<div class="wf-card-title">'+a[0]+'</div>'
+          + '<div class="wf-card-body">'+a[2]+'</div>'
+          + '<div class="wf-meta" style="margin-top:0.35rem;font-size:0.58rem;color:var(--muted);">'+a[3]+' · Download</div>'
+          + '</div>';
+      }).join('')
+    + '</div></div>'
+    + '<div class="wf-section">'
+    + '<div class="wf-actions">'
+    + '<div class="wf-btn outline">Safety Resources</div>'
+    + '<div class="wf-btn outline">Training &amp; Certification</div>'
+    + '<div class="wf-btn">Report an Incident/Hazard</div>'
+    + '</div></div>'
+    + footer();
+  }
+},
+
+framework: {
+  title: 'Safety Framework',
+  route: '/safety-framework/',
+  url: 'sportsg-safety.gov.sg/safety-framework/',
+  html: function() { return ''
+    + header('/safety-framework/')
+    + '<div class="wf-section">'
+    + '<div class="wf-bc"><a>Home</a> / Safety Framework</div>'
+    + '<div class="wf-eyebrow">Sport Singapore</div>'
+    + '<div class="wf-h1">Sport Safety Framework</div>'
+    + '<div class="wf-lede">The structured approach Singapore uses to govern sport safety across all levels of participation, practice, and operations.</div>'
+    + '</div>'
+    + '<div class="wf-section">'
+    + '<div class="wf-ph" style="height:100px;margin-bottom:0.75rem;">Safety Framework diagram <span class="ann">SVG/PNG asset</span></div>'
+    + '<div class="g c3">'
+    + [
+        ['Governance','Policies, responsibilities, and accountability structures across sport organisations and venues.'],
+        ['Risk Management','Systematic identification, assessment, and mitigation of safety hazards in sport environments.'],
+        ['Standards &amp; Compliance','Minimum safety requirements for coaches, event operators, and NSAs.'],
+        ['Incident Response','Procedures for managing and reporting sport-related incidents and near-misses.'],
+        ['Training &amp; Capability','Certification pathways and continuing education to maintain safety competence.'],
+        ['Culture &amp; Communication','Building safety awareness and open reporting culture across the sport community.']
+      ].map(function(a){
+        return '<div class="wf-card"><div class="wf-card-title">'+a[0]+'</div><div class="wf-card-body">'+a[1]+'</div></div>';
+      }).join('')
+    + '</div></div>'
+    + '<div class="wf-section">'
+    + '<div class="wf-actions">'
+    + '<div class="wf-btn">Download Framework PDF</div>'
+    + '<div class="wf-btn outline">Community Portal</div>'
+    + '</div></div>'
+    + footer();
+  }
+},
+
+resources: {
+  title: 'Safety Resources',
+  route: '/resources/',
+  url: 'sportsg-safety.gov.sg/resources/',
+  html: function() { return ''
+    + header('/resources/')
+    + '<div class="wf-section">'
+    + '<div class="wf-bc"><a>Home</a> / Safety Resources</div>'
+    + '<div class="wf-h1">Safety Resources</div>'
+    + '<div class="wf-lede">Guides, templates, and standards for the Singapore sport community. Filter by your role or download type.</div>'
+    + '</div>'
+    + '<div class="wf-section">'
+    + '<div class="wf-pills">'
+    + ['All','Coaches','Event Operators','NSAs &amp; Partners','Venue Operators','General'].map(function(l,i){ return '<div class="wf-pill'+(i===0?' on':'')+'">'+ l +'</div>'; }).join('')
+    + '<span class="ann">Filter by role</span>'
+    + '</div>'
+    + '<div class="g c3">'
+    + [
+        ['Coach Safety Handbook','PDF · 2.4 MB','Coaches &amp; Instructors'],
+        ['Event Safety Planning Template','XLSX · 0.8 MB','Event Operators'],
+        ['Risk Assessment Template','DOCX · 0.3 MB','All roles'],
+        ['NSA Compliance Checklist','PDF · 1.1 MB','NSAs &amp; Partners'],
+        ['Emergency Response Guide','PDF · 0.9 MB','Venue Operators'],
+        ['Incident Report Form','PDF · 0.2 MB','All roles']
+      ].map(function(a){
+        return '<div class="wf-card">'
+          + '<div class="wf-ph" style="height:28px;width:28px;border-radius:3px;margin-bottom:0.35rem;display:inline-flex;">📄</div>'
+          + '<div class="wf-card-title">'+a[0]+'</div>'
+          + '<div class="wf-card-body">'+a[1]+' · <span style="color:var(--red-600);">'+a[2]+'</span></div>'
+          + '<div class="wf-link" style="margin-top:0.35rem;">Download →</div>'
+          + '</div>';
+      }).join('')
+    + '</div></div>'
+    + footer();
+  }
+},
+
+training: {
+  title: 'Training & Certification',
+  route: '/training/',
+  url: 'sportsg-safety.gov.sg/training/',
+  html: function() { return ''
+    + header('/training/')
+    + '<div class="wf-section">'
+    + '<div class="wf-bc"><a>Home</a> / Training &amp; Certification</div>'
+    + '<div class="wf-h1">Training &amp; Certification</div>'
+    + '<div class="wf-lede">Certification programmes and training pathways for sport practitioners, coaches, and event operators in Singapore.</div>'
+    + '</div>'
+    + '<div class="wf-section">'
+    + '<div class="wf-h2">Certification Programmes</div>'
+    + '<div class="g c2">'
+    + [
+        ['Standard First Aid (SFA)','Mandatory for all registered coaches. Covers CPR/AED, wound management, and sport injury first response.','16 hrs · Valid 2 years'],
+        ['Sport Event Safety Management','For event operators planning sport competitions and mass participation events.','8 hrs · Valid 3 years'],
+        ['Emergency Response Planning','Venue-level programme for sport centre managers and facility staff.','12 hrs · Valid 2 years'],
+        ['Sport Risk Assessment','Structured methodology for identifying and managing hazard risk in sport settings.','4 hrs · Valid 3 years']
+      ].map(function(a){
+        return '<div class="wf-card"><div class="wf-card-title">'+a[0]+'</div><div class="wf-card-body">'+a[1]+'</div>'
+          + '<div style="margin-top:0.35rem;font-size:0.58rem;color:var(--muted);">'+a[2]+'</div>'
+          + '<div class="wf-link" style="margin-top:0.3rem;">Enrol →</div></div>';
+      }).join('')
+    + '</div></div>'
+    + '<div class="wf-section">'
+    + '<div class="wf-h2">Upcoming Dates</div>'
+    + '<div class="wf-table">'
+    + '<div class="wf-table-head" style="grid-template-columns:5rem 8rem 1fr 4rem;"><span>Date</span><span>Programme</span><span>Venue</span><span>Spaces</span></div>'
+    + [['12 Aug 2026','Standard First Aid','Kallang Sport Centre','8 left'],['19 Aug 2026','Event Safety Mgmt','OCBC Arena','12 left'],['26 Aug 2026','Emergency Response','Jurong East SC','3 left']].map(function(r){
+        return '<div class="wf-table-row" style="grid-template-columns:5rem 8rem 1fr 4rem;"><span style="color:var(--red-700);font-weight:600;">'+r[0]+'</span><span>'+r[1]+'</span><span style="color:var(--muted);">'+r[2]+'</span><span style="color:var(--muted);">'+r[3]+'</span></div>';
+      }).join('')
+    + '</div></div>'
+    + footer();
+  }
+},
+
+news: {
+  title: 'News, Alerts & Advisories',
+  route: '/news/',
+  url: 'sportsg-safety.gov.sg/news/',
+  html: function() { return ''
+    + header('/news/')
+    + '<div class="wf-section">'
+    + '<div class="wf-bc"><a>Home</a> / News, Alerts &amp; Advisories</div>'
+    + '<div class="wf-h1">News, Alerts &amp; Advisories</div>'
+    + '<div class="wf-lede">Current alerts, safety advisories, and news from Sport Singapore.</div>'
+    + '</div>'
+    + '<div class="wf-section" style="background:var(--red-100);border-top:2px solid var(--red-500);">'
+    + '<div class="wf-h2" style="color:var(--red-700);">🔴 Current Alerts <span class="ann">Active advisories</span></div>'
+    + '<div class="g c2">'
+    + [['Heat Advisory','Outdoor activities to observe mandatory rest intervals every 20 min. Ensure hydration stations are manned.','Active — 04 Aug 2026'],['Lightning Warning Protocol','All outdoor pools and exposed sport facilities to follow standing lightning dispersal SOP.','Active — 02 Aug 2026']].map(function(a){
+        return '<div class="wf-card" style="border-color:var(--red-300,var(--red-500));">'
+          + '<div class="wf-tag" style="margin-bottom:0.3rem;">Active Alert</div>'
+          + '<div class="wf-card-title">'+a[0]+'</div>'
+          + '<div class="wf-card-body">'+a[1]+'</div>'
+          + '<div style="margin-top:0.3rem;font-size:0.58rem;color:var(--red-700);">'+a[2]+'</div>'
+          + '</div>';
+      }).join('')
+    + '</div></div>'
+    + '<div class="wf-section">'
+    + '<div class="wf-h2">Recent Advisories</div>'
+    + '<div class="g c3">'
+    + [['Training Update','First Aid Certification Renewal Deadline Extended to Oct 2026'],['Policy','Updated Event Safety Planning Requirements (v2.3)'],['Guidance','Concussion Management Protocol — Revised']].map(function(a){
+        return '<div class="wf-card"><div class="wf-badge">'+a[0]+'</div><div class="wf-card-title" style="margin-top:0.25rem;">'+a[1]+'</div></div>';
+      }).join('')
+    + '</div></div>'
+    + footer();
+  }
+},
+
+faq: {
+  title: 'FAQ & Support',
+  route: '/faq/',
+  url: 'sportsg-safety.gov.sg/faq/',
+  html: function() { return ''
+    + header('/faq/')
+    + '<div class="wf-section">'
+    + '<div class="wf-bc"><a>Home</a> / FAQ &amp; Support</div>'
+    + '<div class="wf-h1">FAQ &amp; Support</div>'
+    + '<div class="wf-lede">Answers to common questions about sport safety standards, certifications, reporting, and this portal.</div>'
+    + '<div class="wf-field" style="max-width:360px;margin-top:0.5rem;">'
+    + '<div class="wf-input wf-select" style="color:var(--muted);">🔍 Search FAQs… <span class="ann">Live search</span></div>'
+    + '</div></div>'
+    + '<div class="wf-section">'
+    + '<div class="wf-h2">Certification &amp; Training</div>'
+    + ['What qualifications must a registered coach hold?','When does my Standard First Aid certification expire?','Can I complete training online, or is it in-person only?','How do I renew my certification before it lapses?'].map(function(q,i){
+        return '<div class="wf-faq-item">'
+          + '<div class="wf-faq-q">'+q+' <span style="color:var(--muted);font-weight:400;">'+(i===0?'▲':'▾')+'</span></div>'
+          + (i===0?'<div class="wf-faq-a">All coaches registered under a SportSG-affiliated NSA must hold a current Standard First Aid (SFA) certificate. Additional certifications may be required by specific sport disciplines — check your NSA\'s requirements.</div>':'')
+          + '</div>';
+      }).join('')
+    + '<div class="wf-h2" style="margin-top:0.75rem;">Incident Reporting</div>'
+    + ['How do I report an incident anonymously?','What happens after I submit a report?','Which incidents are mandatory to report?'].map(function(q){
+        return '<div class="wf-faq-item"><div class="wf-faq-q">'+q+' <span style="color:var(--muted);font-weight:400;">▾</span></div></div>';
+      }).join('')
+    + '</div>'
+    + '<div class="wf-section">'
+    + '<div class="wf-h2">Contact Support</div>'
+    + '<div class="wf-body">Can\'t find your answer? Contact Sport Singapore\'s Safety team.</div>'
+    + '<div class="wf-actions"><div class="wf-btn">Email Safety Team</div><div class="wf-btn outline">Submit a Question</div></div>'
+    + '</div>'
+    + footer();
+  }
+},
+
+report: {
+  title: 'Report an Incident/Hazard',
+  route: '/report/',
+  url: 'sportsg-safety.gov.sg/report/',
+  html: function() { return ''
+    + header('/_none_')
+    + '<div class="wf-section">'
+    + '<div class="wf-bc"><a>Home</a> / Report an Incident or Hazard</div>'
+    + '<div class="wf-eyebrow">Confidential</div>'
+    + '<div class="wf-h1">Report an Incident or Hazard</div>'
+    + '<div class="wf-lede">Report a sport-related incident, near miss, or safety hazard. Reports can be submitted anonymously. All submissions are reviewed by the Sport Singapore Safety team.</div>'
+    + '</div>'
+    + '<div class="wf-section">'
+    + '<div style="max-width:560px;">'
+    + '<div class="wf-field"><div class="wf-label">Type of Report <span style="color:var(--red-600);">*</span></div>'
+    + '<div class="wf-radio-group">'
+    + ['Incident','Near Miss','Hazard'].map(function(t,i){ return '<div class="wf-radio'+(i===0?' on':'')+'"><div class="wf-radio-dot"></div>'+t+'</div>'; }).join('')
+    + '<span class="ann">Required</span></div></div>'
+    + '<div class="g c2">'
+    + '<div class="wf-field"><div class="wf-label">Sport / Activity <span style="color:var(--red-600);">*</span></div><div class="wf-input wf-select" style="color:var(--muted);">Select sport…</div></div>'
+    + '<div class="wf-field"><div class="wf-label">Date of Incident <span style="color:var(--red-600);">*</span></div><div class="wf-input" style="color:var(--muted);">DD / MM / YYYY</div></div>'
+    + '</div>'
+    + '<div class="wf-field"><div class="wf-label">Venue / Location <span style="color:var(--red-600);">*</span></div><div class="wf-input" style="color:var(--muted);">e.g. Kallang Sport Centre, Indoor Hall 2</div></div>'
+    + '<div class="wf-field"><div class="wf-label">Description <span style="color:var(--red-600);">*</span></div><div class="wf-input wf-textarea" style="color:var(--muted);">Describe what happened, the sequence of events, and any injuries or damage…</div></div>'
+    + '<div class="wf-field"><div class="wf-label">People Involved</div><div class="wf-input" style="color:var(--muted);">Roles only — do not include names if submitting anonymously</div></div>'
+    + '<div class="wf-divider"></div>'
+    + '<div class="wf-h3">Contact Details <span style="font-weight:400;color:var(--muted);font-size:0.62rem;">(optional — leave blank to submit anonymously)</span> <span class="ann">Optional</span></div>'
+    + '<div class="g c2" style="margin-top:0.4rem;">'
+    + '<div class="wf-field"><div class="wf-label">Name</div><div class="wf-input" style="color:var(--muted);">Your name</div></div>'
+    + '<div class="wf-field"><div class="wf-label">Email</div><div class="wf-input" style="color:var(--muted);">your@email.com</div></div>'
+    + '</div>'
+    + '<div class="wf-actions"><div class="wf-btn">Submit Report</div><div class="wf-btn outline">Clear Form</div></div>'
+    + '<div class="wf-note" style="margin-top:0.5rem;">Reports are reviewed by the SportSG Safety team within 3 working days. You will be contacted if you provided contact details.</div>'
+    + '</div></div>'
+    + footer();
+  }
+},
+
+staff: {
+  title: 'Staff Portal',
+  route: '/staff-portal/',
+  url: 'sportsg-safety.gov.sg/staff-portal/',
+  html: function() { return ''
+    + header('/staff-portal/')
+    + '<div class="wf-section">'
+    + '<div class="wf-bc"><a>Home</a> / Staff Portal</div>'
+    + '<div class="wf-tag">SSO Required <span class="ann">SSO Gate — not yet built</span></div>'
+    + '<div class="wf-h1" style="margin-top:0.5rem;">Staff Portal</div>'
+    + '<div class="wf-lede">Documentation, incident and compliance management, and internal reporting for sport organisation staff.</div>'
+    + '</div>'
+    + '<div class="wf-section">'
+    + '<div class="g c2">'
+    + [
+        ['Documentation &amp; Policy','Internal policies, standard operating procedures, and compliance references.', [['Sport Centre Details','./sport-centre-details/'],['Sport Centre Safety Folder','./sport-centre-safety-folder/']]],
+        ['Incident Management','Review and track reported incidents, assign follow-up actions, and generate compliance reports.', []],
+        ['Compliance Dashboard','Certification status, outstanding actions, and compliance health for your sport centres.', []],
+        ['Internal Reports','Generate and export incident trend reports, audit summaries, and compliance status.', []]
+      ].map(function(m){
+        return '<div class="wf-card"><div class="wf-card-title">'+m[0]+'</div><div class="wf-card-body">'+m[1]+'</div>'
+          + (m[2].length ? '<div style="margin-top:0.4rem;">'+m[2].map(function(l){ return '<div><span class="wf-link">'+l[0]+' →</span></div>'; }).join('')+'</div>' : '')
+          + '</div>';
+      }).join('')
+    + '</div></div>'
+    + footer();
+  }
+},
+
+centres: {
+  title: 'Sport Centre Details',
+  route: '/staff-portal/sport-centre-details/',
+  url: 'sportsg-safety.gov.sg/staff-portal/sport-centre-details/',
+  html: function() { return ''
+    + header('/staff-portal/')
+    + '<div class="wf-section">'
+    + '<div class="wf-bc"><a>Home</a> / <a>Staff Portal</a> / Sport Centre Details</div>'
+    + '<div class="wf-eyebrow">Documentation &amp; Policy</div>'
+    + '<div class="wf-h1">Sport Centre Details</div>'
+    + '<div class="wf-lede">Directory of all managed sport centres and facilities, organised by geographical zone.</div>'
+    + '</div>'
+    + '<div class="wf-section">'
+    + '<div class="wf-pills">'
+    + ['All Zones','Central','East','West','North','North-East'].map(function(z,i){ return '<div class="wf-pill'+(i===0?' on':'')+'">'+z+'</div>'; }).join('')
+    + '<span class="ann">Zone filter</span>'
+    + '</div>'
+    + '<div class="wf-zone-label">Central Zone</div>'
+    + '<div class="wf-acc"><div class="wf-acc-sum"><span class="wf-acc-num">SC01</span><span>Kallang Sport Centre</span><span style="color:var(--muted);margin-left:auto;font-size:0.58rem;">Stadium Walk, Singapore 397689</span><span style="margin-left:0.5rem;color:var(--muted);">›</span></div>'
+    + '<div class="wf-acc-body">'
+    + '<div style="font-size:0.62rem;margin-bottom:0.35rem;"><strong>On-site:</strong> Olympic-size pool, Athletics track, Multi-purpose hall · <strong>Managed:</strong> Kallang Netball Centre</div>'
+    + '<div class="wf-evac-bar"><span>❤ Nearest ER: <strong>Tan Tock Seng Hospital</strong></span><span style="color:var(--muted);">8 min by ambulance</span>'
+    + '<div class="wf-btn sm" style="margin-left:auto;">Evacuation Route <span class="ann">→ Modal</span></div></div>'
+    + '</div></div>'
+    + '<div class="wf-acc"><div class="wf-acc-sum"><span class="wf-acc-num">SC02</span><span>Delta Sport Centre</span><span style="color:var(--muted);margin-left:auto;font-size:0.58rem;">Collapsed — click to expand</span><span style="margin-left:0.5rem;color:var(--muted);">›</span></div></div>'
+    + '<div class="wf-zone-label">North Zone</div>'
+    + '<div class="wf-acc"><div class="wf-acc-sum"><span class="wf-acc-num">SC07</span><span>Yishun Sport Centre</span><span style="color:var(--muted);margin-left:auto;font-size:0.58rem;">Collapsed — click to expand</span><span style="margin-left:0.5rem;color:var(--muted);">›</span></div></div>'
+    + '</div>'
+
+    // Evacuation modal overlay (shown as annotated inset)
+    + '<div class="wf-section">'
+    + '<div class="wf-h2" style="margin-bottom:0.4rem;">Evacuation Route Modal <span class="ann">Triggered by "Evacuation Route" button</span></div>'
+    + '<div class="wf-modal-bg">'
+    + '<div class="wf-modal">'
+    + '<div class="wf-modal-head"><div><div class="wf-eyebrow" style="color:rgba(255,255,255,0.65);">Evacuation Route</div><div style="font-size:0.75rem;font-weight:700;color:#fff;margin-top:0.1rem;">Kallang Sport Centre</div></div>'
+    + '<div class="wf-modal-close">✕</div></div>'
+    + '<div class="wf-modal-map wf-ph"><div style="text-align:center;color:var(--ph-text);font-size:0.6rem;">Google Maps embed<br>(2/3 of modal height)<span class="ann">iframe — lazy loaded</span></div></div>'
+    + '<div class="wf-modal-body">'
+    + '<div class="wf-modal-facts">'
+    + '<div class="wf-detail"><div class="wf-detail-label">Nearest Medical Facility</div><div class="wf-detail-val r">Tan Tock Seng Hospital</div></div>'
+    + '<div class="wf-detail"><div class="wf-detail-label">Address</div><div class="wf-detail-val">11 Jalan Tan Tock Seng, S308433</div></div>'
+    + '<div class="wf-detail"><div class="wf-detail-label">ER Hotline</div><div class="wf-detail-val r">6256 6011</div></div>'
+    + '<div class="wf-detail"><div class="wf-detail-label">Distance</div><div class="wf-detail-val">3.2 km</div></div>'
+    + '<div class="wf-detail"><div class="wf-detail-label">Time via Ambulance</div><div class="wf-detail-val r">8 min</div></div>'
+    + '</div>'
+    + '<div class="wf-modal-narr">'
+    + '<div style="font-size:0.52rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:0.25rem;">Directions to Medical Facility</div>'
+    + '<div style="font-size:0.62rem;color:var(--ink);line-height:1.5;">Exit via Gate B onto Stadium Walk. Turn left onto Nicoll Highway (ECP slip road). Continue to Jalan Tan Tock Seng exit...</div>'
+    + '<div style="font-size:0.58rem;color:var(--muted);font-style:italic;margin-top:0.35rem;">Route is indicative. Confirm traffic conditions at time of travel.</div>'
+    + '</div>'
+    + '</div></div></div></div>'
+
+    + '<div class="wf-section"><div class="wf-h2">Facility Scope</div>'
+    + '<ul class="wf-scope"><li>Swimming pools</li><li>Athletics tracks</li><li>Multi-purpose sport halls</li><li>Gym &amp; fitness facilities</li><li>Outdoor sport courts</li><li>Synthetic turf pitches</li></ul></div>'
+
+    + '<div class="wf-section"><div class="wf-h2">Location Classification</div>'
+    + '<div class="wf-table">'
+    + '<div class="wf-table-head"><span>Classification</span><span>Definition</span></div>'
+    + [['On-site','Facilities physically within the principal sport centre address'],['Off-site / Managed','Separately addressed facilities under the same operational management'],['External','Third-party venues used under agreement — not directly managed']].map(function(r){
+        return '<div class="wf-table-row"><span class="wf-table-label">'+r[0]+'</span><span style="color:var(--muted);font-size:0.62rem;">'+r[1]+'</span></div>';
+      }).join('')
+    + '</div></div>'
+
+    + '<div class="wf-section">'
+    + '<div class="wf-list-row"><span style="color:var(--muted);">Back to Staff Portal</span><span class="wf-link">Staff Portal →</span></div>'
+    + '<div class="wf-list-row"><span style="color:var(--muted);">Safety documentation for your centre</span><span class="wf-link">Sport Centre Safety Folder →</span></div>'
+    + '</div>'
+    + footer();
+  }
+},
+
+folder: {
+  title: 'Sport Centre Safety Folder',
+  route: '/staff-portal/sport-centre-safety-folder/',
+  url: 'sportsg-safety.gov.sg/staff-portal/sport-centre-safety-folder/',
+  html: function() { return ''
+    + header('/staff-portal/')
+    + '<div class="wf-section">'
+    + '<div class="wf-bc"><a>Home</a> / <a>Staff Portal</a> / Sport Centre Safety Folder</div>'
+    + '<div class="wf-eyebrow">Documentation &amp; Policy</div>'
+    + '<div class="wf-h1">Sport Centre Safety Folder</div>'
+    + '<div class="wf-lede">Safety documentation and compliance records for managed sport centres. Organised by document category across all centres.</div>'
+    + '</div>'
+    + '<div class="wf-section">'
+    + '<div class="wf-h2">Select Centre <span class="ann">Filter / selector</span></div>'
+    + '<div class="wf-pills" style="margin-bottom:0.75rem;">'
+    + ['All Centres','SC01 — Kallang','SC02 — Delta','SC07 — Yishun'].map(function(c,i){ return '<div class="wf-pill'+(i===0?' on':'')+'">'+ c +'</div>'; }).join('')
+    + '</div>'
+    + ['Emergency Response Plan','Incident Reporting Records','Risk Assessments','Staff Certifications','Compliance Checklist'].map(function(cat, ci) {
+        var items = [['Annex A — Emergency Contacts &amp; Call Tree','Last updated 12 Jun 2026'],['Annex B — Evacuation Routes','Last updated 04 Aug 2026'],['Annex C — Emergency Equipment Register','Last updated 01 Jul 2026']];
+        return '<div class="wf-acc" style="margin-bottom:0.4rem;">'
+          + '<div class="wf-acc-sum"><span class="wf-acc-num">0'+(ci+1)+'</span><span>'+cat+'</span>'
+          + (ci===0?'<span style="margin-left:auto;color:var(--muted);font-size:0.58rem;">3 documents</span>':'<span style="margin-left:auto;color:var(--muted);font-size:0.58rem;">Collapsed</span>')
+          + '<span style="margin-left:0.5rem;color:var(--muted);">'+(ci===0?'▾':'›')+'</span></div>'
+          + (ci===0 ? '<div class="wf-acc-body">'
+            + items.map(function(it){ return '<div class="wf-list-row"><span>'+it[0]+'</span><div style="display:flex;gap:0.4rem;align-items:center;"><span style="font-size:0.58rem;color:var(--muted);">'+it[1]+'</span><span class="wf-link">View →</span></div></div>'; }).join('')
+            + '</div>' : '')
+          + '</div>';
+      }).join('')
+    + '</div>'
+    + '<div class="wf-section">'
+    + '<div class="wf-list-row"><span style="color:var(--muted);">Centre facilities and evacuation routes</span><span class="wf-link">Sport Centre Details →</span></div>'
+    + '<div class="wf-list-row"><span style="color:var(--muted);">Back to Staff Portal</span><span class="wf-link">Staff Portal →</span></div>'
+    + '</div>'
+    + footer();
+  }
+}
+
+};
+
+function show(id) {
+  var p = pages[id];
+  if (!p) return;
+
+  document.getElementById('pg-title').textContent = p.title;
+  document.getElementById('pg-route').textContent = p.route;
+  document.getElementById('bf-url').textContent = p.url;
+  document.getElementById('wf').innerHTML = p.html();
+
+  document.querySelectorAll('.sb-item').forEach(function(el) {
+    el.classList.toggle('active', el.getAttribute('onclick') === 'show(\'' + id + '\')');
+  });
+
+  document.querySelector('.canvas').scrollTo(0, 0);
+}
+
+show('home');
+</script>
