@@ -441,7 +441,6 @@ description: "Directory of all managed sport centres, their facilities, and evac
   var backdrop = document.getElementById("evac-modal-backdrop");
   var closeBtn = document.getElementById("evac-modal-close");
   var mapFrame = document.getElementById("evac-modal-map");
-  var printBtn = document.getElementById("evac-print-btn");
 
   var currentData = null;
 
@@ -453,7 +452,6 @@ description: "Directory of all managed sport centres, their facilities, and evac
     distance: document.getElementById("evac-distance"),
     time:     document.getElementById("evac-time"),
     narration:document.getElementById("evac-narration"),
-    mapsLink: document.getElementById("evac-maps-link"),
     mapsOpen: document.getElementById("evac-maps-open")
   };
 
@@ -471,7 +469,6 @@ description: "Directory of all managed sport centres, their facilities, and evac
     fields.distance.textContent  = d.distance;
     fields.time.textContent      = d.ambulanceTime;
     fields.narration.textContent = d.routeNarration;
-    fields.mapsLink.href         = d.mapsUrl;
     fields.mapsOpen.href         = d.mapsUrl;
     mapFrame.src                 = d.embedUrl;
 
@@ -500,56 +497,5 @@ description: "Directory of all managed sport centres, their facilities, and evac
     if (e.key === "Escape" && !modal.hidden) closeModal();
   });
 
-  /* ── PDF — open a dedicated print window ──────────────────────── */
-  printBtn.addEventListener("click", function () {
-    if (!currentData) return;
-    var d = currentData;
-    var now = new Date().toLocaleDateString("en-SG", { day: "2-digit", month: "long", year: "numeric" });
-    var html = '<!DOCTYPE html><html lang="en"><head>'
-      + '<meta charset="UTF-8">'
-      + '<title>Evacuation Route – ' + d.name + '</title>'
-      + '<style>'
-      + '@page{size:A4 portrait;margin:18mm 20mm}'
-      + 'body{font-family:Arial,Helvetica,sans-serif;font-size:10.5pt;color:#111;margin:0}'
-      + 'h1{font-size:15pt;margin:0 0 2pt;color:#b71c1c}'
-      + '.eyebrow{font-size:7.5pt;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#888;margin-bottom:4pt}'
-      + '.meta{font-size:8pt;color:#888;margin-top:2pt}'
-      + 'hr{border:none;border-top:1.5pt solid #b71c1c;margin:10pt 0}'
-      + 'table{width:100%;border-collapse:collapse;margin-bottom:10pt}'
-      + 'td{padding:5pt 8pt;vertical-align:top;font-size:10pt}'
-      + 'td:first-child{font-weight:700;font-size:7.5pt;text-transform:uppercase;letter-spacing:.06em;color:#555;white-space:nowrap;width:38%}'
-      + 'tr:nth-child(odd) td{background:#f5f5f5}'
-      + '.hotline{color:#b71c1c;font-weight:700;font-size:12pt}'
-      + '.time{color:#b71c1c;font-weight:700}'
-      + '.section-heading{font-size:8pt;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#555;margin:10pt 0 4pt}'
-      + '.narration{font-size:10.5pt;line-height:1.65;margin:0 0 6pt}'
-      + '.note{font-size:8pt;color:#888;font-style:italic;margin:0 0 12pt}'
-      + '.link-row{margin-top:12pt;padding-top:8pt;border-top:1pt solid #ddd;font-size:9pt;color:#555}'
-      + '.link-row a{color:#b71c1c}'
-      + '</style>'
-      + '</head><body>'
-      + '<p class="eyebrow">Sport Safety Portal — Evacuation Route</p>'
-      + '<h1>' + d.name + '</h1>'
-      + '<p class="meta">Printed: ' + now + '</p>'
-      + '<hr>'
-      + '<table>'
-      + '<tr><td>Nearest Medical Facility</td><td><strong>' + d.hospital + '</strong></td></tr>'
-      + '<tr><td>Address</td><td>' + d.hospitalAddress + '</td></tr>'
-      + '<tr><td>ER Hotline</td><td class="hotline">' + d.hospitalHotline + '</td></tr>'
-      + '<tr><td>Distance</td><td>' + d.distance + '</td></tr>'
-      + '<tr><td>Time via Ambulance</td><td class="time">' + d.ambulanceTime + '</td></tr>'
-      + '</table>'
-      + '<p class="section-heading">Directions to Medical Facility</p>'
-      + '<p class="narration">' + d.routeNarration + '</p>'
-      + '<p class="note">Route is indicative. Confirm traffic conditions and road closures at time of travel. Actual ambulance routing is subject to SCDF operational decisions and prevailing road conditions.</p>'
-      + '<div class="link-row">Live route: <a href="' + d.mapsUrl + '">' + d.mapsUrl + '</a></div>'
-      + '<script>window.onload=function(){window.print();}<\/script>'
-      + '</body></html>';
-
-    var win = window.open("", "_blank", "width=800,height=700");
-    if (!win) { alert("Allow pop-ups for this site to download the PDF."); return; }
-    win.document.write(html);
-    win.document.close();
-  });
 })();
 </script>
