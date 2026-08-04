@@ -256,10 +256,13 @@ details.card summary { list-style: none; }
   padding: 0 1.1rem 1rem 1.1rem; border-top: 1px solid var(--line);
   padding-top: 0.85rem;
 }
-.folder-item__body p { font-size: 0.85rem; color: var(--muted); margin: 0 0 0.75rem; max-width: none; }
-.folder-item__body .link { font-size: 0.82rem; font-weight: 600; color: var(--red-600); text-decoration: none; }
-.folder-item__body .link:hover { text-decoration: underline; }
-@media (prefers-color-scheme: dark) { .folder-item__body .link { color: var(--red-400); } }
+.folder-item__heading {
+  font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--red-700); margin: 1.1rem 0 0.3rem;
+}
+.folder-item__heading:first-child { margin-top: 0; }
+@media (prefers-color-scheme: dark) { .folder-item__heading { color: var(--red-400); } }
+.folder-item__body p { font-size: 0.85rem; color: var(--muted); margin: 0 0 0.5rem; max-width: none; }
 
 /* Policy cards */
 .policy-card {

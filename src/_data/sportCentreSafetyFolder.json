@@ -3,106 +3,402 @@
     {
       "number": "1",
       "title": "Introduction",
-      "body": "Overview of the Safety Folder — its purpose, scope, how it should be used, and who is responsible for keeping it current.",
-      "notionUrl": "https://app.notion.com/3ae5689ec48b80378197dfba3594d12a"
+      "content": [
+        {
+          "heading": "Purpose",
+          "text": "This Safety Folder is the primary safety management document for the sport centre. It brings together the key policies, procedures, roles, and records that the centre relies on to deliver sport safely. Every member of staff with safety responsibilities should be familiar with its contents."
+        },
+        {
+          "heading": "Scope",
+          "text": "The folder covers all safety-related activities at the centre — including facility operations, sport programmes, events, environmental conditions, and emergency response. It applies to all staff, coaches, volunteers, contractors, and service providers working at or on behalf of the centre."
+        },
+        {
+          "heading": "How to Use This Folder",
+          "text": "Each section addresses a specific area of safety management. Annexes provide the supporting checklists, registers, and plans referenced in the main sections. Staff should refer to the relevant section before undertaking any safety-related activity, and should complete and file the appropriate annex as a record."
+        },
+        {
+          "heading": "Review and Maintenance",
+          "text": "This folder is reviewed at least annually by the Centre Safety Officer, or sooner following a significant incident, regulatory change, or material change to the centre's operations. The review date and the name of the person responsible for the review are recorded on the cover sheet."
+        }
+      ]
     },
     {
       "number": "2",
       "title": "Safety Roles, Responsibilities and Authority",
-      "body": "Defines who is responsible for safety at the centre, their level of authority, and the escalation path when incidents or concerns arise.",
-      "notionUrl": "https://app.notion.com/3ae5689ec48b8064bea2c73e72d6fd33"
+      "content": [
+        {
+          "heading": "Centre Safety Officer",
+          "text": "The Centre Safety Officer (CSO) is the primary point of accountability for safety at the centre. The CSO is responsible for maintaining this folder, coordinating safety inspections, investigating incidents, liaising with the organisation's central Safety function, and ensuring that safety obligations are communicated to all staff."
+        },
+        {
+          "heading": "Coaches and Instructors",
+          "text": "All coaches and instructors are responsible for conducting pre-activity risk assessments, briefing participants on safety requirements, supervising activities within approved participant-to-coach ratios, and reporting any hazards or incidents to the CSO without delay."
+        },
+        {
+          "heading": "Front-Line Staff",
+          "text": "Front-line staff — including facility attendants, reception, and operations personnel — are responsible for completing daily facility inspections, maintaining safe public areas, controlling access, and immediately escalating any safety concern they observe to the duty supervisor or CSO."
+        },
+        {
+          "heading": "Management",
+          "text": "Centre management is responsible for ensuring that adequate resources are in place to support safe operations, that safety obligations are included in staff contracts and inductions, and that safety performance is reviewed as a standing agenda item at team meetings."
+        },
+        {
+          "heading": "Escalation Authority",
+          "text": "Any staff member may suspend an activity or close a facility area if they have reasonable grounds to believe it poses an immediate risk of harm. This authority is unconditional and should never be overridden by operational or commercial considerations. The decision should be reported to the CSO immediately."
+        }
+      ]
     },
     {
       "number": "3",
       "title": "Risk Management",
-      "body": "The centre's approach to identifying, assessing, treating, and monitoring risks across all facilities, programmes, and operations.",
-      "notionUrl": "https://app.notion.com/3ae5689ec48b801fb9e6c0cfc3c2c26a"
+      "content": [
+        {
+          "heading": "Approach",
+          "text": "The centre uses a systematic approach to risk management aligned with ISO 31000. Risks are identified, assessed for likelihood and consequence, treated using the hierarchy of controls, and monitored on an ongoing basis. The outcome of this process is maintained in Annex C — the Centre Risk Register."
+        },
+        {
+          "heading": "Risk Identification",
+          "text": "Hazards are identified through facility inspections, activity risk assessments, staff observations, participant feedback, and post-incident reviews. Any member of staff may raise a potential hazard — this should be reported to the CSO, who will determine whether it requires a formal risk assessment."
+        },
+        {
+          "heading": "Risk Assessment",
+          "text": "Risks are assessed on a 5×5 likelihood-consequence matrix. A risk rating of High or above requires immediate action and must be escalated to centre management. Medium risks require a documented control plan with a nominated owner and target date. Low risks are monitored and reviewed at the next scheduled inspection."
+        },
+        {
+          "heading": "Hierarchy of Controls",
+          "text": "Controls are applied in order of effectiveness: (1) Eliminate the hazard; (2) Substitute with a lower-risk alternative; (3) Engineering controls — barriers, guards, equipment design; (4) Administrative controls — procedures, training, signage; (5) Personal Protective Equipment as a last resort. Multiple controls may be applied in combination."
+        },
+        {
+          "heading": "Review",
+          "text": "The risk register is reviewed quarterly and after any incident, near-miss, or material change to the facility or programme. New activities must have a risk assessment completed and approved by the CSO before they commence."
+        }
+      ]
     },
     {
       "number": "4",
       "title": "Operational Safety Checks",
-      "body": "Daily and periodic safety checks required before, during, and after operations — including facility inspections, equipment checks, and opening procedures.",
-      "notionUrl": "https://app.notion.com/3ae5689ec48b808993ccedf52369555b"
+      "content": [
+        {
+          "heading": "Pre-Opening Checks",
+          "text": "Before the centre opens each day, the duty supervisor or nominated staff member must complete a walk-through inspection of all public areas, facilities, and equipment using the checklist in Annex D. Any defect or unsafe condition must be corrected or the affected area cordoned off before the public is admitted."
+        },
+        {
+          "heading": "During-Operations Checks",
+          "text": "Periodic checks are conducted throughout the operating day — at minimum at mid-morning, mid-afternoon, and one hour before closing. These checks focus on high-traffic areas, wet surfaces, equipment condition, and any conditions that may have changed since opening. Observations are recorded in the daily log."
+        },
+        {
+          "heading": "Post-Activity Checks",
+          "text": "After each programme or event, the responsible coach or instructor must check that the facility area has been left safe — equipment stored correctly, hazards identified and reported, and any incidents documented before leaving the area."
+        },
+        {
+          "heading": "Equipment Checks",
+          "text": "All safety-critical equipment — first aid kits, defibrillators, fire extinguishers, emergency lighting — is checked weekly and after any use. Expiry dates and service records are maintained in Annex D. Defective equipment must be removed from service immediately and replaced before the next operational period."
+        },
+        {
+          "heading": "Record-Keeping",
+          "text": "All completed checklists are filed in Annex D and retained for a minimum of three years. The duty supervisor signs off each completed checklist. Records are available for inspection by the CSO, management, or regulatory authorities on request."
+        }
+      ]
     },
     {
       "number": "5",
       "title": "Sport Activity and Facility Safety",
-      "body": "Safety requirements specific to each sport and facility area — covering participant ratios, equipment standards, and activity-specific risk controls.",
-      "notionUrl": "https://app.notion.com/3ae5689ec48b80baa5a7ed5c337565ee"
+      "content": [
+        {
+          "heading": "Facility-Specific Requirements",
+          "text": "Each facility area — courts, fields, pools, gyms, multi-purpose halls — has its own set of safety requirements covering capacity limits, surface conditions, lighting, ventilation, and equipment standards. These requirements are documented in the facility-specific section of Annex E and must be met before any activity commences."
+        },
+        {
+          "heading": "Activity-Specific Risk Assessments",
+          "text": "Every sport programme or activity delivered at the centre must have a current risk assessment on file. The risk assessment specifies the minimum coach qualification required, the approved participant-to-coach ratio, the emergency action plan for that activity, and any activity-specific equipment or condition requirements."
+        },
+        {
+          "heading": "Participant-to-Coach Ratios",
+          "text": "Approved ratios are set per activity type and are based on the physical demands of the activity, the age and ability of participants, and the facility environment. Ratios must not be exceeded under any circumstances. If a session is understaffed, participant numbers must be reduced or the session postponed."
+        },
+        {
+          "heading": "Equipment Standards",
+          "text": "All sport equipment used at the centre must meet applicable safety standards. Equipment is inspected before each use and formally serviced on the schedule in Annex D. Damaged or non-compliant equipment is removed from use and tagged out until repaired or replaced."
+        },
+        {
+          "heading": "Participant Safety Briefing",
+          "text": "Every activity session must begin with a safety briefing covering the rules of the activity, the location of first aid, what to do in an emergency, and any specific hazards in the facility. Briefings should be adapted for the age and ability of the group. Coaches should confirm participant understanding before commencing."
+        }
+      ]
     },
     {
       "number": "6",
       "title": "Environmental and Weather Safety",
-      "body": "Protocols for managing weather-related and environmental risks, including lightning suspension procedures, heat management, and flooding response.",
-      "notionUrl": "https://app.notion.com/3ae5689ec48b80fab061db1a0e8d50d1"
+      "content": [
+        {
+          "heading": "Weather Monitoring",
+          "text": "For all outdoor activities, the duty supervisor monitors weather conditions throughout the operating day using the national meteorological service and, where applicable, the lightning detection service. Monitoring frequency increases to every 30 minutes when conditions are deteriorating or when a weather warning is in effect."
+        },
+        {
+          "heading": "Lightning Protocol",
+          "text": "All outdoor activities must be suspended immediately when lightning is detected within 10 kilometres of the facility, or when thunder is heard. Participants must move to a designated safe shelter — not an open structure, tent, or vehicle with an open window. Activities may not resume until 30 minutes after the last lightning detection or thunder. The full lightning suspension procedure is in Annex G."
+        },
+        {
+          "heading": "Heat and Sun Safety",
+          "text": "For prolonged outdoor activity in high temperatures, scheduled water breaks of at least 5 minutes are required every 20–30 minutes. Participants showing signs of heat exhaustion — dizziness, heavy sweating, weakness, or nausea — must be moved to shade and monitored. The activity must be suspended if conditions exceed the centre's heat safety threshold defined in Annex G."
+        },
+        {
+          "heading": "Flooding and Wet Conditions",
+          "text": "Indoor and outdoor areas affected by standing water or flooding must be cordoned off and reported to the CSO immediately. Wet playing surfaces must be dried or treated before activity resumes. Outdoor facilities subject to localised flooding are closed until the CSO confirms they are safe for use."
+        },
+        {
+          "heading": "Suspension and Resumption",
+          "text": "Only the duty supervisor or CSO has authority to suspend and resume activities due to environmental conditions. The decision and the time of suspension and resumption are recorded in the daily log. Participants and coaches must be notified and directed to a safe waiting area during any suspension."
+        }
+      ]
     },
     {
       "number": "7",
       "title": "Emergency and Incident Management",
-      "body": "Emergency response plans and incident reporting procedures — covering evacuation, first aid activation, escalation, and post-incident review.",
-      "notionUrl": "https://app.notion.com/3ae5689ec48b804abb62dd447b4beff3"
+      "content": [
+        {
+          "heading": "Emergency Response Overview",
+          "text": "The centre maintains emergency action plans for fire, medical emergencies, security incidents, and environmental hazards. All staff must be familiar with the relevant plan for their area. Emergency response plans are detailed in Annex H and are reviewed annually and after any activation."
+        },
+        {
+          "heading": "Medical Emergency",
+          "text": "In the event of a medical emergency: (1) Ensure the scene is safe; (2) Call for the nearest trained first aider; (3) Call emergency services if required; (4) Send someone to meet emergency services at the facility entrance; (5) Clear the area of other participants; (6) Do not move the casualty unless there is immediate danger; (7) Notify the CSO. The location of first aid kits and the defibrillator is shown on the emergency notice boards."
+        },
+        {
+          "heading": "Fire and Evacuation",
+          "text": "On activation of the fire alarm, all staff are to direct participants to the nearest exit and proceed to the designated assembly point. Roll call is taken by the duty supervisor. No one is to re-enter the building until the all-clear is given by the fire officer. Fire evacuation drills are conducted at minimum twice yearly and recorded in Annex H."
+        },
+        {
+          "heading": "Incident Reporting",
+          "text": "All incidents — including near-misses, injuries, property damage, and unsafe conditions — must be reported to the CSO as soon as practicable and no later than the end of the working day. The CSO completes a formal incident report within 24 hours. Serious incidents are reported to the organisation's central Safety function immediately."
+        },
+        {
+          "heading": "Post-Incident Review",
+          "text": "Every reported incident triggers a post-incident review led by the CSO. The review identifies the immediate cause, contributing factors, and corrective actions required. Corrective actions are assigned to a named owner with a target completion date and tracked until closed. Lessons learned are shared with relevant staff."
+        }
+      ]
     },
     {
       "number": "8",
       "title": "Monitoring, Review and Improvement",
-      "body": "How safety performance is tracked, reviewed, and improved — including KPI monitoring, audit schedules, and the corrective action process.",
-      "notionUrl": "https://app.notion.com/3ae5689ec48b8068bf56e348630eaac7"
+      "content": [
+        {
+          "heading": "Safety KPIs",
+          "text": "The centre tracks the following safety indicators monthly: number of incidents reported, number of near-misses reported, number of overdue corrective actions, percentage of scheduled inspections completed on time, and number of outstanding equipment defects. Results are reviewed by the CSO and reported to centre management."
+        },
+        {
+          "heading": "Inspection and Audit Schedule",
+          "text": "In addition to daily operational checks, the centre undertakes a formal monthly safety inspection covering all facilities and equipment, a quarterly review of the risk register, and an annual safety audit conducted by the organisation's central Safety function. Inspection records are maintained in Annex I."
+        },
+        {
+          "heading": "Corrective Actions",
+          "text": "Every inspection, audit, incident, or near-miss that identifies a gap in safety management generates a corrective action. Corrective actions are documented with a description of the issue, the action required, the responsible owner, and a target completion date. Open actions are reviewed at monthly CSO meetings. Overdue actions are escalated to management."
+        },
+        {
+          "heading": "Annual Safety Review",
+          "text": "The CSO conducts a comprehensive annual review of the Safety Folder, covering the currency and adequacy of all sections and annexes, the completeness of training records, the status of all corrective actions, and any changes to legislation, standards, or the organisation's safety policies that require the folder to be updated."
+        },
+        {
+          "heading": "Continuous Improvement",
+          "text": "Safety at the centre improves through a cycle of plan, do, check, and act. Staff are encouraged to identify and report safety concerns, suggest improvements, and participate in safety briefings and drills. The CSO maintains a log of improvement ideas in Annex I and reports progress to the team at each monthly staff meeting."
+        }
+      ]
     }
   ],
   "annexes": [
     {
       "label": "A",
       "title": "Centre Profile and Operating Context",
-      "body": "Description of the centre — facilities, programmes offered, operating hours, and the key context that shapes its safety requirements.",
-      "notionUrl": "https://app.notion.com/3ae5689ec48b8095b8c7c6f10be40605"
+      "content": [
+        {
+          "heading": "Centre Overview",
+          "text": "This annex captures the key facts about the centre that define its safety context — the facilities it operates, the programmes it delivers, its catchment population, and the physical and organisational environment in which it operates."
+        },
+        {
+          "heading": "Facilities",
+          "text": "List each facility area with its capacity, primary use, and any facility-specific safety requirements — e.g. indoor courts (capacity 200, multi-sport), 50m swimming pool (lane swimming and learn-to-swim), outdoor synthetic pitch (football and hockey, capacity 100), gymnasium (fitness and classes, capacity 60)."
+        },
+        {
+          "heading": "Operating Hours and Staffing",
+          "text": "Record the centre's standard operating hours, peak periods, minimum staffing levels required for safe operation, and the duty supervisor roster. Note any periods when specialist safety staff (e.g. lifeguards, first aiders) must be on duty."
+        },
+        {
+          "heading": "Neighbouring Context",
+          "text": "Note any environmental factors relevant to safety planning — proximity to a busy road, flood-prone areas, overhead power lines, or neighbouring land uses that could affect the centre's operations or emergency response."
+        }
+      ]
     },
     {
       "label": "B",
       "title": "Safety Appointments and Contact List",
-      "body": "Named safety appointments at the centre — Safety Officer, First Aiders, Emergency Wardens — and their contact details.",
-      "notionUrl": "https://app.notion.com/3ae5689ec48b80789e23e881e1761957"
+      "content": [
+        {
+          "heading": "Safety Appointments",
+          "text": "This annex records the named individuals holding safety-critical roles at the centre. It must be kept current at all times and reviewed whenever a role changes. A printed copy must be posted in the staff room and included in the induction pack for all new staff."
+        },
+        {
+          "heading": "Key Roles",
+          "text": "Record name, contact number, and qualification expiry date for: Centre Safety Officer, Deputy Safety Officer, First Aiders (minimum two per shift), Fire Wardens, Qualified Lifeguards (if applicable), and Designated Safe Sport Officer."
+        },
+        {
+          "heading": "Emergency Contacts",
+          "text": "Record the direct contact numbers for: Police, Fire Brigade, Ambulance, Nearest Hospital Emergency Department, the organisation's central Safety function, and the centre's facilities management contractor. These numbers must also be posted at all facility reception points and emergency notice boards."
+        }
+      ]
     },
     {
       "label": "C",
       "title": "Centre Risk Profile and Risk Register",
-      "body": "The live risk register for the centre — identified hazards, risk ratings, controls in place, and responsible owners.",
-      "notionUrl": "https://app.notion.com/3ae5689ec48b80e6ae44e3c17cc4ff99"
+      "content": [
+        {
+          "heading": "Risk Register",
+          "text": "This annex is the centre's live risk register. Each identified hazard is recorded with its risk rating (likelihood × consequence on a 5×5 matrix), the controls currently in place, the residual risk rating after controls, and the name of the staff member responsible for managing the risk."
+        },
+        {
+          "heading": "Reviewing the Register",
+          "text": "The risk register is reviewed quarterly by the CSO. All risks rated High or above are reviewed monthly. A new row is added whenever a new hazard is identified. Risks that have been fully controlled and verified may be marked as closed, but must not be deleted — the full history of the register is retained."
+        },
+        {
+          "heading": "Common Risk Categories",
+          "text": "Typical risks captured in this register include: slips, trips and falls on wet or uneven surfaces; equipment failure or misuse; participant-to-participant contact injuries; heat and weather-related illness; electrical hazards; crowd management at events; and contractor activity on site."
+        }
+      ]
     },
     {
       "label": "D",
       "title": "Operational Safety Checklists and Inspection Schedule",
-      "body": "Completed operational safety checklists and the schedule for recurring facility inspections — maintained as an auditable record.",
-      "notionUrl": "https://app.notion.com/3ae5689ec48b800ea9d5c7e05aa8fd84"
+      "content": [
+        {
+          "heading": "Daily Checklist",
+          "text": "The daily operational safety checklist covers: exterior approaches and car parks; entrance and reception areas; change rooms and wet areas; all sport facility surfaces; court and pitch markings and boundary structures; equipment stores; first aid stations; emergency exits and evacuation routes; and fire safety equipment."
+        },
+        {
+          "heading": "Weekly Checks",
+          "text": "Weekly checks include: first aid kit stock and expiry dates; defibrillator readiness and battery status; fire extinguisher condition and pressure; emergency lighting test; evacuation route signage; and any outstanding defects from the previous week's checklist."
+        },
+        {
+          "heading": "Inspection Schedule",
+          "text": "The inspection schedule records when formal facility inspections are due, who is responsible, and whether they have been completed. Monthly formal inspections are conducted by the CSO. Quarterly inspections include a review of all sport equipment. Annual inspections are conducted with the organisation's central Safety function."
+        },
+        {
+          "heading": "Defect Reporting",
+          "text": "Any defect identified during a checklist or inspection is recorded with the date, location, nature of the defect, and the action taken. Critical defects — those posing an immediate risk of injury — must be rectified before the area is reopened. Non-critical defects are assigned a target completion date and tracked until closed."
+        }
+      ]
     },
     {
       "label": "E",
       "title": "Sport Facility Safety Checklist",
-      "body": "Pre-use safety checklist for each sport facility — courts, fields, pools, gyms — to be completed before activities commence.",
-      "notionUrl": "https://app.notion.com/3ae5689ec48b80b3994ed26df61576ae"
+      "content": [
+        {
+          "heading": "Purpose",
+          "text": "This checklist is completed before each facility area is opened for sport activity. It confirms that the facility meets the minimum safety conditions required for the specific activity being delivered. A separate checklist is completed for each facility area used in each session."
+        },
+        {
+          "heading": "Surface and Environment",
+          "text": "Checks include: playing surface is clean, dry, and free from debris; boundary structures, nets, and goals are secure; lighting is adequate and functioning; ventilation is operating; temperature is within acceptable range; and there are no visible structural defects."
+        },
+        {
+          "heading": "Equipment",
+          "text": "Checks include: all sport equipment to be used in the session is present, undamaged, and correctly set up; safety equipment (padding, nets, guards) is in place where required; and any equipment that is out of service is clearly tagged and removed from the activity area."
+        },
+        {
+          "heading": "Access and Emergency Readiness",
+          "text": "Checks include: emergency exits are unobstructed and clearly signed; first aid kit is accessible and stocked; emergency contact numbers are posted; and the coach or instructor has confirmed the location of the nearest defibrillator."
+        }
+      ]
     },
     {
       "label": "F",
       "title": "Sport Activity / Programme / Event Safety Checklist",
-      "body": "Activity-level safety checklist covering participant briefings, equipment checks, and coach/instructor readiness for each programme or event.",
-      "notionUrl": "https://app.notion.com/3ae5689ec48b80048af9c15f60eb061e"
+      "content": [
+        {
+          "heading": "Purpose",
+          "text": "This checklist is completed by the coach or programme coordinator before each sport activity, programme session, or event. It confirms that all activity-level safety requirements have been met before participants are admitted to the session."
+        },
+        {
+          "heading": "Pre-Activity Checks",
+          "text": "Confirm: current risk assessment is on file and has been reviewed; coach-to-participant ratio is within the approved limit; all coaches hold current qualifications appropriate to the activity; participants have been screened for any medical conditions relevant to the activity; and the safety briefing has been prepared."
+        },
+        {
+          "heading": "Participant Briefing Confirmation",
+          "text": "Record that the safety briefing has been delivered to participants, covering: the rules of the activity; the location of first aid and the emergency exit; what to do if they feel unwell or observe a hazard; and any specific safety requirements for the session (e.g. mandatory footwear, warm-up requirements)."
+        },
+        {
+          "heading": "Post-Activity Sign-Off",
+          "text": "On completion of the session, the coach records: whether any incidents or near-misses occurred; the condition of the facility and equipment at close; and any defects or concerns to be reported to the CSO. The completed checklist is filed with Annex D records."
+        }
+      ]
     },
     {
       "label": "G",
       "title": "Environmental and Weather Safety Plan",
-      "body": "The centre's documented plan for monitoring and responding to environmental and weather hazards, including decision thresholds and suspension criteria.",
-      "notionUrl": "https://app.notion.com/3ae5689ec48b80c2b42cd10609672fc5"
+      "content": [
+        {
+          "heading": "Lightning Suspension Thresholds",
+          "text": "Outdoor activities are suspended when: lightning is detected within 10 km by the national detection service; thunder is audible at the facility; or the duty supervisor judges conditions to pose an immediate risk. Activities may not resume until 30 minutes after the last lightning detection or audible thunder."
+        },
+        {
+          "heading": "Heat Safety Thresholds",
+          "text": "Activity modifications are triggered at the following temperature and humidity thresholds: at moderate heat stress — mandatory water breaks every 20 minutes and reduced activity intensity; at high heat stress — activities moved indoors or suspended until conditions improve. Thresholds are defined in accordance with applicable sports medicine guidelines and are reviewed annually."
+        },
+        {
+          "heading": "Safe Shelter Locations",
+          "text": "Designated safe shelters for weather events are: the main centre building (primary shelter); the indoor sports hall (secondary shelter for field users); and the covered car park structure (emergency overflow). Open structures, metal benches, large trees, and vehicles with open windows are not safe shelters."
+        },
+        {
+          "heading": "Monitoring and Notification",
+          "text": "The duty supervisor checks the weather forecast at the start of each day and monitors conditions throughout the operating day. When a weather warning is issued, all coaches and programme coordinators are notified immediately. The decision to suspend and the time of suspension are logged in the daily record."
+        }
+      ]
     },
     {
       "label": "H",
       "title": "Emergency and Incident Management Plan",
-      "body": "The centre's emergency response plan — covering fire, medical, security, and environmental emergencies — with roles, actions, and contact trees.",
-      "notionUrl": "https://app.notion.com/3ae5689ec48b80afb093c7136838ac74"
+      "content": [
+        {
+          "heading": "Medical Emergency Response",
+          "text": "Step 1 — Ensure scene safety. Step 2 — Call the nearest first aider. Step 3 — Call emergency services if the casualty is unconscious, not breathing normally, has a suspected fracture, or the first aider directs it. Step 4 — Send a staff member to the facility entrance to direct emergency services. Step 5 — Clear other participants from the area. Step 6 — Do not move the casualty unless there is immediate danger. Step 7 — Notify the CSO."
+        },
+        {
+          "heading": "Fire and Evacuation",
+          "text": "On hearing the fire alarm: direct all participants to the nearest emergency exit using the evacuation routes posted in each area; proceed to the designated assembly point; the duty supervisor conducts a roll call and confirms all areas are clear; no one re-enters until the fire officer gives the all-clear. Assembly point location: [to be completed for this centre]."
+        },
+        {
+          "heading": "Security Incident",
+          "text": "For aggressive behaviour or a security threat: do not engage physically — call for backup and contact security or police if required; remove other participants from the immediate area; issue a lockdown alert if the threat is serious; the CSO is notified immediately and takes command of the response. Post-incident, a full incident report is filed within 24 hours."
+        },
+        {
+          "heading": "Contact Tree",
+          "text": "In any emergency, the notification sequence is: (1) Emergency services if required; (2) CSO; (3) Centre Manager; (4) Organisation's central Safety function; (5) Next of kin of any affected person, only after confirmation from emergency services that it is appropriate to do so. Media enquiries are referred to the organisation's communications function — no staff member speaks to media."
+        }
+      ]
     },
     {
       "label": "I",
       "title": "Safety Monitoring and Review Register",
-      "body": "Record of safety audits, inspection outcomes, incidents, corrective actions taken, and lessons learned — the centre's continuous improvement log.",
-      "notionUrl": "https://app.notion.com/3ae5689ec48b80ffad0ad997240b5d0a"
+      "content": [
+        {
+          "heading": "Purpose",
+          "text": "This register is the centre's continuous improvement log. It captures the outcomes of all safety audits, inspections, incident investigations, and improvement initiatives — and tracks corrective actions through to completion."
+        },
+        {
+          "heading": "Audit and Inspection Records",
+          "text": "Each formal inspection or audit is recorded with: the date, the inspector or auditor, the scope of the inspection, findings (including any defects or non-conformances), and the corrective actions raised. Records are retained for a minimum of five years."
+        },
+        {
+          "heading": "Incident Log",
+          "text": "All reported incidents and near-misses are logged chronologically with: date and time, location, description of what happened, persons involved (staff reference numbers only — no personal data in this register), immediate actions taken, and the reference number of the full incident report."
+        },
+        {
+          "heading": "Corrective Action Tracker",
+          "text": "Open corrective actions are tracked with: action description, source (inspection/audit/incident), responsible owner, target completion date, and current status. The CSO reviews open actions monthly and escalates overdue actions to centre management. Completed actions are signed off by the CSO."
+        },
+        {
+          "heading": "Improvement Ideas",
+          "text": "Staff are encouraged to suggest safety improvements. Ideas are recorded in this section with the date, the staff member's reference, the suggestion, and the outcome — whether adopted, deferred, or not taken forward, with reasons. This log is reviewed by the CSO quarterly and shared with the team."
+        }
+      ]
     }
   ]
 }

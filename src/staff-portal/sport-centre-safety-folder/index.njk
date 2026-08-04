@@ -29,8 +29,10 @@ description: "Index of sections and annexes for the Sport Centre Safety Folder."
             <span class="folder-item__chevron" aria-hidden="true">›</span>
           </summary>
           <div class="folder-item__body">
-            <p>{{ section.body }}</p>
-            <a class="link" href="{{ section.notionUrl }}" target="_blank" rel="noopener">Open in Notion →</a>
+            {% for block in section.content %}
+              <h4 class="folder-item__heading">{{ block.heading }}</h4>
+              <p>{{ block.text }}</p>
+            {% endfor %}
           </div>
         </details>
       {% endfor %}
@@ -51,8 +53,10 @@ description: "Index of sections and annexes for the Sport Centre Safety Folder."
             <span class="folder-item__chevron" aria-hidden="true">›</span>
           </summary>
           <div class="folder-item__body">
-            <p>{{ annex.body }}</p>
-            <a class="link" href="{{ annex.notionUrl }}" target="_blank" rel="noopener">Open in Notion →</a>
+            {% for block in annex.content %}
+              <h4 class="folder-item__heading">{{ block.heading }}</h4>
+              <p>{{ block.text }}</p>
+            {% endfor %}
           </div>
         </details>
       {% endfor %}
