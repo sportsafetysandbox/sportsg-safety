@@ -32,6 +32,7 @@ const DATABASES = {
   home: process.env.NOTION_DB_HOME,
   community: process.env.NOTION_DB_COMMUNITY,
   staffPortal: process.env.NOTION_DB_STAFF_PORTAL,
+  sportCentreSafetyFolder: "3ae5689e-c48b-8000-88fa-000bc43e3c1d",
   resources: process.env.NOTION_DB_RESOURCES,
   training: process.env.NOTION_DB_TRAINING,
   news: process.env.NOTION_DB_NEWS,
@@ -233,6 +234,51 @@ async function syncFaq() {
   writeJson("faq", rows);
 }
 
+async function syncSportCentreSafetyFolder() {
+  const dbId = DATABASES.sportCentreSafetyFolder;
+  const pages = await queryDatabase(dbId);
+
+  const SECTION_RE = /^(\d+)\.\s+(.+)/;
+  const ANNEX_RE = /^Annex\s+([A-Z])\s+[—–-]\s+(.+)/;
+
+  const sectionMap = {};
+  const annexMap = {};
+
+  for (const page of pages) {
+    const name = map.getTitle(page.properties.Name).trim();
+    const notionUrl = page.url || "";
+
+    const sectionMatch = name.match(SECTION_RE);
+    if (sectionMatch) {
+      sectionMap[sectionMatch[1]] = { number: sectionMatch[1], title: sectionMatch[2], notionUrl };
+      continue;
+    }
+    const annexMatch = name.match(ANNEX_RE);
+    if (annexMatch) {
+      annexMap[annexMatch[1]] = { label: annexMatch[1], title: annexMatch[2], notionUrl };
+    }
+  }
+
+  const sections = Object.keys(sectionMap).sort((a, b) => Number(a) - Number(b)).map((k) => sectionMap[k]);
+  const annexes = Object.keys(annexMap).sort().map((k) => annexMap[k]);
+
+  // Preserve existing descriptions if the Notion DB hasn't added a Body column yet
+  const existing = readExisting("sportCentreSafetyFolder");
+  if (existing) {
+    const mergeDescs = (live, saved, key) =>
+      live.map((item) => {
+        const match = (saved[key] || []).find((s) => s[key === "sections" ? "number" : "label"] === item[key === "sections" ? "number" : "label"]);
+        return match ? { ...item, body: match.body ?? item.body } : item;
+      });
+    writeJson("sportCentreSafetyFolder", {
+      sections: mergeDescs(sections, existing, "sections"),
+      annexes: mergeDescs(annexes, existing, "annexes"),
+    });
+  } else {
+    writeJson("sportCentreSafetyFolder", { sections, annexes });
+  }
+}
+
 // --- Run ---------------------------------------------------------------
 
 const syncs = [
@@ -240,6 +286,7 @@ const syncs = [
   ["home", syncHome],
   ["community", syncCommunity],
   ["staffPortal", syncStaffPortal],
+  ["sportCentreSafetyFolder", syncSportCentreSafetyFolder],
   ["resources", syncResources],
   ["training", syncTraining],
   ["news", syncNews],

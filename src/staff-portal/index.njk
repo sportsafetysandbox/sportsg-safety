@@ -23,6 +23,13 @@ description: "Internal operations hub for sport organisation management and staf
         <div class="card">
           <h3>{{ mod.title }}</h3>
           <p>{{ mod.body }}</p>
+          {% if mod.links %}
+            <div class="card-links">
+              {% for lnk in mod.links %}
+                <a class="link" href="{{ lnk.url }}">{{ lnk.label }} →</a>
+              {% endfor %}
+            </div>
+          {% endif %}
         </div>
       {% endfor %}
     </div>

@@ -1,0 +1,62 @@
+---
+layout: base.njk
+title: Sport Centre Safety Folder
+description: "Index of sections and annexes for the Sport Centre Safety Folder."
+---
+<div class="wrap" style="padding-top:1.5rem;">
+  <p class="breadcrumb"><a href="/">Home</a> / <a href="/staff-portal/">Staff Portal</a> / Sport Centre Safety Folder</p>
+</div>
+
+<section>
+  <div class="wrap">
+    <span class="eyebrow">Documentation & Policy</span>
+    <h1>Sport Centre Safety Folder</h1>
+    <p class="lede">The complete safety management documentation for the sport centre — covering roles, risks, operations, emergency response, and continuous improvement.</p>
+    <p style="color:var(--muted); font-size:0.85rem;">This folder should be kept current, reviewed at least annually, and made available to all safety-relevant staff at the centre.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Main Sections</h2>
+    <p style="margin-bottom:1.5rem;">Eight sections covering the full scope of safety management at the centre.</p>
+    <div class="grid-cards cols-2">
+      {% for section in sportCentreSafetyFolder.sections %}
+        <a class="card safety-folder-card" href="{{ section.notionUrl }}" target="_blank" rel="noopener">
+          <div class="folder-section-num">{{ section.number }}</div>
+          <div class="folder-card-body">
+            <h3>{{ section.title }}</h3>
+            <p>{{ section.body }}</p>
+          </div>
+          <span class="link">Open in Notion →</span>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Annexes</h2>
+    <p style="margin-bottom:1.5rem;">Supporting documents — checklists, registers, and plans — referenced by the main sections.</p>
+    <div class="grid-cards cols-3">
+      {% for annex in sportCentreSafetyFolder.annexes %}
+        <a class="card safety-folder-card" href="{{ annex.notionUrl }}" target="_blank" rel="noopener">
+          <div class="folder-annex-label">Annex {{ annex.label }}</div>
+          <div class="folder-card-body">
+            <h3>{{ annex.title }}</h3>
+            <p>{{ annex.body }}</p>
+          </div>
+          <span class="link">Open in Notion →</span>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="list-row"><span>Back to Staff Portal</span><a class="link" href="/staff-portal/">Staff Portal →</a></div>
+    <div class="list-row"><span>Report a safety concern</span><a class="link" href="/report/">Report an Incident/Hazard →</a></div>
+  </div>
+</section>

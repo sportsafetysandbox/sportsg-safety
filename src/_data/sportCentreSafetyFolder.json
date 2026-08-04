@@ -1,0 +1,108 @@
+{
+  "sections": [
+    {
+      "number": "1",
+      "title": "Introduction",
+      "body": "Overview of the Safety Folder — its purpose, scope, how it should be used, and who is responsible for keeping it current.",
+      "notionUrl": "https://app.notion.com/3ae5689ec48b80378197dfba3594d12a"
+    },
+    {
+      "number": "2",
+      "title": "Safety Roles, Responsibilities and Authority",
+      "body": "Defines who is responsible for safety at the centre, their level of authority, and the escalation path when incidents or concerns arise.",
+      "notionUrl": "https://app.notion.com/3ae5689ec48b8064bea2c73e72d6fd33"
+    },
+    {
+      "number": "3",
+      "title": "Risk Management",
+      "body": "The centre's approach to identifying, assessing, treating, and monitoring risks across all facilities, programmes, and operations.",
+      "notionUrl": "https://app.notion.com/3ae5689ec48b801fb9e6c0cfc3c2c26a"
+    },
+    {
+      "number": "4",
+      "title": "Operational Safety Checks",
+      "body": "Daily and periodic safety checks required before, during, and after operations — including facility inspections, equipment checks, and opening procedures.",
+      "notionUrl": "https://app.notion.com/3ae5689ec48b808993ccedf52369555b"
+    },
+    {
+      "number": "5",
+      "title": "Sport Activity and Facility Safety",
+      "body": "Safety requirements specific to each sport and facility area — covering participant ratios, equipment standards, and activity-specific risk controls.",
+      "notionUrl": "https://app.notion.com/3ae5689ec48b80baa5a7ed5c337565ee"
+    },
+    {
+      "number": "6",
+      "title": "Environmental and Weather Safety",
+      "body": "Protocols for managing weather-related and environmental risks, including lightning suspension procedures, heat management, and flooding response.",
+      "notionUrl": "https://app.notion.com/3ae5689ec48b80fab061db1a0e8d50d1"
+    },
+    {
+      "number": "7",
+      "title": "Emergency and Incident Management",
+      "body": "Emergency response plans and incident reporting procedures — covering evacuation, first aid activation, escalation, and post-incident review.",
+      "notionUrl": "https://app.notion.com/3ae5689ec48b804abb62dd447b4beff3"
+    },
+    {
+      "number": "8",
+      "title": "Monitoring, Review and Improvement",
+      "body": "How safety performance is tracked, reviewed, and improved — including KPI monitoring, audit schedules, and the corrective action process.",
+      "notionUrl": "https://app.notion.com/3ae5689ec48b8068bf56e348630eaac7"
+    }
+  ],
+  "annexes": [
+    {
+      "label": "A",
+      "title": "Centre Profile and Operating Context",
+      "body": "Description of the centre — facilities, programmes offered, operating hours, and the key context that shapes its safety requirements.",
+      "notionUrl": "https://app.notion.com/3ae5689ec48b8095b8c7c6f10be40605"
+    },
+    {
+      "label": "B",
+      "title": "Safety Appointments and Contact List",
+      "body": "Named safety appointments at the centre — Safety Officer, First Aiders, Emergency Wardens — and their contact details.",
+      "notionUrl": "https://app.notion.com/3ae5689ec48b80789e23e881e1761957"
+    },
+    {
+      "label": "C",
+      "title": "Centre Risk Profile and Risk Register",
+      "body": "The live risk register for the centre — identified hazards, risk ratings, controls in place, and responsible owners.",
+      "notionUrl": "https://app.notion.com/3ae5689ec48b80e6ae44e3c17cc4ff99"
+    },
+    {
+      "label": "D",
+      "title": "Operational Safety Checklists and Inspection Schedule",
+      "body": "Completed operational safety checklists and the schedule for recurring facility inspections — maintained as an auditable record.",
+      "notionUrl": "https://app.notion.com/3ae5689ec48b800ea9d5c7e05aa8fd84"
+    },
+    {
+      "label": "E",
+      "title": "Sport Facility Safety Checklist",
+      "body": "Pre-use safety checklist for each sport facility — courts, fields, pools, gyms — to be completed before activities commence.",
+      "notionUrl": "https://app.notion.com/3ae5689ec48b80b3994ed26df61576ae"
+    },
+    {
+      "label": "F",
+      "title": "Sport Activity / Programme / Event Safety Checklist",
+      "body": "Activity-level safety checklist covering participant briefings, equipment checks, and coach/instructor readiness for each programme or event.",
+      "notionUrl": "https://app.notion.com/3ae5689ec48b80048af9c15f60eb061e"
+    },
+    {
+      "label": "G",
+      "title": "Environmental and Weather Safety Plan",
+      "body": "The centre's documented plan for monitoring and responding to environmental and weather hazards, including decision thresholds and suspension criteria.",
+      "notionUrl": "https://app.notion.com/3ae5689ec48b80c2b42cd10609672fc5"
+    },
+    {
+      "label": "H",
+      "title": "Emergency and Incident Management Plan",
+      "body": "The centre's emergency response plan — covering fire, medical, security, and environmental emergencies — with roles, actions, and contact trees.",
+      "notionUrl": "https://app.notion.com/3ae5689ec48b80afb093c7136838ac74"
+    },
+    {
+      "label": "I",
+      "title": "Safety Monitoring and Review Register",
+      "body": "Record of safety audits, inspection outcomes, incidents, corrective actions taken, and lessons learned — the centre's continuous improvement log.",
+      "notionUrl": "https://app.notion.com/3ae5689ec48b80ffad0ad997240b5d0a"
+    }
+  ]
+}
