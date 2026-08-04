@@ -1,8 +1,12 @@
 [
-  { "title": "Facility Safety Inspection Code", "type": "Codes of Practice", "topic": ["Facility"], "audience": ["Event Operators", "Partners"], "link": "#" },
+  { "title": "SS 681 — Code of Practice for Sport Safety", "type": "Code of Practice", "topic": ["General"], "audience": ["Coaches", "Event Operators", "Partners"], "link": "/assets/docs/ss681-code-of-practice-sport-safety.pdf" },
+  { "title": "SS 700 — Code of Practice for Water Safety (Aquatic)", "type": "Code of Practice", "topic": ["Water"], "audience": ["Coaches", "Event Operators"], "link": "/assets/docs/ss700-code-of-practice-water-safety-aquatic.pdf" },
+  { "title": "SS 701 — Code of Practice for Inland and Open Water", "type": "Code of Practice", "topic": ["Water"], "audience": ["Coaches", "Event Operators"], "link": "/assets/docs/ss701-code-of-practice-inland-open-water.pdf" },
+  { "title": "SS 710 — Code of Practice for Outdoor Adventure", "type": "Code of Practice", "topic": ["Outdoor"], "audience": ["Coaches", "Event Operators", "Partners"], "link": "/assets/docs/ss710-code-of-practice-outdoor-adventure.pdf" },
+  { "title": "Facility Safety Inspection Code", "type": "Code of Practice", "topic": ["Facility"], "audience": ["Event Operators", "Partners"], "link": "#" },
+  { "title": "AED & Medical Emergency Code of Practice", "type": "Code of Practice", "topic": ["Medical"], "audience": ["Coaches", "Partners", "Event Operators"], "link": "#" },
   { "title": "Sports Equipment Maintenance Standard", "type": "Standards", "topic": ["Equipment"], "audience": ["Coaches"], "link": "#" },
   { "title": "Pre-Event Safety Checklist", "type": "Checklists", "topic": ["Facility", "Weather"], "audience": ["Event Operators"], "link": "#" },
   { "title": "Heat Injury Prevention Toolkit", "type": "Toolkits & Templates", "topic": ["Medical", "Weather"], "audience": ["Coaches", "Event Operators"], "link": "#" },
-  { "title": "Water Safety Standard", "type": "Standards", "topic": ["Water"], "audience": ["Coaches"], "link": "#" },
-  { "title": "AED & Medical Emergency Code of Practice", "type": "Codes of Practice", "topic": ["Medical"], "audience": ["Coaches", "Partners", "Event Operators"], "link": "#" }
+  { "title": "Water Safety Standard", "type": "Standards", "topic": ["Water"], "audience": ["Coaches"], "link": "#" }
 ]
