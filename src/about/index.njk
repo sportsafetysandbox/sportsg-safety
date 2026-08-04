@@ -36,8 +36,8 @@ description: "Mission, governance, and policy framework for sport safety in Sing
       {% for row in about %}
         {% if row.type == "Policy" %}
           <button class="card policy-card"
+            data-policy-id="{{ row.id }}"
             data-policy-title="{{ row.section }}"
-            data-policy-body="{{ row.body }}"
             data-policy-link="{{ row.link }}">
             <h3>{{ row.section }}</h3>
             <p>{{ row.body }}</p>
@@ -49,6 +49,18 @@ description: "Mission, governance, and policy framework for sport safety in Sing
   </div>
 </section>
 
+<!-- Hidden policy content blocks, one per policy -->
+{% for row in about %}
+  {% if row.type == "Policy" %}
+    <div id="policy-content-{{ row.id }}" hidden>
+      {% for section in row.content %}
+        <h3>{{ section.heading }}</h3>
+        <p>{{ section.text }}</p>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endfor %}
+
 <!-- Policy modal -->
 <div class="policy-modal" id="policy-modal" role="dialog" aria-modal="true" aria-labelledby="policy-modal-title" hidden>
   <div class="policy-modal__backdrop"></div>
@@ -56,20 +68,11 @@ description: "Mission, governance, and policy framework for sport safety in Sing
     <div class="policy-modal__header">
       <h2 id="policy-modal-title" class="policy-modal__title"></h2>
       <div class="policy-modal__actions">
-        <a class="btn" id="policy-modal-download" href="#" download target="_blank">Download PDF</a>
+        <a class="btn" id="policy-modal-download" href="#" download target="_blank" hidden>Download PDF</a>
         <button class="policy-modal__close" id="policy-modal-close" aria-label="Close">✕</button>
       </div>
     </div>
-    <div class="policy-modal__body">
-      <p class="policy-modal__desc" id="policy-modal-desc"></p>
-      <div class="policy-modal__viewer">
-        <iframe id="policy-modal-iframe" title="Policy document" src="" allowfullscreen></iframe>
-        <div class="policy-modal__unavailable" id="policy-modal-unavailable" hidden>
-          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-          <p>This document is not yet available. Please check back later or contact us for more information.</p>
-        </div>
-      </div>
-    </div>
+    <div class="policy-modal__content" id="policy-modal-content"></div>
   </div>
 </div>
 

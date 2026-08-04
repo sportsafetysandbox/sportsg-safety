@@ -32,6 +32,7 @@
 
 /* Reset */
 *, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
 html { -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
@@ -256,16 +257,17 @@ details.card summary { list-style: none; }
   background: none; font-size: 1rem; color: var(--muted); cursor: pointer;
 }
 .policy-modal__close:hover { background: var(--surface-2); color: var(--ink); }
-.policy-modal__body { display: flex; flex-direction: column; flex: 1; overflow: hidden; }
-.policy-modal__desc { padding: 0.9rem 1.5rem; margin: 0; font-size: 0.88rem; color: var(--muted); border-bottom: 1px solid var(--line); flex-shrink: 0; }
-.policy-modal__viewer { flex: 1; position: relative; min-height: 0; }
-.policy-modal__viewer iframe { width: 100%; height: 100%; border: none; display: block; }
-.policy-modal__unavailable {
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  gap: 1rem; padding: 3rem 2rem; text-align: center; color: var(--muted); height: 100%;
+.policy-modal__content {
+  flex: 1; overflow-y: auto; padding: 2rem 2.5rem;
+  font-size: 0.92rem; line-height: 1.7;
 }
-.policy-modal__unavailable svg { opacity: 0.4; }
-.policy-modal__unavailable p { font-size: 0.9rem; max-width: 36ch; margin: 0; }
+.policy-modal__content h3 {
+  font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--red-700); margin: 1.6rem 0 0.4rem;
+}
+.policy-modal__content h3:first-child { margin-top: 0; }
+.policy-modal__content p { margin: 0 0 0.5rem; color: var(--ink); max-width: none; }
+@media (prefers-color-scheme: dark) { .policy-modal__content h3 { color: var(--red-400); } }
 @media (max-width: 600px) {
   .policy-modal__header { flex-direction: column; align-items: flex-start; }
   .policy-modal__panel { max-height: 95vh; }

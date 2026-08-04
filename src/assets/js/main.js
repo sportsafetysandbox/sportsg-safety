@@ -44,22 +44,18 @@ document.addEventListener("keydown", (event) => {
 const policyModal = document.getElementById("policy-modal");
 if (policyModal) {
   const modalTitle = document.getElementById("policy-modal-title");
-  const modalDesc = document.getElementById("policy-modal-desc");
   const modalDownload = document.getElementById("policy-modal-download");
-  const modalIframe = document.getElementById("policy-modal-iframe");
-  const modalUnavailable = document.getElementById("policy-modal-unavailable");
+  const modalContent = document.getElementById("policy-modal-content");
   const modalClose = document.getElementById("policy-modal-close");
 
-  function openPolicyModal(title, body, link) {
+  function openPolicyModal(id, title, link) {
     modalTitle.textContent = title;
-    modalDesc.textContent = body;
+    const contentSrc = document.getElementById("policy-content-" + id);
+    modalContent.innerHTML = contentSrc ? contentSrc.innerHTML : "";
+    modalContent.scrollTop = 0;
     const hasDoc = link && link !== "#";
-    modalIframe.src = hasDoc ? link : "";
-    modalIframe.hidden = !hasDoc;
-    modalUnavailable.hidden = hasDoc;
     modalDownload.href = hasDoc ? link : "#";
-    modalDownload.style.opacity = hasDoc ? "" : "0.4";
-    modalDownload.style.pointerEvents = hasDoc ? "" : "none";
+    modalDownload.hidden = !hasDoc;
     policyModal.hidden = false;
     document.body.style.overflow = "hidden";
     modalClose.focus();
@@ -67,15 +63,14 @@ if (policyModal) {
 
   function closePolicyModal() {
     policyModal.hidden = true;
-    modalIframe.src = "";
     document.body.style.overflow = "";
   }
 
   document.querySelectorAll(".policy-card").forEach((card) => {
     card.addEventListener("click", () => {
       openPolicyModal(
+        card.dataset.policyId,
         card.dataset.policyTitle,
-        card.dataset.policyBody,
         card.dataset.policyLink
       );
     });
