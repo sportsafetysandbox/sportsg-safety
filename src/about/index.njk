@@ -31,6 +31,26 @@ description: "Mission, governance, and policy framework for sport safety in Sing
   {% endif %}
 {% endfor %}
 
+{% for row in about %}
+  {% if row.type == "VisionMission" %}
+    <section>
+      <div class="wrap">
+        <h2>Safety Vision and Mission</h2>
+        <div class="grid-cards cols-2" style="margin-top:1.25rem;">
+          <div class="card">
+            <span class="tag">Vision</span>
+            <p style="margin-top:0.75rem;">{{ row.vision }}</p>
+          </div>
+          <div class="card">
+            <span class="tag">Mission</span>
+            <p style="margin-top:0.75rem;">{{ row.mission }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  {% endif %}
+{% endfor %}
+
 <section>
   <div class="wrap">
     <h2>Policies</h2>
@@ -61,6 +81,28 @@ description: "Mission, governance, and policy framework for sport safety in Sing
         <p>{{ section.text }}</p>
       {% endfor %}
     </div>
+  {% endif %}
+{% endfor %}
+
+{% for row in about %}
+  {% if row.type == "Commitments" %}
+    <section>
+      <div class="wrap">
+        <h2>Commitments, Objectives and Targets</h2>
+        <div class="grid-cards cols-3" style="margin-top:1.25rem;">
+          {% for col in row.items %}
+            <div class="card">
+              <h3>{{ col.heading }}</h3>
+              <ul style="margin:0.75rem 0 0; padding-left:1.1rem; display:flex; flex-direction:column; gap:0.5rem;">
+                {% for point in col.points %}
+                  <li style="font-size:0.9rem; line-height:1.5;">{{ point }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
   {% endif %}
 {% endfor %}
 

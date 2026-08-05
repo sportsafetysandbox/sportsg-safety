@@ -6,6 +6,11 @@
     "image": "/assets/images/safety-framework.png"
   },
   {
+    "type": "VisionMission",
+    "vision": "A sport ecosystem where every participant, athlete, coach, and official can pursue sport safely and with confidence — free from injury, abuse, and preventable harm.",
+    "mission": "To embed safety as a core value across all sport organisations, programmes, events, and facilities in Singapore through leadership, clear standards, practical guidance, and active partnership."
+  },
+  {
     "section": "Integrated Policy",
     "type": "Policy",
     "id": "integrated-policy",
@@ -122,6 +127,41 @@
       {
         "heading": "Review",
         "text": "This policy is reviewed annually or following any workplace incident, regulatory change, or audit finding that warrants revision."
+      }
+    ]
+  },
+  {
+    "type": "Commitments",
+    "items": [
+      {
+        "heading": "Commitments",
+        "points": [
+          "Provide a safe environment for all individuals involved in sport delivery.",
+          "Allocate adequate resources to safety planning, training, and incident management.",
+          "Ensure safety considerations are embedded in all decision-making processes.",
+          "Consult with workers and stakeholders on matters affecting their safety.",
+          "Maintain a culture where safety is a shared value, not merely a compliance requirement."
+        ]
+      },
+      {
+        "heading": "Objectives",
+        "points": [
+          "Achieve zero fatalities and reduce serious injuries across all sport programmes.",
+          "Ensure all sport organisations adopt and implement an Integrated Safety Management System.",
+          "Attain full compliance with applicable Singapore Standards and Codes of Practice.",
+          "Build safety leadership capability at Board and Chief Executive level.",
+          "Strengthen incident reporting culture and response timeliness."
+        ]
+      },
+      {
+        "heading": "Targets",
+        "points": [
+          "100% of affiliated sport organisations to complete safety framework assessment by end of year.",
+          "All high-risk sport programmes to have documented emergency response plans.",
+          "Reduce incident recurrence rate through structured after-action reviews.",
+          "Annual safety audit completed for all sport centres under management.",
+          "Safety training completion rate of 90% or above for all frontline staff and coaches."
+        ]
       }
     ]
   },
