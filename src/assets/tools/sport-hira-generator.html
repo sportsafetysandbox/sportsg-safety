@@ -757,6 +757,12 @@ details.card summary { list-style: none; }
 .ra-preview-doc .risk-med   { background:#F3E6D0; font-weight:700; }
 .ra-preview-doc .risk-low   { background:#E1EDE3; font-weight:700; }
 
+.hira-app .field-section-label {
+  font-size:0.7rem; font-weight:700; color:var(--ink); text-transform:uppercase;
+  letter-spacing:0.07em; margin:0 0 0.75rem; padding-bottom:0.4rem;
+  border-bottom:2px solid var(--line);
+}
+
 @media (max-width: 720px) {
   .hira-app .grid, .hira-app .grid.cols-3, .hira-app .detail-grid { grid-template-columns: 1fr; }
 }
@@ -820,13 +826,37 @@ details.card summary { list-style: none; }
   <div class="step">
     <div class="step-head"><div class="step-num">1</div><h2>Event Details</h2></div>
     <div class="step-body">
-      <div class="grid cols-3">
-        <div class="field"><label for="progName">Event / Programme Name</label><input type="text" id="progName" placeholder="e.g. Pesta Sukan Archery"/></div>
-        <div class="field"><label for="organiser">Organising Body</label><input type="text" id="organiser" placeholder="e.g. Sport Singapore"/></div>
-        <div class="field"><label for="venue">Venue</label><input type="text" id="venue" placeholder="e.g. Bukit Gombak Stadium"/></div>
-        <div class="field"><label for="eventDate">Event / Programme Date(s)</label><input type="text" id="eventDate" placeholder="e.g. 14 Sep &ndash; 20 Dec 2026"/></div>
-        <div class="field"><label for="assessor">Prepared By</label><input type="text" id="assessor" placeholder="Name &amp; role"/></div>
-        <div class="field"><label for="assessDate">Date of Assessment</label><input type="date" id="assessDate"/></div>
+      <div class="grid cols-2" style="gap:2rem;">
+        <div>
+          <p class="field-section-label">Activity Information</p>
+          <div class="field"><label for="progName">Event / Programme Name</label><input type="text" id="progName" placeholder="e.g. Pesta Sukan Archery"/></div>
+          <div class="field"><label for="venue">Venue</label><input type="text" id="venue" placeholder="e.g. Bukit Gombak Stadium"/></div>
+          <div class="field"><label for="participantGroupText">Participant Group</label><input type="text" id="participantGroupText" placeholder="e.g. Competitive youth swimmers, 15&ndash;18 yrs"/></div>
+          <div class="field"><label for="participants">Est. No. of Participants</label><input type="number" id="participants" min="1" placeholder="e.g. 24"/></div>
+          <div class="field"><label for="eventDate">Event / Programme Date(s)</label><input type="text" id="eventDate" placeholder="e.g. 14 Sep &ndash; 20 Dec 2026"/></div>
+          <div class="field"><label for="assessDate">Date of Assessment</label><input type="date" id="assessDate"/></div>
+        </div>
+        <div>
+          <p class="field-section-label">Risk Assessment Ownership</p>
+          <div class="field"><label for="assessor">Event / Programme Lead (OIC)</label><input type="text" id="assessor" placeholder="Name &amp; designation"/></div>
+          <div class="field"><label for="organiser">Organising Body</label><input type="text" id="organiser" placeholder="e.g. Sport Singapore"/></div>
+          <div class="field"><label for="raLeader">RA Leader</label><input type="text" id="raLeader" placeholder="Name &amp; designation"/></div>
+          <div class="field"><label for="raMember1">RA Member 1</label><input type="text" id="raMember1" placeholder="Name &amp; designation"/></div>
+          <div class="field"><label for="raMember2">RA Member 2</label><input type="text" id="raMember2" placeholder="Name &amp; designation"/></div>
+          <div class="field"><label for="raMember3">RA Member 3</label><input type="text" id="raMember3" placeholder="Name &amp; designation"/></div>
+          <div class="field"><label for="raMember4">RA Member 4</label><input type="text" id="raMember4" placeholder="Name &amp; designation"/></div>
+          <div class="field"><label for="raMember5">RA Member 5</label><input type="text" id="raMember5" placeholder="Name &amp; designation"/></div>
+        </div>
+      </div>
+      <div style="margin-top:1.75rem;">
+        <p class="field-section-label">Approval</p>
+        <div class="grid cols-3">
+          <div class="field"><label for="approvedBy">Approved by</label><input type="text" id="approvedBy" placeholder="Name &amp; designation"/></div>
+          <div class="field"><label for="approvedDate">Issue date (Approved)</label><input type="date" id="approvedDate"/></div>
+          <div class="field"><label for="vettedBy">Vetted by</label><input type="text" id="vettedBy" placeholder="Name &amp; designation"/></div>
+          <div class="field"><label for="vettedDate">Issue date (Vetted)</label><input type="date" id="vettedDate"/></div>
+          <div class="field"><label for="nextReview">Date of next review</label><input type="date" id="nextReview"/></div>
+        </div>
       </div>
     </div>
   </div>
@@ -840,10 +870,6 @@ details.card summary { list-style: none; }
           <label for="sportSelect">Sport / Activity</label>
           <select id="sportSelect"></select>
           <p class="hint" id="sportHint"></p>
-        </div>
-        <div class="field">
-          <label for="participants">Estimated Number of Participants</label>
-          <input type="number" id="participants" min="1" placeholder="e.g. 24"/>
         </div>
       </div>
 
@@ -1286,16 +1312,29 @@ details.card summary { list-style: none; }
 
   function getMeta(){
     var dash = '—';
+    function v(id){ var el=document.getElementById(id); return el?(el.value.trim()||dash):dash; }
     return {
-      prog:       document.getElementById('progName').value   || dash,
-      org:        document.getElementById('organiser').value  || dash,
-      venue:      document.getElementById('venue').value      || dash,
-      date:       document.getElementById('eventDate').value  || dash,
-      assessor:   document.getElementById('assessor').value   || dash,
-      assessDate: document.getElementById('assessDate').value || dash,
-      sport:      sportSelect.options[sportSelect.selectedIndex].text,
-      participants: document.getElementById('participants').value || dash,
-      context:    document.getElementById('context').value    || ''
+      prog:                 v('progName'),
+      org:                  v('organiser'),
+      venue:                v('venue'),
+      date:                 v('eventDate'),
+      oic:                  v('assessor'),
+      assessDate:           v('assessDate'),
+      sport:                sportSelect.options[sportSelect.selectedIndex].text,
+      participants:         v('participants'),
+      participantGroupText: v('participantGroupText'),
+      raLeader:             v('raLeader'),
+      raMember1:            v('raMember1'),
+      raMember2:            v('raMember2'),
+      raMember3:            v('raMember3'),
+      raMember4:            v('raMember4'),
+      raMember5:            v('raMember5'),
+      approvedBy:           v('approvedBy'),
+      approvedDate:         v('approvedDate'),
+      vettedBy:             v('vettedBy'),
+      vettedDate:           v('vettedDate'),
+      nextReview:           v('nextReview'),
+      context: (function(){ var el=document.getElementById('context'); return el?el.value:''; })()
     };
   }
 
@@ -1306,17 +1345,28 @@ details.card summary { list-style: none; }
     return 'risk-low';
   }
 
-  function buildHeaderRows(meta){
-    return [
-      ['Event / Programme Name', meta.prog,      'Organising Body',     meta.org],
-      ['Venue',                  meta.venue,      'Event Date(s)',        meta.date],
-      ['Sport / Activity',       meta.sport,      'Est. Participants',   meta.participants],
-      ['Prepared By',            meta.assessor,   'Date of Assessment',  meta.assessDate]
-    ].map(function(row){
-      return '<tr><td class="lbl">'+row[0]+'</td><td>'+escapeHtml(row[1])+'</td>'
-           + '<td class="lbl">'+row[2]+'</td><td>'+escapeHtml(row[3])+'</td></tr>';
-    }).join('');
+  function buildRaHeader(meta){
+    var e = escapeHtml;
+    var B  = 'border:1px solid #bbb;padding:4px 6px;vertical-align:top;font-size:8pt;word-break:break-word;';
+    var LB = B+'background:#EFF2EF;font-weight:700;font-size:7pt;';
+    var SC = B+'background:#16212C;color:#fff;font-weight:700;font-size:7.5pt;text-align:center;';
+    var ST = B+'text-align:center;color:#bbb;font-size:7pt;background:#fafafa;';
+    var IN = B+'text-align:center;color:#ccc;font-size:7pt;';
+    function td(c,s,x){ return '<td'+(x||'')+' style="'+s+'">'+c+'</td>'; }
+    function lbl(t){ return '<span style="display:block;font-size:6.5pt;font-weight:700;color:#666;margin-bottom:2px;text-transform:uppercase;letter-spacing:0.04em;">'+t+'</span>'; }
+    var r='';
+    r+='<tr>'+td('Activity Information',SC,' colspan="2"')+td('Initials &amp;<br>Company Stamp',SC)+td('Approval',SC,' colspan="3"')+'</tr>';
+    r+='<tr>'+td(lbl('Event / Programme Name')+e(meta.prog),B)+td(lbl('Event / Programme Lead (OIC)')+e(meta.oic),B)+td('',ST,' rowspan="9"')+td(lbl('Approved by')+e(meta.approvedBy),B)+td(lbl('Issue date')+e(meta.approvedDate),B)+td('Initials',IN)+'</tr>';
+    r+='<tr>'+td(lbl('Venue')+e(meta.venue),B)+td(lbl('Organising Body')+e(meta.org),B)+td(lbl('Vetted by')+e(meta.vettedBy),B)+td(lbl('Issue date')+e(meta.vettedDate),B)+td('Initials',IN)+'</tr>';
+    r+='<tr>'+td(lbl('Participant Group')+e(meta.participantGroupText),B)+td(lbl('RA Team Members')+'',LB)+td(lbl('Date of next review')+e(meta.nextReview),B,' colspan="3"')+'</tr>';
+    r+='<tr>'+td(lbl('Est. No. of Participants')+e(meta.participants),B)+td(lbl('RA Leader')+e(meta.raLeader),B)+td('',B,' colspan="3"')+'</tr>';
+    var mbrs=[meta.raMember1,meta.raMember2,meta.raMember3,meta.raMember4,meta.raMember5];
+    mbrs.forEach(function(m,i){ r+='<tr>'+td('',B)+td(lbl('RA Member '+(i+1))+e(m),B)+td('',B,' colspan="3"')+'</tr>'; });
+    return '<table style="width:100%;border-collapse:collapse;font-size:8pt;margin-bottom:14px;table-layout:fixed;">'
+      +'<colgroup><col style="width:14%"><col style="width:22%"><col style="width:10%"><col style="width:16%"><col style="width:24%"><col style="width:14%"></colgroup>'
+      +r+'</table>';
   }
+
 
   function buildColDefs(){
     return [
@@ -1354,8 +1404,8 @@ details.card summary { list-style: none; }
 
     return '<div class="ra-preview-doc">'
       +'<h2>Sport Hazard Identification &amp; Risk Assessment</h2>'
-      +'<p class="ra-sub">Generated from the Universal Sport HIRA Register</p>'
-      +'<table class="ra-meta-table">'+buildHeaderRows(meta)+'</table>'
+      +'<p class="ra-sub">Generated from the Universal Sport HIRA Register'+(meta.assessDate!=='—'?' &nbsp;&bull;&nbsp; Date of Assessment: '+escapeHtml(meta.assessDate):'')+'</p>'
+      +buildRaHeader(meta)
       +(meta.context ? '<p class="ra-context"><strong>Additional context:</strong> '+escapeHtml(meta.context)+'</p>' : '')
       +phases+'</div>';
   }
@@ -1380,18 +1430,6 @@ details.card summary { list-style: none; }
         +tdp(r.additional)+tdp(r.responsible)+tdp(r.targetDate)
         +tdp(r.lRes)+tdp(r.sRes)+tdp(r.riskRes,true)+'</tr>';
     }
-    var printHeaderRows = [
-      ['Event / Programme Name', meta.prog,      'Organising Body',    meta.org],
-      ['Venue',                  meta.venue,      'Event Date(s)',       meta.date],
-      ['Sport / Activity',       meta.sport,      'Est. Participants',  meta.participants],
-      ['Prepared By',            meta.assessor,   'Date of Assessment', meta.assessDate]
-    ].map(function(row){
-      return '<tr>'
-        +'<td style="background:#EFF2EF;font-weight:700;width:14%;padding:5px;">'+row[0]+'</td>'
-        +'<td style="width:36%;padding:5px;">'+escapeHtml(row[1])+'</td>'
-        +'<td style="background:#EFF2EF;font-weight:700;width:14%;padding:5px;">'+row[2]+'</td>'
-        +'<td style="padding:5px;">'+escapeHtml(row[3])+'</td></tr>';
-    }).join('');
     var phases = PHASE_ORDER.map(function(phase,i){
       var rows = included.filter(function(r){ return r.phase===phase; });
       if(!rows.length) return '';
@@ -1410,7 +1448,7 @@ details.card summary { list-style: none; }
       +'</style></head><body>'
       +'<h2 style="font-size:13pt;margin:0 0 2px;">Sport Hazard Identification &amp; Risk Assessment</h2>'
       +'<p style="font-size:8pt;color:#666;margin:0 0 10px;">Generated from the Universal Sport HIRA Register</p>'
-      +'<table style="width:100%;margin-bottom:12px;border-collapse:collapse;border:1px solid #ccc;">'+printHeaderRows+'</table>'
+      +buildRaHeader(meta)
       +(meta.context ? '<p style="font-size:8.5pt;margin:0 0 12px;"><strong>Additional context:</strong> '+escapeHtml(meta.context)+'</p>' : '')
       +phases+'</body></html>';
   }
@@ -1429,15 +1467,6 @@ details.card summary { list-style: none; }
       context: document.getElementById('context').value || ''
     };
 
-    const headerRows = [
-      ['Event / Programme Name', meta.prog, 'Organising Body', meta.org],
-      ['Venue', meta.venue, 'Event Date(s)', meta.date],
-      ['Sport / Activity', meta.sport, 'Est. Participants', meta.participants],
-      ['Prepared By', meta.assessor, 'Date of Assessment', meta.assessDate]
-    ].map(([l1,v1,l2,v2])=>
-      '<tr><td style="background:#EFF2EF;font-weight:bold;width:16%;padding:6px;">'+l1+'</td><td style="width:34%;padding:6px;">'+escapeHtml(v1)+'</td>'
-      +'<td style="background:#EFF2EF;font-weight:bold;width:16%;padding:6px;">'+l2+'</td><td style="width:34%;padding:6px;">'+escapeHtml(v2)+'</td></tr>'
-    ).join('');
 
     // Column widths (%) tuned to fit an A3 landscape page without ID/Phase columns
     const COLS = [
@@ -1503,7 +1532,7 @@ details.card summary { list-style: none; }
       + '</head><body><div class="Section1">'
       + '<h2 style="font-family:Arial;margin-bottom:2px;">Sport Hazard Identification &amp; Risk Assessment</h2>'
       + '<p style="font-size:9pt;color:#555;margin-top:0;">Generated from the Universal Sport HIRA Register</p>'
-      + '<table style="margin-bottom:14px;width:100%;">'+headerRows+'</table>'
+      + buildRaHeader(meta)
       + (meta.context ? '<p style="font-size:9pt;"><b>Additional context:</b> '+escapeHtml(meta.context)+'</p>' : '')
       + phaseSections
       + '</div>
@@ -2043,16 +2072,29 @@ document.querySelectorAll("[data-filter-group]").forEach((group) => {
 
   function getMeta(){
     var dash = '—';
+    function v(id){ var el=document.getElementById(id); return el?(el.value.trim()||dash):dash; }
     return {
-      prog:       document.getElementById('progName').value   || dash,
-      org:        document.getElementById('organiser').value  || dash,
-      venue:      document.getElementById('venue').value      || dash,
-      date:       document.getElementById('eventDate').value  || dash,
-      assessor:   document.getElementById('assessor').value   || dash,
-      assessDate: document.getElementById('assessDate').value || dash,
-      sport:      sportSelect.options[sportSelect.selectedIndex].text,
-      participants: document.getElementById('participants').value || dash,
-      context:    document.getElementById('context').value    || ''
+      prog:                 v('progName'),
+      org:                  v('organiser'),
+      venue:                v('venue'),
+      date:                 v('eventDate'),
+      oic:                  v('assessor'),
+      assessDate:           v('assessDate'),
+      sport:                sportSelect.options[sportSelect.selectedIndex].text,
+      participants:         v('participants'),
+      participantGroupText: v('participantGroupText'),
+      raLeader:             v('raLeader'),
+      raMember1:            v('raMember1'),
+      raMember2:            v('raMember2'),
+      raMember3:            v('raMember3'),
+      raMember4:            v('raMember4'),
+      raMember5:            v('raMember5'),
+      approvedBy:           v('approvedBy'),
+      approvedDate:         v('approvedDate'),
+      vettedBy:             v('vettedBy'),
+      vettedDate:           v('vettedDate'),
+      nextReview:           v('nextReview'),
+      context: (function(){ var el=document.getElementById('context'); return el?el.value:''; })()
     };
   }
 
@@ -2063,17 +2105,28 @@ document.querySelectorAll("[data-filter-group]").forEach((group) => {
     return 'risk-low';
   }
 
-  function buildHeaderRows(meta){
-    return [
-      ['Event / Programme Name', meta.prog,      'Organising Body',     meta.org],
-      ['Venue',                  meta.venue,      'Event Date(s)',        meta.date],
-      ['Sport / Activity',       meta.sport,      'Est. Participants',   meta.participants],
-      ['Prepared By',            meta.assessor,   'Date of Assessment',  meta.assessDate]
-    ].map(function(row){
-      return '<tr><td class="lbl">'+row[0]+'</td><td>'+escapeHtml(row[1])+'</td>'
-           + '<td class="lbl">'+row[2]+'</td><td>'+escapeHtml(row[3])+'</td></tr>';
-    }).join('');
+  function buildRaHeader(meta){
+    var e = escapeHtml;
+    var B  = 'border:1px solid #bbb;padding:4px 6px;vertical-align:top;font-size:8pt;word-break:break-word;';
+    var LB = B+'background:#EFF2EF;font-weight:700;font-size:7pt;';
+    var SC = B+'background:#16212C;color:#fff;font-weight:700;font-size:7.5pt;text-align:center;';
+    var ST = B+'text-align:center;color:#bbb;font-size:7pt;background:#fafafa;';
+    var IN = B+'text-align:center;color:#ccc;font-size:7pt;';
+    function td(c,s,x){ return '<td'+(x||'')+' style="'+s+'">'+c+'</td>'; }
+    function lbl(t){ return '<span style="display:block;font-size:6.5pt;font-weight:700;color:#666;margin-bottom:2px;text-transform:uppercase;letter-spacing:0.04em;">'+t+'</span>'; }
+    var r='';
+    r+='<tr>'+td('Activity Information',SC,' colspan="2"')+td('Initials &amp;<br>Company Stamp',SC)+td('Approval',SC,' colspan="3"')+'</tr>';
+    r+='<tr>'+td(lbl('Event / Programme Name')+e(meta.prog),B)+td(lbl('Event / Programme Lead (OIC)')+e(meta.oic),B)+td('',ST,' rowspan="9"')+td(lbl('Approved by')+e(meta.approvedBy),B)+td(lbl('Issue date')+e(meta.approvedDate),B)+td('Initials',IN)+'</tr>';
+    r+='<tr>'+td(lbl('Venue')+e(meta.venue),B)+td(lbl('Organising Body')+e(meta.org),B)+td(lbl('Vetted by')+e(meta.vettedBy),B)+td(lbl('Issue date')+e(meta.vettedDate),B)+td('Initials',IN)+'</tr>';
+    r+='<tr>'+td(lbl('Participant Group')+e(meta.participantGroupText),B)+td(lbl('RA Team Members')+'',LB)+td(lbl('Date of next review')+e(meta.nextReview),B,' colspan="3"')+'</tr>';
+    r+='<tr>'+td(lbl('Est. No. of Participants')+e(meta.participants),B)+td(lbl('RA Leader')+e(meta.raLeader),B)+td('',B,' colspan="3"')+'</tr>';
+    var mbrs=[meta.raMember1,meta.raMember2,meta.raMember3,meta.raMember4,meta.raMember5];
+    mbrs.forEach(function(m,i){ r+='<tr>'+td('',B)+td(lbl('RA Member '+(i+1))+e(m),B)+td('',B,' colspan="3"')+'</tr>'; });
+    return '<table style="width:100%;border-collapse:collapse;font-size:8pt;margin-bottom:14px;table-layout:fixed;">'
+      +'<colgroup><col style="width:14%"><col style="width:22%"><col style="width:10%"><col style="width:16%"><col style="width:24%"><col style="width:14%"></colgroup>'
+      +r+'</table>';
   }
+
 
   function buildColDefs(){
     return [
@@ -2111,8 +2164,8 @@ document.querySelectorAll("[data-filter-group]").forEach((group) => {
 
     return '<div class="ra-preview-doc">'
       +'<h2>Sport Hazard Identification &amp; Risk Assessment</h2>'
-      +'<p class="ra-sub">Generated from the Universal Sport HIRA Register</p>'
-      +'<table class="ra-meta-table">'+buildHeaderRows(meta)+'</table>'
+      +'<p class="ra-sub">Generated from the Universal Sport HIRA Register'+(meta.assessDate!=='—'?' &nbsp;&bull;&nbsp; Date of Assessment: '+escapeHtml(meta.assessDate):'')+'</p>'
+      +buildRaHeader(meta)
       +(meta.context ? '<p class="ra-context"><strong>Additional context:</strong> '+escapeHtml(meta.context)+'</p>' : '')
       +phases+'</div>';
   }
@@ -2137,18 +2190,6 @@ document.querySelectorAll("[data-filter-group]").forEach((group) => {
         +tdp(r.additional)+tdp(r.responsible)+tdp(r.targetDate)
         +tdp(r.lRes)+tdp(r.sRes)+tdp(r.riskRes,true)+'</tr>';
     }
-    var printHeaderRows = [
-      ['Event / Programme Name', meta.prog,      'Organising Body',    meta.org],
-      ['Venue',                  meta.venue,      'Event Date(s)',       meta.date],
-      ['Sport / Activity',       meta.sport,      'Est. Participants',  meta.participants],
-      ['Prepared By',            meta.assessor,   'Date of Assessment', meta.assessDate]
-    ].map(function(row){
-      return '<tr>'
-        +'<td style="background:#EFF2EF;font-weight:700;width:14%;padding:5px;">'+row[0]+'</td>'
-        +'<td style="width:36%;padding:5px;">'+escapeHtml(row[1])+'</td>'
-        +'<td style="background:#EFF2EF;font-weight:700;width:14%;padding:5px;">'+row[2]+'</td>'
-        +'<td style="padding:5px;">'+escapeHtml(row[3])+'</td></tr>';
-    }).join('');
     var phases = PHASE_ORDER.map(function(phase,i){
       var rows = included.filter(function(r){ return r.phase===phase; });
       if(!rows.length) return '';
@@ -2167,7 +2208,7 @@ document.querySelectorAll("[data-filter-group]").forEach((group) => {
       +'</style></head><body>'
       +'<h2 style="font-size:13pt;margin:0 0 2px;">Sport Hazard Identification &amp; Risk Assessment</h2>'
       +'<p style="font-size:8pt;color:#666;margin:0 0 10px;">Generated from the Universal Sport HIRA Register</p>'
-      +'<table style="width:100%;margin-bottom:12px;border-collapse:collapse;border:1px solid #ccc;">'+printHeaderRows+'</table>'
+      +buildRaHeader(meta)
       +(meta.context ? '<p style="font-size:8.5pt;margin:0 0 12px;"><strong>Additional context:</strong> '+escapeHtml(meta.context)+'</p>' : '')
       +phases+'</body></html>';
   }
@@ -2186,15 +2227,6 @@ document.querySelectorAll("[data-filter-group]").forEach((group) => {
       context: document.getElementById('context').value || ''
     };
 
-    const headerRows = [
-      ['Event / Programme Name', meta.prog, 'Organising Body', meta.org],
-      ['Venue', meta.venue, 'Event Date(s)', meta.date],
-      ['Sport / Activity', meta.sport, 'Est. Participants', meta.participants],
-      ['Prepared By', meta.assessor, 'Date of Assessment', meta.assessDate]
-    ].map(([l1,v1,l2,v2])=>
-      '<tr><td style="background:#EFF2EF;font-weight:bold;width:16%;padding:6px;">'+l1+'</td><td style="width:34%;padding:6px;">'+escapeHtml(v1)+'</td>'
-      +'<td style="background:#EFF2EF;font-weight:bold;width:16%;padding:6px;">'+l2+'</td><td style="width:34%;padding:6px;">'+escapeHtml(v2)+'</td></tr>'
-    ).join('');
 
     // Column widths (%) tuned to fit an A3 landscape page without ID/Phase columns
     const COLS = [
@@ -2260,7 +2292,7 @@ document.querySelectorAll("[data-filter-group]").forEach((group) => {
       + '</head><body><div class="Section1">'
       + '<h2 style="font-family:Arial;margin-bottom:2px;">Sport Hazard Identification &amp; Risk Assessment</h2>'
       + '<p style="font-size:9pt;color:#555;margin-top:0;">Generated from the Universal Sport HIRA Register</p>'
-      + '<table style="margin-bottom:14px;width:100%;">'+headerRows+'</table>'
+      + buildRaHeader(meta)
       + (meta.context ? '<p style="font-size:9pt;"><b>Additional context:</b> '+escapeHtml(meta.context)+'</p>' : '')
       + phaseSections
       + '</div></body></html>';
