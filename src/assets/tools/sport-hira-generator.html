@@ -1433,7 +1433,7 @@ details.card summary { list-style: none; }
       var rows = included.filter(function(r){ return r.phase===phase; });
       if(!rows.length) return '';
       var pn=PHASE_NUMS[phase]||0;
-      return '<h3 style="font-size:10pt;margin:'+(i?'20px':'0')+' 0 6px;padding:4px 8px;'
+      return '<h3 style="font-family:Calibri,Arial,sans-serif;font-size:10pt;margin:'+(i?'20px':'0')+' 0 6px;padding:4px 8px;'
         +'background:#f0f4f0;border-left:3px solid #355E3B;">'+phase+'</h3>'
         +'<table style="border-collapse:collapse;width:100%;table-layout:fixed;">'+colGroup
         +'<thead>'+thead+'</thead><tbody>'+rows.map(function(r,j){ return rowHtml(r,pn+'.'+(j+1)); }).join('')+'</tbody></table>';
@@ -1516,7 +1516,7 @@ details.card summary { list-style: none; }
       const pn=PHASE_NUMS[phase]||0;
       const bodyRows = rows.map((r,i)=>'<tr>'+rowToTds(r,pn+'.'+(i+1))+'</tr>').join('');
       return '<div style="margin-top:'+(idx===0?'0':'16pt')+';">'
-        + '<h3 style="font-family:Arial;margin:0 0 6px;">'+phase+'</h3>'
+        + '<h3 style="font-family:Calibri,Arial,sans-serif;margin:0 0 6px;">'+phase+'</h3>'
         + '<table style="border-collapse:collapse;width:100%;table-layout:fixed;">'+colGroup+tableHead+bodyRows+'</table>'
         + '</div>';
     }).join('');
@@ -2199,7 +2199,7 @@ document.querySelectorAll("[data-filter-group]").forEach((group) => {
       var rows = included.filter(function(r){ return r.phase===phase; });
       if(!rows.length) return '';
       var pn=PHASE_NUMS[phase]||0;
-      return '<h3 style="font-size:10pt;margin:'+(i?'20px':'0')+' 0 6px;padding:4px 8px;'
+      return '<h3 style="font-family:Calibri,Arial,sans-serif;font-size:10pt;margin:'+(i?'20px':'0')+' 0 6px;padding:4px 8px;'
         +'background:#f0f4f0;border-left:3px solid #355E3B;">'+phase+'</h3>'
         +'<table style="border-collapse:collapse;width:100%;table-layout:fixed;">'+colGroup
         +'<thead>'+thead+'</thead><tbody>'+rows.map(function(r,j){ return rowHtml(r,pn+'.'+(j+1)); }).join('')+'</tbody></table>';
@@ -2282,7 +2282,7 @@ document.querySelectorAll("[data-filter-group]").forEach((group) => {
       const pn=PHASE_NUMS[phase]||0;
       const bodyRows = rows.map((r,i)=>'<tr>'+rowToTds(r,pn+'.'+(i+1))+'</tr>').join('');
       return '<div style="margin-top:'+(idx===0?'0':'16pt')+';">'
-        + '<h3 style="font-family:Arial;margin:0 0 6px;">'+phase+'</h3>'
+        + '<h3 style="font-family:Calibri,Arial,sans-serif;margin:0 0 6px;">'+phase+'</h3>'
         + '<table style="border-collapse:collapse;width:100%;table-layout:fixed;">'+colGroup+tableHead+bodyRows+'</table>'
         + '</div>';
     }).join('');
