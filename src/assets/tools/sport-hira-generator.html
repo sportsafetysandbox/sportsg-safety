@@ -780,7 +780,7 @@ details.card summary { list-style: none; }
     <div class="step-head"><div class="step-num">1</div><h2>Event Details</h2></div>
     <div class="step-body">
       <div class="grid cols-3">
-        <div class="field"><label for="progName">Programme / Event Name</label><input type="text" id="progName" placeholder="e.g. Pesta Sukan Archery"/></div>
+        <div class="field"><label for="progName">Event / Programme Name</label><input type="text" id="progName" placeholder="e.g. Pesta Sukan Archery"/></div>
         <div class="field"><label for="organiser">Organising Body</label><input type="text" id="organiser" placeholder="e.g. Sport Singapore"/></div>
         <div class="field"><label for="venue">Venue</label><input type="text" id="venue" placeholder="e.g. Bukit Gombak Stadium"/></div>
         <div class="field"><label for="eventDate">Event / Programme Date(s)</label><input type="text" id="eventDate" placeholder="e.g. 14 Sep &ndash; 20 Dec 2026"/></div>
@@ -871,9 +871,9 @@ details.card summary { list-style: none; }
 
   const sports = [...new Set(RAW.map(r=>r.sport))].sort();
 
-  document.getElementById('registerCount').textContent = RAW.length;
-  document.getElementById('sportCount').textContent = sports.length;
-  document.getElementById('genDate').textContent = new Date().toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'});
+  const _rc = document.getElementById('registerCount'); if(_rc) _rc.textContent = RAW.length;
+  const _sc = document.getElementById('sportCount'); if(_sc) _sc.textContent = sports.length;
+  const _gd = document.getElementById('genDate'); if(_gd) _gd.textContent = new Date().toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'});
 
   // ---- populate sport select ----
   const sportSelect = document.getElementById('sportSelect');
@@ -1221,7 +1221,7 @@ details.card summary { list-style: none; }
     };
 
     const headerRows = [
-      ['Programme / Event Name', meta.prog, 'Organising Body', meta.org],
+      ['Event / Programme Name', meta.prog, 'Organising Body', meta.org],
       ['Venue', meta.venue, 'Event Date(s)', meta.date],
       ['Sport / Activity', meta.sport, 'Est. Participants', meta.participants],
       ['Prepared By', meta.assessor, 'Date of Assessment', meta.assessDate]
@@ -1473,9 +1473,9 @@ document.querySelectorAll("[data-filter-group]").forEach((group) => {
 
   const sports = [...new Set(RAW.map(r=>r.sport))].sort();
 
-  document.getElementById('registerCount').textContent = RAW.length;
-  document.getElementById('sportCount').textContent = sports.length;
-  document.getElementById('genDate').textContent = new Date().toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'});
+  const _rc = document.getElementById('registerCount'); if(_rc) _rc.textContent = RAW.length;
+  const _sc = document.getElementById('sportCount'); if(_sc) _sc.textContent = sports.length;
+  const _gd = document.getElementById('genDate'); if(_gd) _gd.textContent = new Date().toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'});
 
   // ---- populate sport select ----
   const sportSelect = document.getElementById('sportSelect');
@@ -1823,7 +1823,7 @@ document.querySelectorAll("[data-filter-group]").forEach((group) => {
     };
 
     const headerRows = [
-      ['Programme / Event Name', meta.prog, 'Organising Body', meta.org],
+      ['Event / Programme Name', meta.prog, 'Organising Body', meta.org],
       ['Venue', meta.venue, 'Event Date(s)', meta.date],
       ['Sport / Activity', meta.sport, 'Est. Participants', meta.participants],
       ['Prepared By', meta.assessor, 'Date of Assessment', meta.assessDate]
