@@ -1360,11 +1360,9 @@ details.card summary { list-style: none; }
     function d(label,val,s,x){ return td(lbl(label)+e(val),s||B,x); }
     var r='';
     r+='<tr>'+td('Activity Information',SC,' colspan="3"')+td('Initials &amp;<br>Company Stamp',SC)+td('Approval',SC,' colspan="3"')+'</tr>';
-    r+='<tr>'+d('Event / Programme Name',meta.prog)+d('Organising Body',meta.org)+d('RA Leader (Prepared by)',meta.raLeader)+td('',ST,' rowspan="7"')+d('Vetted by',meta.vettedBy)+d('Date',meta.vettedDate)+td(lbl('Initials')+'',IN)+'</tr>';
+    r+='<tr>'+d('Event / Programme Name',meta.prog)+d('Organising Body',meta.org)+d('RA Leader (Prepared by)',meta.raLeader)+td('',ST,' rowspan="3"')+d('Vetted by',meta.vettedBy)+d('Date',meta.vettedDate)+td(lbl('Initials')+'',IN)+'</tr>';
     r+='<tr>'+d('Venue',meta.venue)+d('Event / Programme Lead (OIC)',meta.oic)+td(lbl('RA Members')+'',ML)+d('Approved by',meta.approvedBy)+d('Date',meta.approvedDate)+td(lbl('Initials')+'',IN)+'</tr>';
     r+='<tr>'+d('Participant Group',meta.participantGroupText)+d('Est. No. of Participants',meta.participants)+td(e(meta.raMember1),B)+td(lbl('Date of next review')+e(meta.nextReview),B,' colspan="3"')+'</tr>';
-    var mbrs=[meta.raMember2,meta.raMember3,meta.raMember4,meta.raMember5];
-    mbrs.forEach(function(m){ r+='<tr>'+td('',B)+td('',B)+td(e(m),B)+td('',B)+td('',B)+td('',B)+'</tr>'; });
     return '<table style="width:100%;border-collapse:collapse;font-family:Calibri,Arial,sans-serif;font-size:8pt;margin-bottom:14px;table-layout:fixed;">'
       +'<colgroup><col style="width:15%"><col style="width:16%"><col style="width:16%"><col style="width:11%"><col style="width:16%"><col style="width:13%"><col style="width:13%"></colgroup>'
       +r+'</table>';
@@ -2128,11 +2126,9 @@ document.querySelectorAll("[data-filter-group]").forEach((group) => {
     function d(label,val,s,x){ return td(lbl(label)+e(val),s||B,x); }
     var r='';
     r+='<tr>'+td('Activity Information',SC,' colspan="3"')+td('Initials &amp;<br>Company Stamp',SC)+td('Approval',SC,' colspan="3"')+'</tr>';
-    r+='<tr>'+d('Event / Programme Name',meta.prog)+d('Organising Body',meta.org)+d('RA Leader (Prepared by)',meta.raLeader)+td('',ST,' rowspan="7"')+d('Vetted by',meta.vettedBy)+d('Date',meta.vettedDate)+td(lbl('Initials')+'',IN)+'</tr>';
+    r+='<tr>'+d('Event / Programme Name',meta.prog)+d('Organising Body',meta.org)+d('RA Leader (Prepared by)',meta.raLeader)+td('',ST,' rowspan="3"')+d('Vetted by',meta.vettedBy)+d('Date',meta.vettedDate)+td(lbl('Initials')+'',IN)+'</tr>';
     r+='<tr>'+d('Venue',meta.venue)+d('Event / Programme Lead (OIC)',meta.oic)+td(lbl('RA Members')+'',ML)+d('Approved by',meta.approvedBy)+d('Date',meta.approvedDate)+td(lbl('Initials')+'',IN)+'</tr>';
     r+='<tr>'+d('Participant Group',meta.participantGroupText)+d('Est. No. of Participants',meta.participants)+td(e(meta.raMember1),B)+td(lbl('Date of next review')+e(meta.nextReview),B,' colspan="3"')+'</tr>';
-    var mbrs=[meta.raMember2,meta.raMember3,meta.raMember4,meta.raMember5];
-    mbrs.forEach(function(m){ r+='<tr>'+td('',B)+td('',B)+td(e(m),B)+td('',B)+td('',B)+td('',B)+'</tr>'; });
     return '<table style="width:100%;border-collapse:collapse;font-family:Calibri,Arial,sans-serif;font-size:8pt;margin-bottom:14px;table-layout:fixed;">'
       +'<colgroup><col style="width:15%"><col style="width:16%"><col style="width:16%"><col style="width:11%"><col style="width:16%"><col style="width:13%"><col style="width:13%"></colgroup>'
       +r+'</table>';
