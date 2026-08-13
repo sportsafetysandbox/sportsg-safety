@@ -1420,17 +1420,7 @@ details.card summary { list-style: none; }
 
   function exportToWord(){
     const included = currentRows.filter(r=>r.included);
-    const meta = {
-      prog: document.getElementById('progName').value || '\u2014',
-      org: document.getElementById('organiser').value || '\u2014',
-      venue: document.getElementById('venue').value || '\u2014',
-      date: document.getElementById('eventDate').value || '\u2014',
-      assessor: document.getElementById('assessor').value || '\u2014',
-      assessDate: document.getElementById('assessDate').value || '\u2014',
-      sport: sportSelect.options[sportSelect.selectedIndex].text,
-      participants: document.getElementById('participants').value || '\u2014',
-      context: document.getElementById('context').value || ''
-    };
+    const meta = getMeta();
 
 
     // Column widths (%) tuned to fit an A3 landscape page without ID/Phase columns
@@ -2159,17 +2149,7 @@ document.querySelectorAll("[data-filter-group]").forEach((group) => {
 
   function exportToWord(){
     const included = currentRows.filter(r=>r.included);
-    const meta = {
-      prog: document.getElementById('progName').value || '\u2014',
-      org: document.getElementById('organiser').value || '\u2014',
-      venue: document.getElementById('venue').value || '\u2014',
-      date: document.getElementById('eventDate').value || '\u2014',
-      assessor: document.getElementById('assessor').value || '\u2014',
-      assessDate: document.getElementById('assessDate').value || '\u2014',
-      sport: sportSelect.options[sportSelect.selectedIndex].text,
-      participants: document.getElementById('participants').value || '\u2014',
-      context: document.getElementById('context').value || ''
-    };
+    const meta = getMeta();
 
 
     // Column widths (%) tuned to fit an A3 landscape page without ID/Phase columns
@@ -2246,7 +2226,7 @@ document.querySelectorAll("[data-filter-group]").forEach((group) => {
     const blob = new Blob(['\ufeff', html], {type:'application/msword'});
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
-    const fname = (meta.prog!=='\u2014' ? meta.prog : 'Sport-HIRA').replace(/[^a-z0-9]+/gi,'-');
+    const fname = (meta.sport && meta.sport!=='\u2014' ? meta.sport : 'SEA-Games').replace(/[^a-z0-9]+/gi,'-');
     a.href = url;
     a.download = fname+'-HIRA.doc';
     document.body.appendChild(a);
