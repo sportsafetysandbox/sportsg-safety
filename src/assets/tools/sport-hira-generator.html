@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sport Risk Assessment Form Builder — Sport Safety Portal</title>
+<title>Sport Risk Assessment Form Builder &mdash; Sport Safety Portal</title>
 <style>
 /* Tokens — derived from brandguide/colors.md and brandguide/typography.md */
 :root {
@@ -449,346 +449,277 @@ details.card summary { list-style: none; }
 
 </style>
 <style>
-/* ── Form-specific styles (scoped to .hira-app) ────────────────── */
 
-  .hira-app{
-    --ink:#161B22;
-    --ink-soft:#3B4450;
-    --paper:#EFF2EF;
-    --paper-raised:#FFFFFF;
-    --line:#C7CDC5;
-    --line-soft:#DDE2DA;
-    --brand:#1E4E5F;
-    --brand-dark:#123340;
-    --brand-tint:#DCE8EA;
-    --low:#3F7D51;
-    --low-tint:#E1EDE3;
-    --med:#B4802A;
-    --med-tint:#F3E6D0;
-    --high:#C1552C;
-    --high-tint:#F5DFD3;
-    --vhigh:#A6293A;
-    --vhigh-tint:#F2D9DD;
-    --radius:3px;
-    --shadow: 0 1px 2px rgba(22,27,34,0.06), 0 4px 14px rgba(22,27,34,0.05);
-  }
-  
-  
-  
-  .hira-app .wrap{max-width:1180px;margin:0 auto;padding:28px 24px 80px;}
+.hira-app {
+  --low:     #2d7a3a;  --low-bg:   #e6f4e8;
+  --med:     #92650a;  --med-bg:   #fef3cd;
+  --high:    #b84c1a;  --high-bg:  #fdeee5;
+  --vhigh:   #9b1c2e;  --vhigh-bg: #fbe8ec;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: var(--ink);
+}
+.hira-app > .hira-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.25rem 5rem;
+}
 
-  /* ---------- Masthead ---------- */
-  .masthead{
-    border-bottom:2px solid var(--ink);
-    padding-bottom:16px;
-    margin-bottom:26px;
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-end;
-    flex-wrap:wrap;
-    gap:14px;
-  }
-  .masthead .eyebrow{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:11px;
-    letter-spacing:.14em;
-    text-transform:uppercase;
-    color:var(--brand);
-    margin:0 0 6px;
-  }
-  .masthead h1{
-    font-family:'Barlow Condensed', sans-serif;
-    font-weight:700;
-    font-size:34px;
-    letter-spacing:.01em;
-    text-transform:uppercase;
-    margin:0;
-    color:var(--ink);
-  }
-  .masthead .sub{
-    font-size:13px;
-    color:var(--ink-soft);
-    max-width:520px;
-    margin-top:6px;
-  }
-  .form-meta{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:11px;
-    color:var(--ink-soft);
-    text-align:right;
-    line-height:1.7;
-  }
-  .form-meta b{color:var(--ink);}
+/* Step cards */
+.hira-app .step {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  margin-bottom: 1.25rem;
+  overflow: hidden;
+}
+.hira-app .step-head {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1.25rem;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--line);
+}
+.hira-app .step-num {
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: var(--red-600);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.hira-app .step-head h2 {
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--ink);
+  margin: 0;
+}
+.hira-app .step-body { padding: 1.25rem; }
 
-  /* ---------- Steps ---------- */
-  .step{
-    background:var(--paper-raised);
-    border:1px solid var(--line);
-    border-radius:var(--radius);
-    box-shadow:var(--shadow);
-    margin-bottom:22px;
-  }
-  .step-head{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    padding:16px 20px;
-    border-bottom:1px solid var(--line-soft);
-  }
-  .step-num{
-    font-family:'IBM Plex Mono', monospace;
-    font-weight:600;
-    font-size:12px;
-    color:var(--paper-raised);
-    background:var(--brand);
-    width:22px;height:22px;
-    border-radius:50%;
-    display:flex;align-items:center;justify-content:center;
-    flex-shrink:0;
-  }
-  .step-head h2{
-    font-family:'Barlow Condensed', sans-serif;
-    font-size:19px;
-    font-weight:700;
-    text-transform:uppercase;
-    letter-spacing:.03em;
-    margin:0;
-  }
-  .step-
+/* Grid / Fields */
+.hira-app .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem 1.5rem; }
+.hira-app .grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+.hira-app .field.full { grid-column: 1 / -1; }
 
-  .hira-app .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px 20px;}
-  .grid.cols-3{grid-template-columns:repeat(3,1fr);}
-  .field label{
-    display:block;
-    font-size:11px;
-    font-weight:600;
-    text-transform:uppercase;
-    letter-spacing:.05em;
-    color:var(--ink-soft);
-    margin-bottom:5px;
-  }
-  .field input[type=text], .field input[type=date], .field input[type=number], .field select, .field textarea{
-    width:100%;
-    border:1px solid var(--line);
-    background:var(--paper);
-    color:var(--ink);
-    padding:9px 10px;
-    font-family:'Public Sans', sans-serif;
-    font-size:13.5px;
-    border-radius:var(--radius);
-  }
-  .field textarea{resize:vertical;min-height:60px;}
-  .field input:focus, .field select:focus, .field textarea:focus, button:focus-visible{
-    outline:2px solid var(--brand);
-    outline-offset:1px;
-  }
-  .field.full{grid-column:1/-1;}
-  .hint{font-size:11.5px;color:var(--ink-soft);margin-top:5px;}
+.hira-app .field label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--muted);
+  margin-bottom: 0.35rem;
+}
+.hira-app .field input[type=text],
+.hira-app .field input[type=date],
+.hira-app .field input[type=number],
+.hira-app .field select,
+.hira-app .field textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  padding: 0.5rem 0.65rem;
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  border-radius: 6px;
+  transition: border-color 0.15s;
+}
+.hira-app .field input:focus,
+.hira-app .field select:focus,
+.hira-app .field textarea:focus {
+  outline: none;
+  border-color: var(--red-600);
+  box-shadow: 0 0 0 3px var(--red-100);
+}
+.hira-app .field textarea { resize: vertical; min-height: 70px; }
+.hira-app .hint { font-size: 0.75rem; color: var(--muted); margin-top: 0.3rem; }
 
-  .check-grid{display:flex;flex-wrap:wrap;gap:8px;}
-  .chip-toggle{
-    border:1px solid var(--line);
-    background:var(--paper);
-    padding:7px 13px;
-    border-radius:20px;
-    font-size:12.5px;
-    font-weight:500;
-    cursor:pointer;
-    user-select:none;
-    transition:all .12s ease;
-    color:var(--ink-soft);
-  }
-  .chip-toggle.active{
-    background:var(--brand);
-    border-color:var(--brand);
-    color:#fff;
-  }
+/* Chip toggles */
+.hira-app .check-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.hira-app .chip-toggle {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  user-select: none;
+  color: var(--muted);
+  transition: all 0.12s;
+}
+.hira-app .chip-toggle.active {
+  background: var(--red-600);
+  border-color: var(--red-600);
+  color: #fff;
+}
+.hira-app .chip-toggle:hover:not(.active) {
+  border-color: var(--red-600);
+  color: var(--red-600);
+}
 
-  .hira-app .btn{
-    font-family:'Public Sans',sans-serif;
-    font-weight:600;
-    font-size:13px;
-    border-radius:var(--radius);
-    border:1px solid var(--ink);
-    background:var(--ink);
-    color:#fff;
-    padding:11px 22px;
-    cursor:pointer;
-    letter-spacing:.02em;
-  }
-  .btn:hover{background:var(--brand-dark);border-color:var(--brand-dark);}
-  .btn.secondary{
-    background:var(--paper-raised);
-    color:var(--ink);
-    border:1px solid var(--line);
-  }
-  .btn.secondary:hover{border-color:var(--ink);}
-  .btn.small{padding:6px 12px;font-size:12px;}
-  .btn:disabled{opacity:.45;cursor:not-allowed;}
+/* Buttons */
+.hira-app .btn {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.88rem;
+  border-radius: 6px;
+  border: 1px solid var(--red-600);
+  background: var(--red-600);
+  color: #fff;
+  padding: 0.55rem 1.1rem;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+.hira-app .btn:hover { background: var(--red-700); border-color: var(--red-700); }
+.hira-app .btn.secondary {
+  background: var(--surface);
+  color: var(--ink);
+  border-color: var(--line);
+}
+.hira-app .btn.secondary:hover { border-color: var(--ink); }
+.hira-app .btn.small { padding: 0.35rem 0.75rem; font-size: 0.78rem; }
+.hira-app .btn:disabled { opacity: 0.45; cursor: not-allowed; }
 
-  .actions-row{display:flex;gap:10px;justify-content:flex-end;padding:16px 20px;border-top:1px solid var(--line-soft);}
+.hira-app .actions-row {
+  display: flex; gap: 0.6rem; justify-content: flex-end;
+  padding: 1rem 1.25rem;
+  border-top: 1px solid var(--line);
+  background: var(--surface-2);
+}
 
-  /* ---------- Risk matrix legend (signature element) ---------- */
-  .matrix-legend{display:flex;gap:22px;align-items:center;flex-wrap:wrap;}
-  .matrix-grid{
-    display:grid;
-    grid-template-columns:repeat(5, 15px);
-    grid-template-rows:repeat(5, 15px);
-    gap:2px;
-    transform:scaleY(-1);
-  }
-  .matrix-cell{width:15px;height:15px;border-radius:2px;}
-  .matrix-wrap{display:flex;gap:8px;align-items:flex-end;}
-  .matrix-axis-label{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:9.5px;
-    color:var(--ink-soft);
-    text-transform:uppercase;
-    letter-spacing:.05em;
-  }
-  .matrix-y{writing-mode:vertical-rl;transform:rotate(180deg);text-align:center;}
-  .legend-key{display:flex;gap:14px;flex-wrap:wrap;}
-  .legend-key span{display:flex;align-items:center;gap:6px;font-size:11.5px;color:var(--ink-soft);}
-  .legend-swatch{width:11px;height:11px;border-radius:2px;display:inline-block;}
+/* Risk matrix legend */
+.hira-app .matrix-legend { display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap; }
+.hira-app .matrix-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 14px);
+  grid-template-rows: repeat(5, 14px);
+  gap: 2px;
+  transform: scaleY(-1);
+}
+.hira-app .matrix-cell { width: 14px; height: 14px; border-radius: 2px; }
+.hira-app .matrix-wrap { display: flex; gap: 6px; align-items: flex-end; }
+.hira-app .matrix-axis-label {
+  font-size: 0.65rem; color: var(--muted);
+  text-transform: uppercase; letter-spacing: 0.06em;
+}
+.hira-app .matrix-y { writing-mode: vertical-rl; transform: rotate(180deg); text-align: center; }
+.hira-app .legend-key { display: flex; gap: 1rem; flex-wrap: wrap; }
+.hira-app .legend-key span { display: flex; align-items: center; gap: 5px; font-size: 0.75rem; color: var(--muted); }
+.hira-app .legend-swatch { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
 
-  /* ---------- Results ---------- */
-  .summary-bar{
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
-    padding:16px 20px;
-    border-bottom:1px solid var(--line-soft);
-  }
-  .summary-pill{
-    border:1px solid var(--line);
-    border-radius:var(--radius);
-    padding:8px 14px;
-    font-family:'IBM Plex Mono',monospace;
-    font-size:12px;
-    display:flex;
-    align-items:center;
-    gap:8px;
-    background:var(--paper);
-  }
-  .summary-pill b{font-size:15px;}
+/* Results */
+.hira-app .summary-bar {
+  display: flex; gap: 0.6rem; flex-wrap: wrap;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface-2);
+}
+.hira-app .summary-pill {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 0.4rem 0.85rem;
+  font-size: 0.78rem;
+  display: flex; align-items: center; gap: 0.5rem;
+  background: var(--surface);
+  color: var(--ink);
+}
+.hira-app .summary-pill b { font-size: 1rem; font-weight: 700; }
 
-  .phase-group{border-top:1px solid var(--line-soft);}
-  .phase-group:first-child{border-top:none;}
-  .phase-title{
-    font-family:'Barlow Condensed', sans-serif;
-    font-size:16px;
-    font-weight:700;
-    text-transform:uppercase;
-    letter-spacing:.04em;
-    color:var(--brand-dark);
-    background:var(--brand-tint);
-    padding:9px 20px;
-    display:flex;
-    justify-content:space-between;
-  }
-  .row-card{
-    border-bottom:1px solid var(--line-soft);
-    padding:14px 20px;
-  }
-  .row-card:last-child{border-bottom:none;}
-  .row-head{
-    display:flex;
-    gap:12px;
-    align-items:flex-start;
-    cursor:pointer;
-  }
-  .row-head input[type=checkbox]{margin-top:3px;width:16px;height:16px;accent-color:var(--brand);flex-shrink:0;}
-  .row-main{flex:1;min-width:0;}
-  .row-top-line{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:3px;}
-  .row-id{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--ink-soft);}
-  .row-task{font-weight:600;font-size:14px;}
-  .row-sub{font-size:12.5px;color:var(--ink-soft);}
-  .risk-chip{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:10.5px;
-    font-weight:600;
-    text-transform:uppercase;
-    letter-spacing:.04em;
-    padding:3px 9px;
-    border-radius:20px;
-    flex-shrink:0;
-  }
-  .risk-Low{background:var(--low-tint);color:var(--low);}
-  .risk-Medium{background:var(--med-tint);color:var(--med);}
-  .risk-High{background:var(--high-tint);color:var(--high);}
-  .risk-VeryHigh, .risk-Very-High{background:var(--vhigh-tint);color:var(--vhigh);}
-  .caret{color:var(--ink-soft);font-size:12px;margin-left:auto;flex-shrink:0;transition:transform .15s;}
-  .row-card.open .caret{transform:rotate(90deg);}
+.hira-app .phase-group { border-top: 1px solid var(--line); }
+.hira-app .phase-group:first-child { border-top: none; }
+.hira-app .phase-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--red-800);
+  background: var(--red-100);
+  padding: 0.5rem 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--red-200);
+}
 
-  .row-detail{display:none;margin-top:14px;padding-left:28px;}
-  .row-card.open .row-detail{display:block;}
-  .detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px 20px;margin-bottom:14px;}
-  .detail-item h4{
-    margin:0 0 3px;
-    font-size:10.5px;
-    text-transform:uppercase;
-    letter-spacing:.05em;
-    color:var(--ink-soft);
-    font-weight:600;
-  }
-  .detail-item p{margin:0;font-size:13px;}
-  .detail-item.full{grid-column:1/-1;}
+.hira-app .row-card { border-bottom: 1px solid var(--line); padding: 0.85rem 1.25rem; }
+.hira-app .row-card:last-child { border-bottom: none; }
+.hira-app .row-head { display: flex; gap: 0.75rem; align-items: flex-start; cursor: pointer; }
+.hira-app .row-head input[type=checkbox] { margin-top: 3px; width: 16px; height: 16px; accent-color: var(--red-600); flex-shrink: 0; }
+.hira-app .row-main { flex: 1; min-width: 0; }
+.hira-app .row-top-line { display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap; margin-bottom: 2px; }
+.hira-app .row-id { font-size: 0.7rem; color: var(--muted); font-family: ui-monospace, Consolas, monospace; }
+.hira-app .row-task { font-weight: 600; font-size: 0.9rem; }
+.hira-app .row-sub { font-size: 0.8rem; color: var(--muted); }
+.hira-app .caret { color: var(--muted); font-size: 0.75rem; margin-left: auto; flex-shrink: 0; transition: transform 0.15s; }
+.hira-app .row-card.open .caret { transform: rotate(90deg); }
 
-  .editable-block{
-    background:var(--paper);
-    border:1px dashed var(--line);
-    border-radius:var(--radius);
-    padding:14px;
-    margin-top:8px;
-  }
-  .editable-block .hira-app .grid{grid-template-columns:1fr 1fr 1fr;}
-  .mini-matrix-row{display:flex;align-items:center;gap:16px;margin-top:12px;flex-wrap:wrap;}
-  .mini-matrix{
-    display:grid;grid-template-columns:repeat(5,13px);grid-template-rows:repeat(5,13px);gap:2px;
-    transform:scaleY(-1);
-  }
-  .mini-matrix .matrix-cell{width:13px;height:13px;}
-  .mini-matrix .matrix-cell.hit{outline:2px solid var(--ink);outline-offset:-1px;}
-  select.ls-select{width:60px;padding:6px;font-size:12.5px;}
+.hira-app .risk-chip {
+  font-size: 0.68rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  padding: 2px 8px; border-radius: 999px; flex-shrink: 0;
+}
+.hira-app .risk-Low     { background: var(--low-bg);   color: var(--low); }
+.hira-app .risk-Medium  { background: var(--med-bg);   color: var(--med); }
+.hira-app .risk-High    { background: var(--high-bg);  color: var(--high); }
+.hira-app .risk-VeryHigh, .hira-app .risk-Very-High { background: var(--vhigh-bg); color: var(--vhigh); }
 
-  .empty-state{
-    padding:60px 20px;
-    text-align:center;
-    color:var(--ink-soft);
-  }
-  .empty-state h3{
-    font-family:'Barlow Condensed',sans-serif;
-    font-size:20px;
-    text-transform:uppercase;
-    color:var(--ink);
-    margin-bottom:6px;
-  }
+.hira-app .row-detail { display: none; margin-top: 0.85rem; padding-left: 1.75rem; }
+.hira-app .row-card.open .row-detail { display: block; }
+.hira-app .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem 1.5rem; margin-bottom: 0.85rem; }
+.hira-app .detail-item h4 {
+  margin: 0 0 2px;
+  font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--muted); font-weight: 700;
+}
+.hira-app .detail-item p { margin: 0; font-size: 0.82rem; }
+.hira-app .detail-item.full { grid-column: 1 / -1; }
 
-  .banner{
-    margin:0 0 18px;
-    padding:12px 16px;
-    border-radius:var(--radius);
-    border:1px solid var(--med);
-    background:var(--med-tint);
-    color:#5f4517;
-    font-size:12.5px;
-  }
+.hira-app .editable-block {
+  background: var(--surface-2);
+  border: 1px dashed var(--line);
+  border-radius: 6px;
+  padding: 0.85rem;
+  margin-top: 0.5rem;
+}
+.hira-app .editable-block .grid { grid-template-columns: 1fr 1fr 1fr; }
+.hira-app .mini-matrix-row { display: flex; align-items: center; gap: 1rem; margin-top: 0.75rem; flex-wrap: wrap; }
+.hira-app .mini-matrix {
+  display: grid; grid-template-columns: repeat(5,12px); grid-template-rows: repeat(5,12px); gap: 2px;
+  transform: scaleY(-1);
+}
+.hira-app .mini-matrix .matrix-cell { width: 12px; height: 12px; }
+.hira-app .mini-matrix .matrix-cell.hit { outline: 2px solid var(--ink); outline-offset: -1px; }
+.hira-app select.ls-select { width: 64px; padding: 4px; font-size: 0.78rem; }
 
-  .footer-note{
-    text-align:center;
-    font-size:11.5px;
-    color:var(--ink-soft);
-    margin-top:30px;
-  }
+.hira-app .form-meta { font-size: 0.75rem; color: var(--muted); line-height: 1.7; }
+.hira-app .form-meta b { color: var(--ink); }
 
-  @media (max-width:720px){
-    .hira-app .grid, .grid.cols-3, .detail-grid{grid-template-columns:1fr;}
-    .masthead{flex-direction:column;align-items:flex-start;}
-    .form-meta{text-align:left;}
-  }
+.hira-app .empty-state { padding: 3rem 1.25rem; text-align: center; color: var(--muted); }
+.hira-app .empty-state h3 { font-size: 1.1rem; font-weight: 700; color: var(--ink); margin-bottom: 0.35rem; }
 
-.hira-app { padding-bottom: 4rem; }
-.hira-app .hira-wrap { max-width: 1100px; margin: 0 auto; padding: 0 1.25rem; }
+.hira-app .banner {
+  margin: 0 0 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  border: 1px solid #d4a017;
+  background: #fef9ec;
+  color: #6b4e04;
+  font-size: 0.82rem;
+}
+
+.hira-app .footer-note { text-align: center; font-size: 0.75rem; color: var(--muted); margin-top: 2rem; }
+
+@media (max-width: 720px) {
+  .hira-app .grid, .hira-app .grid.cols-3, .hira-app .detail-grid { grid-template-columns: 1fr; }
+}
+
 </style>
 </head>
 <body>
@@ -809,7 +740,7 @@ details.card summary { list-style: none; }
   <div class="navbar">
     <div class="wrap-header">
       <button type="button" class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="primary-nav">
-        <span aria-hidden="true">☰</span>
+        <span aria-hidden="true">&#9776;</span>
       </button>
       <nav class="primary-nav" id="primary-nav" aria-label="Primary">
         <a href="/sportsg-safety/">Home</a>
@@ -837,8 +768,8 @@ details.card summary { list-style: none; }
   </div>
 </section>
 
-<div class="hira-app">
-  <div class="hira-wrap">
+<div class="hira-app" style="padding-top:2rem; border-top:1px solid var(--line); margin-top:2.5rem;">
+  <div class="hira-inner">
 
 <div class="wrap">
 
@@ -1379,7 +1310,7 @@ details.card summary { list-style: none; }
       <a href="/sportsg-safety/faq/">Contact Us</a>
       <a href="#">Related Sites</a>
     </div>
-    <p class="copyright">© 2026 Sport Safety Portal.</p>
+    <p class="copyright">&copy; 2026 Sport Safety Portal.</p>
   </div>
 </footer>
 
