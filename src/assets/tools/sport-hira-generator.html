@@ -840,7 +840,7 @@ details.card summary { list-style: none; }
           <p class="field-section-label">Risk Assessment Ownership</p>
           <div class="field"><label for="assessor">Event / Programme Lead (OIC)</label><input type="text" id="assessor" placeholder="Name &amp; designation"/></div>
           <div class="field"><label for="organiser">Organising Body</label><input type="text" id="organiser" placeholder="e.g. Sport Singapore"/></div>
-          <div class="field"><label for="raLeader">RA Leader</label><input type="text" id="raLeader" placeholder="Name &amp; designation"/></div>
+          <div class="field"><label for="raLeader">RA Leader (Prepared by)</label><input type="text" id="raLeader" placeholder="Name &amp; designation"/></div>
           <div class="field"><label for="raMember1">RA Member 1</label><input type="text" id="raMember1" placeholder="Name &amp; designation"/></div>
           <div class="field"><label for="raMember2">RA Member 2</label><input type="text" id="raMember2" placeholder="Name &amp; designation"/></div>
           <div class="field"><label for="raMember3">RA Member 3</label><input type="text" id="raMember3" placeholder="Name &amp; designation"/></div>
@@ -947,6 +947,7 @@ details.card summary { list-style: none; }
 
   const GROUP_ORDER = ["All","Junior","Youth","Adult","Senior","Persons with Disabilities (PwD)"];
   const PHASE_ORDER = ["Planning","Before Activity","During Activity","Post Activity"];
+  const PHASE_NUMS = {"Planning":1,"Before Activity":2,"During Activity":3,"Post Activity":4};
   const GROUP_LABEL = {"Persons with Disabilities (PwD)":"PwD"};
 
   const sports = [...new Set(RAW.map(r=>r.sport))].sort();
@@ -1347,29 +1348,32 @@ details.card summary { list-style: none; }
 
   function buildRaHeader(meta){
     var e = escapeHtml;
-    var B  = 'border:1px solid #bbb;padding:4px 6px;vertical-align:top;font-size:8pt;word-break:break-word;';
-    var LB = B+'background:#EFF2EF;font-weight:700;font-size:7pt;';
-    var SC = B+'background:#16212C;color:#fff;font-weight:700;font-size:7.5pt;text-align:center;';
-    var ST = B+'text-align:center;color:#bbb;font-size:7pt;background:#fafafa;';
-    var IN = B+'text-align:center;color:#ccc;font-size:7pt;';
+    var F  = 'font-family:Calibri,Arial,sans-serif;';
+    var B  = F+'border:1px solid #bbb;padding:4px 6px;vertical-align:top;font-size:8pt;word-break:break-word;';
+    var SC = F+'border:1px solid #444;background:#16212C;color:#fff;font-weight:700;font-size:7.5pt;text-align:center;padding:5px 6px;';
+    var ML = F+'border:1px solid #bbb;background:#f0f0f0;padding:3px 6px;font-size:7pt;font-weight:700;color:#444;vertical-align:top;';
+    var ST = F+'border:1px solid #bbb;text-align:center;color:#aaa;font-size:7pt;background:#fafafa;vertical-align:top;';
+    var IN = F+'border:1px solid #bbb;text-align:center;color:#888;font-size:7pt;vertical-align:top;padding:4px 3px;';
+    var LS = 'display:block;font-size:6pt;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:2px;';
     function td(c,s,x){ return '<td'+(x||'')+' style="'+s+'">'+c+'</td>'; }
-    function lbl(t){ return '<span style="display:block;font-size:6.5pt;font-weight:700;color:#666;margin-bottom:2px;text-transform:uppercase;letter-spacing:0.04em;">'+t+'</span>'; }
+    function lbl(t){ return '<span style="'+LS+'">'+t+'</span>'; }
+    function d(label,val,s,x){ return td(lbl(label)+e(val),s||B,x); }
     var r='';
-    r+='<tr>'+td('Activity Information',SC,' colspan="2"')+td('Initials &amp;<br>Company Stamp',SC)+td('Approval',SC,' colspan="3"')+'</tr>';
-    r+='<tr>'+td(lbl('Event / Programme Name')+e(meta.prog),B)+td(lbl('Event / Programme Lead (OIC)')+e(meta.oic),B)+td('',ST,' rowspan="9"')+td(lbl('Approved by')+e(meta.approvedBy),B)+td(lbl('Issue date')+e(meta.approvedDate),B)+td('Initials',IN)+'</tr>';
-    r+='<tr>'+td(lbl('Venue')+e(meta.venue),B)+td(lbl('Organising Body')+e(meta.org),B)+td(lbl('Vetted by')+e(meta.vettedBy),B)+td(lbl('Issue date')+e(meta.vettedDate),B)+td('Initials',IN)+'</tr>';
-    r+='<tr>'+td(lbl('Participant Group')+e(meta.participantGroupText),B)+td(lbl('RA Team Members')+'',LB)+td(lbl('Date of next review')+e(meta.nextReview),B,' colspan="3"')+'</tr>';
-    r+='<tr>'+td(lbl('Est. No. of Participants')+e(meta.participants),B)+td(lbl('RA Leader')+e(meta.raLeader),B)+td('',B,' colspan="3"')+'</tr>';
-    var mbrs=[meta.raMember1,meta.raMember2,meta.raMember3,meta.raMember4,meta.raMember5];
-    mbrs.forEach(function(m,i){ r+='<tr>'+td('',B)+td(lbl('RA Member '+(i+1))+e(m),B)+td('',B,' colspan="3"')+'</tr>'; });
-    return '<table style="width:100%;border-collapse:collapse;font-size:8pt;margin-bottom:14px;table-layout:fixed;">'
-      +'<colgroup><col style="width:14%"><col style="width:22%"><col style="width:10%"><col style="width:16%"><col style="width:24%"><col style="width:14%"></colgroup>'
+    r+='<tr>'+td('Activity Information',SC,' colspan="3"')+td('Initials &amp;<br>Company Stamp',SC)+td('Approval',SC,' colspan="3"')+'</tr>';
+    r+='<tr>'+d('Event / Programme Name',meta.prog)+d('Organising Body',meta.org)+d('RA Leader (Prepared by)',meta.raLeader)+td('',ST,' rowspan="7"')+d('Vetted by',meta.vettedBy)+d('Date',meta.vettedDate)+td(lbl('Initials')+'',IN)+'</tr>';
+    r+='<tr>'+d('Venue',meta.venue)+d('Event / Programme Lead (OIC)',meta.oic)+td(lbl('RA Members')+'',ML)+d('Approved by',meta.approvedBy)+d('Date',meta.approvedDate)+td(lbl('Initials')+'',IN)+'</tr>';
+    r+='<tr>'+d('Participant Group',meta.participantGroupText)+d('Est. No. of Participants',meta.participants)+td(e(meta.raMember1),B)+td(lbl('Date of next review')+e(meta.nextReview),B,' colspan="3"')+'</tr>';
+    var mbrs=[meta.raMember2,meta.raMember3,meta.raMember4,meta.raMember5];
+    mbrs.forEach(function(m){ r+='<tr>'+td('',B)+td('',B)+td(e(m),B)+td('',B)+td('',B)+td('',B)+'</tr>'; });
+    return '<table style="width:100%;border-collapse:collapse;font-family:Calibri,Arial,sans-serif;font-size:8pt;margin-bottom:14px;table-layout:fixed;">'
+      +'<colgroup><col style="width:15%"><col style="width:16%"><col style="width:16%"><col style="width:11%"><col style="width:16%"><col style="width:13%"><col style="width:13%"></colgroup>'
       +r+'</table>';
   }
 
 
   function buildColDefs(){
     return [
+      ['#',3],
       ['Task',9],['Location',8],['Hazard',12],['Who May Be Harmed',9],
       ['How They May Be Harmed',11],['Existing Controls',11],
       ['L',2.5],['S',2.5],['Initial Risk',6],
@@ -1387,8 +1391,8 @@ details.card summary { list-style: none; }
 
     function riskTd(val){ return '<td class="'+riskClass(val)+'">'+escapeHtml(val)+'</td>'; }
     function plainTd(val){ return '<td>'+escapeHtml(val)+'</td>'; }
-    function rowHtml(r){
-      return '<tr>'+plainTd(r.task)+plainTd(r.location)+plainTd(r.hazard)+plainTd(r.harmed)
+    function rowHtml(r,serial){
+      return '<tr>'+plainTd(serial)+plainTd(r.task)+plainTd(r.location)+plainTd(r.hazard)+plainTd(r.harmed)
         +plainTd(r.how)+plainTd(r.controls)+plainTd(r.likelihood)+plainTd(r.severity)
         +riskTd(r.risk)+plainTd(r.additional)+plainTd(r.responsible)+plainTd(r.targetDate)
         +plainTd(r.lRes)+plainTd(r.sRes)+riskTd(r.riskRes)+'</tr>';
@@ -1397,14 +1401,15 @@ details.card summary { list-style: none; }
     var phases = PHASE_ORDER.map(function(phase){
       var rows = included.filter(function(r){ return r.phase===phase; });
       if(!rows.length) return '';
+      var pn=PHASE_NUMS[phase]||0;
       return '<div class="ra-phase-title">'+phase+'</div>'
         +'<table class="ra-risk-table">'+colGroup+'<thead>'+thead+'</thead><tbody>'
-        +rows.map(rowHtml).join('')+'</tbody></table>';
+        +rows.map(function(r,i){ return rowHtml(r,pn+'.'+(i+1)); }).join('')+'</tbody></table>';
     }).join('');
 
     return '<div class="ra-preview-doc">'
-      +'<h2>Sport Hazard Identification &amp; Risk Assessment</h2>'
-      +'<p class="ra-sub">Generated from the Universal Sport HIRA Register'+(meta.assessDate!=='—'?' &nbsp;&bull;&nbsp; Date of Assessment: '+escapeHtml(meta.assessDate):'')+'</p>'
+      +'<h2 style="font-family:Calibri,Arial,sans-serif;font-size:14pt;margin:0 0 2px;">Sport Safety Risk Assessment</h2>'
+      +'<p class="ra-sub">Generated from the Sport Safety Portal Universal Register</p>'
       +buildRaHeader(meta)
       +(meta.context ? '<p class="ra-context"><strong>Additional context:</strong> '+escapeHtml(meta.context)+'</p>' : '')
       +phases+'</div>';
@@ -1424,8 +1429,8 @@ details.card summary { list-style: none; }
       return '<td style="border:1px solid #bbb;padding:3px 4px;font-size:7.5pt;vertical-align:top;'
         +(isRisk?'background:'+riskBg(val)+';font-weight:700;':'')+'">'+escapeHtml(val)+'</td>';
     }
-    function rowHtml(r){
-      return '<tr>'+tdp(r.task)+tdp(r.location)+tdp(r.hazard)+tdp(r.harmed)
+    function rowHtml(r,serial){
+      return '<tr>'+tdp(serial)+tdp(r.task)+tdp(r.location)+tdp(r.hazard)+tdp(r.harmed)
         +tdp(r.how)+tdp(r.controls)+tdp(r.likelihood)+tdp(r.severity)+tdp(r.risk,true)
         +tdp(r.additional)+tdp(r.responsible)+tdp(r.targetDate)
         +tdp(r.lRes)+tdp(r.sRes)+tdp(r.riskRes,true)+'</tr>';
@@ -1433,10 +1438,11 @@ details.card summary { list-style: none; }
     var phases = PHASE_ORDER.map(function(phase,i){
       var rows = included.filter(function(r){ return r.phase===phase; });
       if(!rows.length) return '';
+      var pn=PHASE_NUMS[phase]||0;
       return '<h3 style="font-size:10pt;margin:'+(i?'20px':'0')+' 0 6px;padding:4px 8px;'
         +'background:#f0f4f0;border-left:3px solid #355E3B;">'+phase+'</h3>'
         +'<table style="border-collapse:collapse;width:100%;table-layout:fixed;">'+colGroup
-        +'<thead>'+thead+'</thead><tbody>'+rows.map(rowHtml).join('')+'</tbody></table>';
+        +'<thead>'+thead+'</thead><tbody>'+rows.map(function(r,j){ return rowHtml(r,pn+'.'+(j+1)); }).join('')+'</tbody></table>';
     }).join('');
 
     return '<!DOCTYPE html><html><head><meta charset="utf-8"><title>Sport HIRA</title>'
@@ -1446,8 +1452,8 @@ details.card summary { list-style: none; }
       +'table{border-collapse:collapse;}td,th{border:1px solid #bbb;overflow-wrap:break-word;}'
       +'@media print{body{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}'
       +'</style></head><body>'
-      +'<h2 style="font-size:13pt;margin:0 0 2px;">Sport Hazard Identification &amp; Risk Assessment</h2>'
-      +'<p style="font-size:8pt;color:#666;margin:0 0 10px;">Generated from the Universal Sport HIRA Register</p>'
+      +'<h2 style="font-family:Calibri,Arial,sans-serif;font-size:13pt;margin:0 0 2px;">Sport Safety Risk Assessment</h2>'
+      +'<p style="font-family:Calibri,Arial,sans-serif;font-size:8pt;color:#666;margin:0 0 10px;">Generated from the Sport Safety Portal Universal Register</p>'
       +buildRaHeader(meta)
       +(meta.context ? '<p style="font-size:8.5pt;margin:0 0 12px;"><strong>Additional context:</strong> '+escapeHtml(meta.context)+'</p>' : '')
       +phases+'</body></html>';
@@ -1470,6 +1476,7 @@ details.card summary { list-style: none; }
 
     // Column widths (%) tuned to fit an A3 landscape page without ID/Phase columns
     const COLS = [
+      ['#', 3],
       ['Task', 9],
       ['Location', 8],
       ['Hazard', 12],
@@ -1500,8 +1507,8 @@ details.card summary { list-style: none; }
       return '#E1EDE3';
     }
 
-    function rowToTds(r){
-      return tdCell(r.task) + tdCell(r.location)
+    function rowToTds(r,serial){
+      return tdCell(serial) + tdCell(r.task) + tdCell(r.location)
         + tdCell(r.hazard) + tdCell(r.harmed) + tdCell(r.how) + tdCell(r.controls)
         + tdCell(r.likelihood) + tdCell(r.severity) + tdCell(r.risk,false,r.risk)
         + tdCell(r.additional) + tdCell(r.responsible) + tdCell(r.targetDate)
@@ -1512,7 +1519,8 @@ details.card summary { list-style: none; }
     const phaseSections = PHASE_ORDER.map((phase, idx)=>{
       const rows = included.filter(r=>r.phase===phase);
       if(rows.length===0) return '';
-      const bodyRows = rows.map(r=>'<tr>'+rowToTds(r)+'</tr>').join('');
+      const pn=PHASE_NUMS[phase]||0;
+      const bodyRows = rows.map((r,i)=>'<tr>'+rowToTds(r,pn+'.'+(i+1))+'</tr>').join('');
       return '<div style="margin-top:'+(idx===0?'0':'16pt')+';">'
         + '<h3 style="font-family:Arial;margin:0 0 6px;">'+phase+'</h3>'
         + '<table style="border-collapse:collapse;width:100%;table-layout:fixed;">'+colGroup+tableHead+bodyRows+'</table>'
@@ -1530,8 +1538,8 @@ details.card summary { list-style: none; }
       + 'table{border-collapse:collapse;} td,th{border:1px solid #999; overflow-wrap:break-word;}'
       + '</style>'
       + '</head><body><div class="Section1">'
-      + '<h2 style="font-family:Arial;margin-bottom:2px;">Sport Hazard Identification &amp; Risk Assessment</h2>'
-      + '<p style="font-size:9pt;color:#555;margin-top:0;">Generated from the Universal Sport HIRA Register</p>'
+      + '<h2 style="font-family:Calibri,Arial,sans-serif;margin-bottom:2px;">Sport Safety Risk Assessment</h2>'
+      + '<p style="font-family:Calibri,Arial,sans-serif;font-size:9pt;color:#555;margin-top:0;">Generated from the Sport Safety Portal Universal Register</p>'
       + buildRaHeader(meta)
       + (meta.context ? '<p style="font-size:9pt;"><b>Additional context:</b> '+escapeHtml(meta.context)+'</p>' : '')
       + phaseSections
@@ -1707,6 +1715,7 @@ document.querySelectorAll("[data-filter-group]").forEach((group) => {
 
   const GROUP_ORDER = ["All","Junior","Youth","Adult","Senior","Persons with Disabilities (PwD)"];
   const PHASE_ORDER = ["Planning","Before Activity","During Activity","Post Activity"];
+  const PHASE_NUMS = {"Planning":1,"Before Activity":2,"During Activity":3,"Post Activity":4};
   const GROUP_LABEL = {"Persons with Disabilities (PwD)":"PwD"};
 
   const sports = [...new Set(RAW.map(r=>r.sport))].sort();
@@ -2107,29 +2116,32 @@ document.querySelectorAll("[data-filter-group]").forEach((group) => {
 
   function buildRaHeader(meta){
     var e = escapeHtml;
-    var B  = 'border:1px solid #bbb;padding:4px 6px;vertical-align:top;font-size:8pt;word-break:break-word;';
-    var LB = B+'background:#EFF2EF;font-weight:700;font-size:7pt;';
-    var SC = B+'background:#16212C;color:#fff;font-weight:700;font-size:7.5pt;text-align:center;';
-    var ST = B+'text-align:center;color:#bbb;font-size:7pt;background:#fafafa;';
-    var IN = B+'text-align:center;color:#ccc;font-size:7pt;';
+    var F  = 'font-family:Calibri,Arial,sans-serif;';
+    var B  = F+'border:1px solid #bbb;padding:4px 6px;vertical-align:top;font-size:8pt;word-break:break-word;';
+    var SC = F+'border:1px solid #444;background:#16212C;color:#fff;font-weight:700;font-size:7.5pt;text-align:center;padding:5px 6px;';
+    var ML = F+'border:1px solid #bbb;background:#f0f0f0;padding:3px 6px;font-size:7pt;font-weight:700;color:#444;vertical-align:top;';
+    var ST = F+'border:1px solid #bbb;text-align:center;color:#aaa;font-size:7pt;background:#fafafa;vertical-align:top;';
+    var IN = F+'border:1px solid #bbb;text-align:center;color:#888;font-size:7pt;vertical-align:top;padding:4px 3px;';
+    var LS = 'display:block;font-size:6pt;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:2px;';
     function td(c,s,x){ return '<td'+(x||'')+' style="'+s+'">'+c+'</td>'; }
-    function lbl(t){ return '<span style="display:block;font-size:6.5pt;font-weight:700;color:#666;margin-bottom:2px;text-transform:uppercase;letter-spacing:0.04em;">'+t+'</span>'; }
+    function lbl(t){ return '<span style="'+LS+'">'+t+'</span>'; }
+    function d(label,val,s,x){ return td(lbl(label)+e(val),s||B,x); }
     var r='';
-    r+='<tr>'+td('Activity Information',SC,' colspan="2"')+td('Initials &amp;<br>Company Stamp',SC)+td('Approval',SC,' colspan="3"')+'</tr>';
-    r+='<tr>'+td(lbl('Event / Programme Name')+e(meta.prog),B)+td(lbl('Event / Programme Lead (OIC)')+e(meta.oic),B)+td('',ST,' rowspan="9"')+td(lbl('Approved by')+e(meta.approvedBy),B)+td(lbl('Issue date')+e(meta.approvedDate),B)+td('Initials',IN)+'</tr>';
-    r+='<tr>'+td(lbl('Venue')+e(meta.venue),B)+td(lbl('Organising Body')+e(meta.org),B)+td(lbl('Vetted by')+e(meta.vettedBy),B)+td(lbl('Issue date')+e(meta.vettedDate),B)+td('Initials',IN)+'</tr>';
-    r+='<tr>'+td(lbl('Participant Group')+e(meta.participantGroupText),B)+td(lbl('RA Team Members')+'',LB)+td(lbl('Date of next review')+e(meta.nextReview),B,' colspan="3"')+'</tr>';
-    r+='<tr>'+td(lbl('Est. No. of Participants')+e(meta.participants),B)+td(lbl('RA Leader')+e(meta.raLeader),B)+td('',B,' colspan="3"')+'</tr>';
-    var mbrs=[meta.raMember1,meta.raMember2,meta.raMember3,meta.raMember4,meta.raMember5];
-    mbrs.forEach(function(m,i){ r+='<tr>'+td('',B)+td(lbl('RA Member '+(i+1))+e(m),B)+td('',B,' colspan="3"')+'</tr>'; });
-    return '<table style="width:100%;border-collapse:collapse;font-size:8pt;margin-bottom:14px;table-layout:fixed;">'
-      +'<colgroup><col style="width:14%"><col style="width:22%"><col style="width:10%"><col style="width:16%"><col style="width:24%"><col style="width:14%"></colgroup>'
+    r+='<tr>'+td('Activity Information',SC,' colspan="3"')+td('Initials &amp;<br>Company Stamp',SC)+td('Approval',SC,' colspan="3"')+'</tr>';
+    r+='<tr>'+d('Event / Programme Name',meta.prog)+d('Organising Body',meta.org)+d('RA Leader (Prepared by)',meta.raLeader)+td('',ST,' rowspan="7"')+d('Vetted by',meta.vettedBy)+d('Date',meta.vettedDate)+td(lbl('Initials')+'',IN)+'</tr>';
+    r+='<tr>'+d('Venue',meta.venue)+d('Event / Programme Lead (OIC)',meta.oic)+td(lbl('RA Members')+'',ML)+d('Approved by',meta.approvedBy)+d('Date',meta.approvedDate)+td(lbl('Initials')+'',IN)+'</tr>';
+    r+='<tr>'+d('Participant Group',meta.participantGroupText)+d('Est. No. of Participants',meta.participants)+td(e(meta.raMember1),B)+td(lbl('Date of next review')+e(meta.nextReview),B,' colspan="3"')+'</tr>';
+    var mbrs=[meta.raMember2,meta.raMember3,meta.raMember4,meta.raMember5];
+    mbrs.forEach(function(m){ r+='<tr>'+td('',B)+td('',B)+td(e(m),B)+td('',B)+td('',B)+td('',B)+'</tr>'; });
+    return '<table style="width:100%;border-collapse:collapse;font-family:Calibri,Arial,sans-serif;font-size:8pt;margin-bottom:14px;table-layout:fixed;">'
+      +'<colgroup><col style="width:15%"><col style="width:16%"><col style="width:16%"><col style="width:11%"><col style="width:16%"><col style="width:13%"><col style="width:13%"></colgroup>'
       +r+'</table>';
   }
 
 
   function buildColDefs(){
     return [
+      ['#',3],
       ['Task',9],['Location',8],['Hazard',12],['Who May Be Harmed',9],
       ['How They May Be Harmed',11],['Existing Controls',11],
       ['L',2.5],['S',2.5],['Initial Risk',6],
@@ -2147,8 +2159,8 @@ document.querySelectorAll("[data-filter-group]").forEach((group) => {
 
     function riskTd(val){ return '<td class="'+riskClass(val)+'">'+escapeHtml(val)+'</td>'; }
     function plainTd(val){ return '<td>'+escapeHtml(val)+'</td>'; }
-    function rowHtml(r){
-      return '<tr>'+plainTd(r.task)+plainTd(r.location)+plainTd(r.hazard)+plainTd(r.harmed)
+    function rowHtml(r,serial){
+      return '<tr>'+plainTd(serial)+plainTd(r.task)+plainTd(r.location)+plainTd(r.hazard)+plainTd(r.harmed)
         +plainTd(r.how)+plainTd(r.controls)+plainTd(r.likelihood)+plainTd(r.severity)
         +riskTd(r.risk)+plainTd(r.additional)+plainTd(r.responsible)+plainTd(r.targetDate)
         +plainTd(r.lRes)+plainTd(r.sRes)+riskTd(r.riskRes)+'</tr>';
@@ -2157,14 +2169,15 @@ document.querySelectorAll("[data-filter-group]").forEach((group) => {
     var phases = PHASE_ORDER.map(function(phase){
       var rows = included.filter(function(r){ return r.phase===phase; });
       if(!rows.length) return '';
+      var pn=PHASE_NUMS[phase]||0;
       return '<div class="ra-phase-title">'+phase+'</div>'
         +'<table class="ra-risk-table">'+colGroup+'<thead>'+thead+'</thead><tbody>'
-        +rows.map(rowHtml).join('')+'</tbody></table>';
+        +rows.map(function(r,i){ return rowHtml(r,pn+'.'+(i+1)); }).join('')+'</tbody></table>';
     }).join('');
 
     return '<div class="ra-preview-doc">'
-      +'<h2>Sport Hazard Identification &amp; Risk Assessment</h2>'
-      +'<p class="ra-sub">Generated from the Universal Sport HIRA Register'+(meta.assessDate!=='—'?' &nbsp;&bull;&nbsp; Date of Assessment: '+escapeHtml(meta.assessDate):'')+'</p>'
+      +'<h2 style="font-family:Calibri,Arial,sans-serif;font-size:14pt;margin:0 0 2px;">Sport Safety Risk Assessment</h2>'
+      +'<p class="ra-sub">Generated from the Sport Safety Portal Universal Register</p>'
       +buildRaHeader(meta)
       +(meta.context ? '<p class="ra-context"><strong>Additional context:</strong> '+escapeHtml(meta.context)+'</p>' : '')
       +phases+'</div>';
@@ -2184,8 +2197,8 @@ document.querySelectorAll("[data-filter-group]").forEach((group) => {
       return '<td style="border:1px solid #bbb;padding:3px 4px;font-size:7.5pt;vertical-align:top;'
         +(isRisk?'background:'+riskBg(val)+';font-weight:700;':'')+'">'+escapeHtml(val)+'</td>';
     }
-    function rowHtml(r){
-      return '<tr>'+tdp(r.task)+tdp(r.location)+tdp(r.hazard)+tdp(r.harmed)
+    function rowHtml(r,serial){
+      return '<tr>'+tdp(serial)+tdp(r.task)+tdp(r.location)+tdp(r.hazard)+tdp(r.harmed)
         +tdp(r.how)+tdp(r.controls)+tdp(r.likelihood)+tdp(r.severity)+tdp(r.risk,true)
         +tdp(r.additional)+tdp(r.responsible)+tdp(r.targetDate)
         +tdp(r.lRes)+tdp(r.sRes)+tdp(r.riskRes,true)+'</tr>';
@@ -2193,10 +2206,11 @@ document.querySelectorAll("[data-filter-group]").forEach((group) => {
     var phases = PHASE_ORDER.map(function(phase,i){
       var rows = included.filter(function(r){ return r.phase===phase; });
       if(!rows.length) return '';
+      var pn=PHASE_NUMS[phase]||0;
       return '<h3 style="font-size:10pt;margin:'+(i?'20px':'0')+' 0 6px;padding:4px 8px;'
         +'background:#f0f4f0;border-left:3px solid #355E3B;">'+phase+'</h3>'
         +'<table style="border-collapse:collapse;width:100%;table-layout:fixed;">'+colGroup
-        +'<thead>'+thead+'</thead><tbody>'+rows.map(rowHtml).join('')+'</tbody></table>';
+        +'<thead>'+thead+'</thead><tbody>'+rows.map(function(r,j){ return rowHtml(r,pn+'.'+(j+1)); }).join('')+'</tbody></table>';
     }).join('');
 
     return '<!DOCTYPE html><html><head><meta charset="utf-8"><title>Sport HIRA</title>'
@@ -2206,8 +2220,8 @@ document.querySelectorAll("[data-filter-group]").forEach((group) => {
       +'table{border-collapse:collapse;}td,th{border:1px solid #bbb;overflow-wrap:break-word;}'
       +'@media print{body{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}'
       +'</style></head><body>'
-      +'<h2 style="font-size:13pt;margin:0 0 2px;">Sport Hazard Identification &amp; Risk Assessment</h2>'
-      +'<p style="font-size:8pt;color:#666;margin:0 0 10px;">Generated from the Universal Sport HIRA Register</p>'
+      +'<h2 style="font-family:Calibri,Arial,sans-serif;font-size:13pt;margin:0 0 2px;">Sport Safety Risk Assessment</h2>'
+      +'<p style="font-family:Calibri,Arial,sans-serif;font-size:8pt;color:#666;margin:0 0 10px;">Generated from the Sport Safety Portal Universal Register</p>'
       +buildRaHeader(meta)
       +(meta.context ? '<p style="font-size:8.5pt;margin:0 0 12px;"><strong>Additional context:</strong> '+escapeHtml(meta.context)+'</p>' : '')
       +phases+'</body></html>';
@@ -2230,6 +2244,7 @@ document.querySelectorAll("[data-filter-group]").forEach((group) => {
 
     // Column widths (%) tuned to fit an A3 landscape page without ID/Phase columns
     const COLS = [
+      ['#', 3],
       ['Task', 9],
       ['Location', 8],
       ['Hazard', 12],
@@ -2260,8 +2275,8 @@ document.querySelectorAll("[data-filter-group]").forEach((group) => {
       return '#E1EDE3';
     }
 
-    function rowToTds(r){
-      return tdCell(r.task) + tdCell(r.location)
+    function rowToTds(r,serial){
+      return tdCell(serial) + tdCell(r.task) + tdCell(r.location)
         + tdCell(r.hazard) + tdCell(r.harmed) + tdCell(r.how) + tdCell(r.controls)
         + tdCell(r.likelihood) + tdCell(r.severity) + tdCell(r.risk,false,r.risk)
         + tdCell(r.additional) + tdCell(r.responsible) + tdCell(r.targetDate)
@@ -2272,7 +2287,8 @@ document.querySelectorAll("[data-filter-group]").forEach((group) => {
     const phaseSections = PHASE_ORDER.map((phase, idx)=>{
       const rows = included.filter(r=>r.phase===phase);
       if(rows.length===0) return '';
-      const bodyRows = rows.map(r=>'<tr>'+rowToTds(r)+'</tr>').join('');
+      const pn=PHASE_NUMS[phase]||0;
+      const bodyRows = rows.map((r,i)=>'<tr>'+rowToTds(r,pn+'.'+(i+1))+'</tr>').join('');
       return '<div style="margin-top:'+(idx===0?'0':'16pt')+';">'
         + '<h3 style="font-family:Arial;margin:0 0 6px;">'+phase+'</h3>'
         + '<table style="border-collapse:collapse;width:100%;table-layout:fixed;">'+colGroup+tableHead+bodyRows+'</table>'
@@ -2290,8 +2306,8 @@ document.querySelectorAll("[data-filter-group]").forEach((group) => {
       + 'table{border-collapse:collapse;} td,th{border:1px solid #999; overflow-wrap:break-word;}'
       + '</style>'
       + '</head><body><div class="Section1">'
-      + '<h2 style="font-family:Arial;margin-bottom:2px;">Sport Hazard Identification &amp; Risk Assessment</h2>'
-      + '<p style="font-size:9pt;color:#555;margin-top:0;">Generated from the Universal Sport HIRA Register</p>'
+      + '<h2 style="font-family:Calibri,Arial,sans-serif;margin-bottom:2px;">Sport Safety Risk Assessment</h2>'
+      + '<p style="font-family:Calibri,Arial,sans-serif;font-size:9pt;color:#555;margin-top:0;">Generated from the Sport Safety Portal Universal Register</p>'
       + buildRaHeader(meta)
       + (meta.context ? '<p style="font-size:9pt;"><b>Additional context:</b> '+escapeHtml(meta.context)+'</p>' : '')
       + phaseSections
