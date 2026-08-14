@@ -848,9 +848,12 @@ details.card summary { list-style: none; }
   
 
   <!-- STEP 1: EVENT DETAILS -->
-  <div class="step">
-    <div class="step-head"><div class="step-num">1</div><h2>Event Details</h2></div>
-    <div class="step-body">
+  <div class="step step-accordion open" id="eventDetailsCard">
+    <div class="step-head" onclick="this.closest('.step-accordion').classList.toggle('open')">
+      <div class="step-num">1</div><h2>Event Details</h2>
+      <span class="chevron">&#9660;</span>
+    </div>
+    <div class="accordion-body">
       <div class="grid">
         <div class="field"><label for="progName">Event / Programme Name</label><input type="text" id="progName" placeholder="e.g. Pesta Sukan Archery"/></div>
         <div class="field"><label for="assessor">Event / Programme Lead</label><input type="text" id="assessor" placeholder="Name &amp; designation"/></div>
