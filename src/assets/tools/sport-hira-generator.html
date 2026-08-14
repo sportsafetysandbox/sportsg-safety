@@ -501,6 +501,31 @@ details.card summary { list-style: none; }
 }
 .hira-app .step-body { padding: 1.25rem; }
 
+/* Accordion card */
+.hira-app .step-accordion .step-head {
+  cursor: pointer;
+  user-select: none;
+}
+.hira-app .step-accordion .step-head:hover {
+  background: var(--surface-3, var(--surface-2));
+}
+.hira-app .step-accordion .accordion-body {
+  display: none;
+  padding: 1.25rem;
+}
+.hira-app .step-accordion.open .accordion-body {
+  display: block;
+}
+.hira-app .step-accordion .chevron {
+  margin-left: auto;
+  font-size: 0.75rem;
+  color: var(--muted);
+  transition: transform 0.2s;
+}
+.hira-app .step-accordion.open .chevron {
+  transform: rotate(180deg);
+}
+
 /* Grid / Fields */
 .hira-app .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem 1.5rem; }
 .hira-app .grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
@@ -826,33 +851,35 @@ details.card summary { list-style: none; }
   <div class="step">
     <div class="step-head"><div class="step-num">1</div><h2>Event Details</h2></div>
     <div class="step-body">
-      <div class="grid cols-2" style="gap:2rem;">
-        <div>
-          <p class="field-section-label">Activity Information</p>
-          <div class="field"><label for="progName">Event / Programme Name</label><input type="text" id="progName" placeholder="e.g. Pesta Sukan Archery"/></div>
-          <div class="field"><label for="venue">Venue</label><input type="text" id="venue" placeholder="e.g. Bukit Gombak Stadium"/></div>
-          <div class="field"><label for="participantGroupText">Participant Group</label><input type="text" id="participantGroupText" placeholder="e.g. Competitive youth swimmers, 15&ndash;18 yrs"/></div>
-          <div class="field"><label for="participants">Est. No. of Participants</label><input type="number" id="participants" min="1" placeholder="e.g. 24"/></div>
-          <div class="field"><label for="eventDate">Event / Programme Date(s)</label><input type="text" id="eventDate" placeholder="e.g. 14 Sep &ndash; 20 Dec 2026"/></div>
-          <div class="field"><label for="assessDate">Date of Assessment</label><input type="date" id="assessDate"/></div>
-        </div>
-        <div>
-          <p class="field-section-label">Risk Assessment Ownership</p>
-          <div class="field"><label for="assessor">Event / Programme Lead (OIC)</label><input type="text" id="assessor" placeholder="Name &amp; designation"/></div>
-          <div class="field"><label for="organiser">Organising Body</label><input type="text" id="organiser" placeholder="e.g. Sport Singapore"/></div>
-          <div class="field"><label for="raLeader">RA Leader (Prepared by)</label><input type="text" id="raLeader" placeholder="Name &amp; designation"/></div>
-          <div class="field"><label for="raMember1">RA Member 1</label><input type="text" id="raMember1" placeholder="Name &amp; designation"/></div>
-        </div>
+      <div class="grid">
+        <div class="field"><label for="progName">Event / Programme Name</label><input type="text" id="progName" placeholder="e.g. Pesta Sukan Archery"/></div>
+        <div class="field"><label for="assessor">Event / Programme Lead</label><input type="text" id="assessor" placeholder="Name &amp; designation"/></div>
+        <div class="field"><label for="venue">Venue</label><input type="text" id="venue" placeholder="e.g. Bukit Gombak Stadium"/></div>
+        <div class="field"><label for="organiser">Organising Body</label><input type="text" id="organiser" placeholder="e.g. Sport Singapore"/></div>
+        <div class="field"><label for="participantGroupText">Participant Group</label><input type="text" id="participantGroupText" placeholder="e.g. Competitive youth swimmers, 15&ndash;18 yrs"/></div>
+        <div class="field"><label for="participants">Est. No. of Participants</label><input type="number" id="participants" min="1" placeholder="e.g. 24"/></div>
+        <div class="field full"><label for="eventDate">Event / Programme Date(s)</label><input type="text" id="eventDate" placeholder="e.g. 14 Sep &ndash; 20 Dec 2026"/></div>
       </div>
-      <div style="margin-top:1.75rem;">
-        <p class="field-section-label">Approval</p>
-        <div class="grid cols-2">
-          <div class="field"><label for="vettedBy">Vetted by</label><input type="text" id="vettedBy" placeholder="Name &amp; designation"/></div>
-          <div class="field"><label for="vettedDate">Vetting Date</label><input type="date" id="vettedDate"/></div>
-          <div class="field"><label for="approvedBy">Approved by</label><input type="text" id="approvedBy" placeholder="Name &amp; designation"/></div>
-          <div class="field"><label for="approvedDate">Approval Date</label><input type="date" id="approvedDate"/></div>
-          <div class="field"><label for="nextReview">Date of next review</label><input type="date" id="nextReview"/></div>
-        </div>
+    </div>
+  </div>
+
+  <!-- APPROVAL (accordion) -->
+  <div class="step step-accordion" id="approvalCard">
+    <div class="step-head" onclick="this.closest('.step-accordion').classList.toggle('open')">
+      <div class="step-num" style="background:var(--muted,#6b7280);font-size:0.85rem;">&#10003;</div>
+      <h2>Approval &amp; RA Ownership</h2>
+      <span class="chevron">&#9660;</span>
+    </div>
+    <div class="accordion-body">
+      <div class="grid">
+        <div class="field"><label for="raLeader">RA Leader (Prepared by)</label><input type="text" id="raLeader" placeholder="Name &amp; designation"/></div>
+        <div class="field"><label for="assessDate">Date of Assessment</label><input type="date" id="assessDate"/></div>
+        <div class="field full"><label for="raMember1">RA Member</label><input type="text" id="raMember1" placeholder="Name &amp; designation"/></div>
+        <div class="field"><label for="vettedBy">Vetted by</label><input type="text" id="vettedBy" placeholder="Name &amp; designation"/></div>
+        <div class="field"><label for="vettedDate">Vetting Date</label><input type="date" id="vettedDate"/></div>
+        <div class="field"><label for="approvedBy">Approved by</label><input type="text" id="approvedBy" placeholder="Name &amp; designation"/></div>
+        <div class="field"><label for="approvedDate">Approval Date</label><input type="date" id="approvedDate"/></div>
+        <div class="field full"><label for="nextReview">Date of next review</label><input type="date" id="nextReview"/></div>
       </div>
     </div>
   </div>
