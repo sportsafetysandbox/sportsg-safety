@@ -405,7 +405,7 @@
   <div class="card">
     <button
       class="collapsible-trigger"
-      aria-expanded="false"
+      aria-expanded="true"
       aria-controls="chart-psi7-body"
       onclick="handleToggle(this,'chart-psi7-body','psi7')"
     >
@@ -414,7 +414,7 @@
         <svg width="9" height="6" viewBox="0 0 9 6" fill="currentColor"><path d="M0 .5 4.5 6 9 .5H0z"/></svg>
       </span>
     </button>
-    <div class="collapsible-body" id="chart-psi7-body" role="region">
+    <div class="collapsible-body open" id="chart-psi7-body" role="region">
       <div class="chart-wrap"><canvas id="canvas-psi7" aria-label="Past 7 days PSI chart"></canvas></div>
     </div>
   </div>
@@ -423,7 +423,7 @@
   <div class="card">
     <button
       class="collapsible-trigger"
-      aria-expanded="false"
+      aria-expanded="true"
       aria-controls="chart-pm2524-body"
       onclick="handleToggle(this,'chart-pm2524-body','pm2524')"
     >
@@ -432,7 +432,7 @@
         <svg width="9" height="6" viewBox="0 0 9 6" fill="currentColor"><path d="M0 .5 4.5 6 9 .5H0z"/></svg>
       </span>
     </button>
-    <div class="collapsible-body" id="chart-pm2524-body" role="region">
+    <div class="collapsible-body open" id="chart-pm2524-body" role="region">
       <div class="chart-wrap"><canvas id="canvas-pm2524" aria-label="Past 24 hours PM2.5 chart"></canvas></div>
     </div>
   </div>
@@ -702,29 +702,16 @@ function drawChart(canvasId, labels, values, scale, ttSuffix) {
 const PENDING = {};
 const BUILT   = {};
 
-const ANIM_DELAY = 400; // ms — wait for max-height CSS transition before drawing
-
 function handleToggle(btn, bodyId, chartKey) {
   const body = document.getElementById(bodyId);
   const open = btn.getAttribute('aria-expanded') === 'true';
   btn.setAttribute('aria-expanded', String(!open));
   body.classList.toggle('open', !open);
-  if (!open && !BUILT[chartKey] && PENDING[chartKey]) {
-    setTimeout(() => {
-      PENDING[chartKey]();
-      BUILT[chartKey] = true;
-    }, ANIM_DELAY);
-  }
 }
 
 function registerChart(key, fn) {
-  PENDING[key] = fn;
-  BUILT[key]   = false;
-  const bodyMap = { psi7: 'chart-psi7-body', pm2524: 'chart-pm2524-body' };
-  if (document.getElementById(bodyMap[key])?.classList.contains('open')) {
-    // Body already open — draw after a short frame to ensure canvas has dimensions
-    requestAnimationFrame(() => { fn(); BUILT[key] = true; });
-  }
+  // Cards start open, so draw the chart immediately on data load
+  fn();
 }
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
