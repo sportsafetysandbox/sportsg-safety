@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>SG Air Quality</title>
+  <meta name="description" content="Real-time Singapore PSI and PM2.5 monitor with GPS-based region detection, NEA advisories, and 7-day history charts.">
+  <meta name="theme-color" content="#EDF7F1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+  /* ── Design tokens: light (Good / green default until data loads) ── */
+  :root {
+    --app-bg:      #EDF7F1;
+    --accent:      #22A05C;
+    --accent-soft: rgba(34,160,92,0.11);
+    --card-bg:     rgba(255,255,255,0.82);
+    --card-border: rgba(255,255,255,0.55);
+    --card-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 20px rgba(0,0,0,0.07);
+    --text-1: #0E1B14;
+    --text-2: #687076;
+    --text-3: #9CA3AF;
+    --divider: rgba(0,0,0,0.07);
+    --radius: 20px;
+    --radius-sm: 12px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --app-bg:      #0D1F16;
+      --card-bg:     rgba(13,28,20,0.88);
+      --card-border: rgba(255,255,255,0.05);
+      --card-shadow: 0 1px 2px rgba(0,0,0,0.3), 0 4px 24px rgba(0,0,0,0.45);
+      --text-1: #ECEDEE;
+      --text-2: #8B9099;
+      --text-3: #50585F;
+      --divider: rgba(255,255,255,0.06);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --app-bg:      #0D1F16;
+    --card-bg:     rgba(13,28,20,0.88);
+    --card-border: rgba(255,255,255,0.05);
+    --card-shadow: 0 1px 2px rgba(0,0,0,0.3), 0 4px 24px rgba(0,0,0,0.45);
+    --text-1: #ECEDEE;
+    --text-2: #8B9099;
+    --text-3: #50585F;
+    --divider: rgba(255,255,255,0.06);
+  }
+
+  /* ── Reset ── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    background: var(--app-bg);
+    color: var(--text-1);
+    min-height: 100vh;
+    transition: background-color 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* ── Layout ── */
+  .app {
+    max-width: 430px;
+    margin: 0 auto;
+    padding: 0 16px calc(32px + env(safe-area-inset-bottom, 0px));
+  }
+
+  /* ── Header ── */
+  .app-header {
+    padding: calc(56px + env(safe-area-inset-top, 0px)) 0 18px;
+  }
+
+  .app-wordmark {
+    font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+
+  .location-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .location-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: var(--accent-soft);
+    border-radius: 99px;
+    padding: 5px 11px 5px 9px;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--accent);
+    transition: background 0.4s, color 0.4s;
+  }
+
+  .location-pill svg { flex-shrink: 0; }
+
+  .update-time {
+    font-size: 11.5px;
+    color: var(--text-3);
+    font-weight: 500;
+  }
+
+  /* ── Cards shared ── */
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 20px;
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    box-shadow: var(--card-shadow);
+    margin-bottom: 11px;
+  }
+
+  .eyebrow {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin-bottom: 10px;
+    transition: color 0.3s;
+  }
+
+  /* ── Yesterday hero card ── */
+  .yesterday-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 20px 22px 18px;
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    box-shadow: var(--card-shadow);
+    margin-bottom: 11px;
+  }
+
+  .yday-inner {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .yday-psi {
+    font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+    font-size: clamp(72px, 22vw, 96px);
+    font-weight: 800;
+    line-height: 0.88;
+    letter-spacing: -0.04em;
+    font-variant-numeric: tabular-nums;
+    color: var(--accent);
+    transition: color 0.5s ease;
+  }
+
+  .yday-right {
+    text-align: right;
+    padding-bottom: 10px;
+    flex-shrink: 0;
+    max-width: 45%;
+  }
+
+  .yday-descriptor {
+    font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--accent);
+    transition: color 0.5s ease;
+    text-wrap: balance;
+  }
+
+  .yday-meta {
+    font-size: 11px;
+    color: var(--text-3);
+    margin-top: 4px;
+    line-height: 1.5;
+  }
+
+  /* ── Metric card ── */
+  .metric-main {
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+    margin-bottom: 4px;
+  }
+
+  .metric-num {
+    font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+    font-size: clamp(44px, 14vw, 56px);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    font-variant-numeric: tabular-nums;
+    transition: color 0.4s ease;
+    color: var(--text-1);
+  }
+
+  .metric-unit {
+    font-size: 13px;
+    color: var(--text-2);
+    font-weight: 500;
+    padding-bottom: 5px;
+  }
+
+  .metric-descriptor {
+    font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--text-3);
+    transition: color 0.4s ease;
+  }
+
+  .advisory-box {
+    border-radius: var(--radius-sm);
+    padding: 10px 13px;
+    font-size: 12.5px;
+    color: var(--text-2);
+    line-height: 1.6;
+    display: none;
+    transition: background 0.4s;
+  }
+
+  .reading-ts {
+    font-size: 10.5px;
+    color: var(--text-3);
+    margin-top: 9px;
+  }
+
+  /* ── Collapsible ── */
+  .collapsible-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    text-align: left;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: var(--text-1);
+  }
+
+  .collapsible-trigger:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  .chev-btn {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--divider);
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1), background 0.2s;
+    color: var(--text-3);
+  }
+
+  .collapsible-trigger[aria-expanded="true"] .chev-btn {
+    transform: rotate(180deg);
+  }
+
+  .collapsible-body {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .collapsible-body.open {
+    max-height: 350px;
+  }
+
+  .chart-wrap {
+    padding-top: 14px;
+    height: 196px;
+    position: relative;
+  }
+
+  /* ── Refresh button ── */
+  .refresh-wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 18px;
+  }
+
+  .refresh-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 99px;
+    padding: 10px 20px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-2);
+    cursor: pointer;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    box-shadow: var(--card-shadow);
+    transition: color 0.2s, transform 0.15s;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .refresh-btn:hover { color: var(--text-1); transform: scale(1.02); }
+  .refresh-btn:active { transform: scale(0.97); }
+  .refresh-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  .spin-ring {
+    display: none;
+    width: 14px;
+    height: 14px;
+    border: 2px solid var(--divider);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 0.75s linear infinite;
+  }
+
+  .spin-ring.active { display: block; }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+    }
+  }
+  </style>
+</head>
+<body>
+
+<div class="app">
+  <!-- ── Header ── -->
+  <header class="app-header">
+    <div class="app-wordmark">SG Air Quality</div>
+    <div class="location-row">
+      <div class="location-pill" id="loc-pill">
+        <svg width="9" height="12" viewBox="0 0 9 12" fill="currentColor" aria-hidden="true">
+          <path d="M4.5 0C2.015 0 0 2.015 0 4.5 0 7.875 4.5 12 4.5 12S9 7.875 9 4.5C9 2.015 6.985 0 4.5 0zm0 6.125A1.625 1.625 0 1 1 4.5 2.875a1.625 1.625 0 0 1 0 3.25z"/>
+        </svg>
+        <span id="loc-text">Detecting location…</span>
+      </div>
+      <span class="update-time" id="update-time"></span>
+    </div>
+  </header>
+
+  <!-- ── Yesterday 6pm PSI (hero) ── -->
+  <section class="yesterday-card" role="region" aria-label="Yesterday evening air quality">
+    <div class="eyebrow">Yesterday · 6 pm · Highest 24-hr PSI across all regions</div>
+    <div class="yday-inner">
+      <div id="yday-num" class="yday-psi" aria-live="polite">—</div>
+      <div class="yday-right">
+        <div id="yday-desc" class="yday-descriptor">—</div>
+        <div id="yday-meta" class="yday-meta">Highest region: —</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Current 24-hr PSI ── -->
+  <section class="card" role="region" aria-label="Current PSI reading">
+    <div class="eyebrow">Current 24-hr PSI · <span id="psi-region">Your Region</span></div>
+    <div class="metric-main">
+      <div id="psi-val" class="metric-num">—</div>
+      <span class="metric-unit">PSI</span>
+    </div>
+    <div id="psi-desc" class="metric-descriptor">—</div>
+    <div id="psi-adv" class="advisory-box"></div>
+    <div id="psi-ts" class="reading-ts"></div>
+  </section>
+
+  <!-- ── Current 1-hr PM2.5 ── -->
+  <section class="card" role="region" aria-label="Current PM2.5 reading">
+    <div class="eyebrow">Current 1-hr PM2.5 · <span id="pm25-region">Your Region</span></div>
+    <div class="metric-main">
+      <div id="pm25-val" class="metric-num">—</div>
+      <span class="metric-unit">μg/m³</span>
+    </div>
+    <div id="pm25-desc" class="metric-descriptor">—</div>
+    <div id="pm25-adv" class="advisory-box"></div>
+    <div id="pm25-ts" class="reading-ts"></div>
+  </section>
+
+  <!-- ── Past 7 Days PSI ── -->
+  <div class="card">
+    <button
+      class="collapsible-trigger"
+      aria-expanded="false"
+      aria-controls="chart-psi7-body"
+      onclick="handleToggle(this,'chart-psi7-body','psi7')"
+    >
+      <span class="eyebrow" style="margin:0">Past 7 Days · 24-hr PSI</span>
+      <span class="chev-btn" aria-hidden="true">
+        <svg width="9" height="6" viewBox="0 0 9 6" fill="currentColor"><path d="M0 .5 4.5 6 9 .5H0z"/></svg>
+      </span>
+    </button>
+    <div class="collapsible-body" id="chart-psi7-body" role="region">
+      <div class="chart-wrap"><canvas id="canvas-psi7" aria-label="Past 7 days PSI chart"></canvas></div>
+    </div>
+  </div>
+
+  <!-- ── Past 24hr PM2.5 ── -->
+  <div class="card">
+    <button
+      class="collapsible-trigger"
+      aria-expanded="false"
+      aria-controls="chart-pm2524-body"
+      onclick="handleToggle(this,'chart-pm2524-body','pm2524')"
+    >
+      <span class="eyebrow" style="margin:0">Past 24 Hours · 1-hr PM2.5 (from 7 pm yesterday)</span>
+      <span class="chev-btn" aria-hidden="true">
+        <svg width="9" height="6" viewBox="0 0 9 6" fill="currentColor"><path d="M0 .5 4.5 6 9 .5H0z"/></svg>
+      </span>
+    </button>
+    <div class="collapsible-body" id="chart-pm2524-body" role="region">
+      <div class="chart-wrap"><canvas id="canvas-pm2524" aria-label="Past 24 hours PM2.5 chart"></canvas></div>
+    </div>
+  </div>
+
+  <div class="refresh-wrap">
+    <button class="refresh-btn" onclick="runApp()" id="refresh-btn" aria-label="Refresh data">
+      <div class="spin-ring" id="spin-ring" aria-hidden="true"></div>
+      <span id="refresh-label">↻ Refresh</span>
+    </button>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// CONFIGURATION
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+const PSI_SCALE = [
+  { max: 50,       label: 'Good',           color: '#22A05C', lightBg: '#EDF7F1', darkBg: '#0D1F16',
+    advisory: 'Air quality is satisfactory. Normal activities can proceed.' },
+  { max: 100,      label: 'Moderate',        color: '#3B82F6', lightBg: '#EFF6FF', darkBg: '#091525',
+    advisory: 'Air quality is acceptable. Unusually sensitive individuals may experience minor irritation.' },
+  { max: 200,      label: 'Unhealthy',       color: '#CA8A04', lightBg: '#FFFAEB', darkBg: '#1A1200',
+    advisory: 'Persons with heart or lung disease, the elderly and children should reduce prolonged outdoor physical activities.' },
+  { max: 300,      label: 'Very Unhealthy',  color: '#EA6B00', lightBg: '#FFF7ED', darkBg: '#1A0D00',
+    advisory: 'Persons with heart or lung disease, the elderly and children should avoid outdoor activities. Others should reduce prolonged or strenuous outdoor exertion.' },
+  { max: Infinity, label: 'Hazardous',       color: '#DC2626', lightBg: '#FFF1F0', darkBg: '#1A0000',
+    advisory: 'Everyone should avoid all outdoor activities. Wear an N95 mask if going outdoors is unavoidable.' },
+];
+
+const PM25_SCALE = [
+  { max: 12,       label: 'Good',                           color: '#22A05C',
+    advisory: 'Air quality is satisfactory. Normal activities can proceed.' },
+  { max: 35,       label: 'Moderate',                       color: '#3B82F6',
+    advisory: 'Unusually sensitive individuals should consider reducing prolonged or heavy outdoor exertion.' },
+  { max: 55,       label: 'Unhealthy for Sensitive Groups', color: '#CA8A04',
+    advisory: 'Persons with heart or lung disease, the elderly and children should reduce prolonged outdoor exertion.' },
+  { max: 150,      label: 'Unhealthy',                      color: '#EA6B00',
+    advisory: 'Everyone should reduce prolonged or heavy outdoor exertion. Sensitive groups should avoid outdoor activities.' },
+  { max: 250,      label: 'Very Unhealthy',                 color: '#DC2626',
+    advisory: 'Everyone should avoid prolonged or heavy outdoor exertion. Sensitive groups should remain indoors.' },
+  { max: Infinity, label: 'Hazardous',                      color: '#7F1D1D',
+    advisory: 'Everyone should avoid all outdoor activities. Wear an N95 mask if you must go outdoors.' },
+];
+
+const REGIONS = ['north', 'south', 'east', 'west', 'central'];
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// UTILITIES
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+function levelFor(val, scale) {
+  return scale.find(l => val <= l.max) ?? scale[scale.length - 1];
+}
+
+function regionFrom(lat, lng) {
+  if (lat > 1.38)   return 'north';
+  if (lat < 1.28)   return 'south';
+  if (lng > 103.87) return 'east';
+  if (lng < 103.77) return 'west';
+  return 'central';
+}
+
+function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+
+function fmtDate(d) {
+  const p = n => String(n).padStart(2, '0');
+  return `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())}`;
+}
+
+function fmtHHMM(ts) {
+  const d = new Date(ts);
+  return `${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+}
+
+function fmtDayShort(d) {
+  return d.toLocaleDateString('en-SG', { weekday: 'short' });
+}
+
+function isDark() {
+  const dt = document.documentElement.dataset.theme;
+  if (dt === 'dark')  return true;
+  if (dt === 'light') return false;
+  return window.matchMedia('(prefers-color-scheme: dark)').matches;
+}
+
+function hexRgba(hex, a) {
+  const r = parseInt(hex.slice(1,3), 16);
+  const g = parseInt(hex.slice(3,5), 16);
+  const b = parseInt(hex.slice(5,7), 16);
+  return `rgba(${r},${g},${b},${a})`;
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// API
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+const API = 'https://api-open.data.gov.sg/v2/real-time/api';
+
+async function apiFetch(endpoint, params = {}) {
+  const url = new URL(`${API}/${endpoint}`);
+  for (const [k, v] of Object.entries(params)) url.searchParams.set(k, v);
+  const res = await fetch(url.toString(), { signal: AbortSignal.timeout(12000) });
+  if (!res.ok) throw new Error(`API ${res.status}`);
+  return res.json();
+}
+
+function getItems(data) {
+  return data?.data?.items ?? data?.items ?? [];
+}
+
+function closestTo18(items) {
+  if (!items.length) return null;
+  const TARGET = 18 * 60;
+  return items.reduce((best, item) => {
+    const d   = new Date(item.timestamp ?? item.update_timestamp ?? 0);
+    const min = d.getHours() * 60 + d.getMinutes();
+    const bd  = new Date(best.timestamp ?? best.update_timestamp ?? 0);
+    const bm  = bd.getHours() * 60 + bd.getMinutes();
+    return Math.abs(min - TARGET) < Math.abs(bm - TARGET) ? item : best;
+  });
+}
+
+function psiVal(item, region) {
+  return item?.readings?.psi_twenty_four_hourly?.[region]
+      ?? item?.readings?.psi_twenty_four_hourly?.national
+      ?? null;
+}
+
+function pm25Val(item, region) {
+  return item?.readings?.pm25_one_hourly?.[region] ?? null;
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// THEME
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+function applyBgForPSI(value) {
+  const level = levelFor(value, PSI_SCALE);
+  const dark  = isDark();
+  const bg    = dark ? level.darkBg : level.lightBg;
+  const root  = document.documentElement;
+  root.style.setProperty('--app-bg', bg);
+  root.style.setProperty('--accent', level.color);
+  root.style.setProperty('--accent-soft', hexRgba(level.color, 0.11));
+  document.body.style.background = bg;
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// DOM UPDATES
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+function renderYesterday(value, regionLabel) {
+  if (value == null) return;
+  const lv = levelFor(value, PSI_SCALE);
+  document.getElementById('yday-num').textContent  = value;
+  document.getElementById('yday-num').style.color  = lv.color;
+  document.getElementById('yday-desc').textContent = lv.label;
+  document.getElementById('yday-desc').style.color = lv.color;
+  document.getElementById('yday-meta').textContent = `Highest region: ${regionLabel}`;
+  applyBgForPSI(value);
+}
+
+function renderPSI(value, region) {
+  if (value == null) return;
+  const lv = levelFor(value, PSI_SCALE);
+  document.getElementById('psi-val').textContent   = value;
+  document.getElementById('psi-val').style.color   = lv.color;
+  document.getElementById('psi-desc').textContent  = lv.label;
+  document.getElementById('psi-desc').style.color  = lv.color;
+  const adv = document.getElementById('psi-adv');
+  adv.textContent      = lv.advisory;
+  adv.style.display    = 'block';
+  adv.style.background = hexRgba(lv.color, 0.09);
+  document.getElementById('psi-region').textContent = cap(region);
+}
+
+function renderPM25(value, region) {
+  if (value == null) return;
+  const lv = levelFor(value, PM25_SCALE);
+  document.getElementById('pm25-val').textContent  = value;
+  document.getElementById('pm25-val').style.color  = lv.color;
+  document.getElementById('pm25-desc').textContent = lv.label;
+  document.getElementById('pm25-desc').style.color = lv.color;
+  const adv = document.getElementById('pm25-adv');
+  adv.textContent      = lv.advisory;
+  adv.style.display    = 'block';
+  adv.style.background = hexRgba(lv.color, 0.09);
+  document.getElementById('pm25-region').textContent = cap(region);
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// CHARTS
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+const CHARTS = {};
+
+function chartColors() {
+  const dark = isDark();
+  return {
+    grid:  dark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)',
+    tick:  dark ? '#50585F' : '#9CA3AF',
+    tt_bg: dark ? '#111C15'  : '#FFFFFF',
+    tt_t:  dark ? '#ECEDEE'  : '#0E1B14',
+    tt_b:  dark ? '#8B9099'  : '#687076',
+    tt_br: dark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.07)',
+  };
+}
+
+function drawChart(canvasId, labels, values, scale, ttSuffix) {
+  const ctx = document.getElementById(canvasId)?.getContext('2d');
+  if (!ctx) return;
+  if (CHARTS[canvasId]) CHARTS[canvasId].destroy();
+  const c    = chartColors();
+  const FONT = { family: "'Plus Jakarta Sans', system-ui, sans-serif", size: 10, weight: '500' };
+  CHARTS[canvasId] = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [{
+        data: values,
+        backgroundColor: values.map(v => hexRgba(levelFor(v, scale).color, 0.72)),
+        borderWidth: 0,
+        borderRadius: 5,
+        borderSkipped: false,
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: { duration: 500, easing: 'easeOutQuart' },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: c.tt_bg,
+          titleColor: c.tt_t,
+          bodyColor:  c.tt_b,
+          borderColor: c.tt_br,
+          borderWidth: 1,
+          cornerRadius: 10,
+          padding: 10,
+          callbacks: { label: ctx => ` ${ctx.raw}${ttSuffix}` }
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          grid:   { color: c.grid, drawTicks: false },
+          border: { display: false },
+          ticks:  { color: c.tick, font: FONT, padding: 6, maxTicksLimit: 5 }
+        },
+        x: {
+          grid:   { display: false },
+          border: { display: false },
+          ticks:  { color: c.tick, font: FONT, maxRotation: 40, minRotation: 0 }
+        }
+      }
+    }
+  });
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// COLLAPSIBLE
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+const PENDING = {};
+const BUILT   = {};
+
+function handleToggle(btn, bodyId, chartKey) {
+  const body = document.getElementById(bodyId);
+  const open = btn.getAttribute('aria-expanded') === 'true';
+  btn.setAttribute('aria-expanded', String(!open));
+  body.classList.toggle('open', !open);
+  if (!open && !BUILT[chartKey] && PENDING[chartKey]) {
+    PENDING[chartKey]();
+    BUILT[chartKey] = true;
+  }
+}
+
+function registerChart(key, fn) {
+  PENDING[key] = fn;
+  BUILT[key]   = false;
+  const bodyMap = { psi7: 'chart-psi7-body', pm2524: 'chart-pm2524-body' };
+  if (document.getElementById(bodyMap[key])?.classList.contains('open')) {
+    fn();
+    BUILT[key] = true;
+  }
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// DATA FETCHING
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+async function loadPSIHistory(today, region) {
+  const days = Array.from({ length: 7 }, (_, i) => {
+    const d = new Date(today);
+    d.setDate(today.getDate() - (6 - i));
+    return d;
+  });
+
+  const results = await Promise.all(
+    days.map(d => apiFetch('psi', { date: fmtDate(d) }).catch(() => null))
+  );
+
+  const labels = days.map(fmtDayShort);
+  const values = results.map(data => {
+    if (!data) return 0;
+    const item = closestTo18(getItems(data));
+    return psiVal(item, region) ?? 0;
+  });
+
+  registerChart('psi7', () => drawChart('canvas-psi7', labels, values, PSI_SCALE, ' PSI'));
+}
+
+async function loadPM25History(today, yesterday, region) {
+  const [yData, tData] = await Promise.all([
+    apiFetch('pm25', { date: fmtDate(yesterday) }).catch(() => null),
+    apiFetch('pm25', { date: fmtDate(today)     }).catch(() => null),
+  ]);
+
+  const labels = [], values = [];
+
+  function extract(data, fromHour, toHour) {
+    for (const item of getItems(data)) {
+      const d = new Date(item.timestamp ?? item.update_timestamp ?? 0);
+      const h = d.getHours();
+      if (h >= fromHour && h < toHour) {
+        const v = pm25Val(item, region);
+        if (v != null) {
+          labels.push(fmtHHMM(item.timestamp ?? item.update_timestamp));
+          values.push(v);
+        }
+      }
+    }
+  }
+
+  extract(yData, 19, 24);
+  extract(tData, 0, new Date().getHours() + 1);
+
+  registerChart('pm2524', () => drawChart('canvas-pm2524', labels, values, PM25_SCALE, ' μg/m³'));
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// MAIN
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+let running    = false;
+let userRegion = 'central';
+
+async function getCoords() {
+  return new Promise(resolve => {
+    if (!navigator.geolocation) return resolve(null);
+    navigator.geolocation.getCurrentPosition(
+      p => resolve(p.coords),
+      () => resolve(null),
+      { timeout: 8000, maximumAge: 300000 }
+    );
+  });
+}
+
+async function runApp() {
+  if (running) return;
+  running = true;
+
+  document.getElementById('spin-ring').classList.add('active');
+  document.getElementById('refresh-label').textContent = 'Updating…';
+  document.getElementById('update-time').textContent = '';
+
+  try {
+    const coords = await getCoords();
+    if (coords) userRegion = regionFrom(coords.latitude, coords.longitude);
+    document.getElementById('loc-text').textContent = `${cap(userRegion)}, Singapore`;
+
+    const today     = new Date();
+    const yesterday = new Date(today);
+    yesterday.setDate(today.getDate() - 1);
+
+    const [curPSI, curPM25, ydayPSI] = await Promise.all([
+      apiFetch('psi').catch(() => null),
+      apiFetch('pm25').catch(() => null),
+      apiFetch('psi', { date: fmtDate(yesterday) }).catch(() => null),
+    ]);
+
+    if (curPSI) {
+      const items = getItems(curPSI);
+      const item  = items[items.length - 1];
+      renderPSI(psiVal(item, userRegion), userRegion);
+      if (item?.timestamp)
+        document.getElementById('psi-ts').textContent = `Reading as at ${fmtHHMM(item.timestamp)}`;
+    }
+
+    if (curPM25) {
+      const items = getItems(curPM25);
+      const item  = items[items.length - 1];
+      renderPM25(pm25Val(item, userRegion), userRegion);
+      if (item?.timestamp)
+        document.getElementById('pm25-ts').textContent = `Reading as at ${fmtHHMM(item.timestamp)}`;
+    }
+
+    if (ydayPSI) {
+      const item6pm = closestTo18(getItems(ydayPSI));
+      if (item6pm) {
+        const r = item6pm.readings?.psi_twenty_four_hourly ?? {};
+        let maxVal = 0, maxReg = 'central';
+        for (const reg of REGIONS) {
+          if (r[reg] != null && r[reg] > maxVal) { maxVal = r[reg]; maxReg = reg; }
+        }
+        if (maxVal > 0) renderYesterday(maxVal, cap(maxReg));
+      }
+    }
+
+    await Promise.all([
+      loadPSIHistory(today, userRegion),
+      loadPM25History(today, yesterday, userRegion),
+    ]);
+
+    document.getElementById('update-time').textContent =
+      `as of ${fmtHHMM(new Date().toISOString())}`;
+
+  } catch (err) {
+    console.error('runApp error:', err);
+    document.getElementById('update-time').textContent = 'Could not load data';
+  } finally {
+    document.getElementById('spin-ring').classList.remove('active');
+    document.getElementById('refresh-label').textContent = '↻ Refresh';
+    running = false;
+  }
+}
+
+runApp();
+</script>
+
+</body>
+</html>
