@@ -527,7 +527,7 @@ function hexRgba(hex, a) {
 // API
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-const API = 'https://api-open.data.gov.sg/v2/real-time/api';
+const API = 'https://sg-air-quality-proxy.ryhanhusainni.workers.dev';
 
 async function apiFetch(endpoint, params = {}) {
   const url = new URL(`${API}/${endpoint}`);
