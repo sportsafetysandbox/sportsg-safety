@@ -465,17 +465,13 @@ const PSI_SCALE = [
 ];
 
 const PM25_SCALE = [
-  { max: 12,       label: 'Good',                           color: '#22A05C',
+  { max: 55,       label: 'Low',         color: '#3B82F6',
     advisory: 'Air quality is satisfactory. Normal activities can proceed.' },
-  { max: 35,       label: 'Moderate',                       color: '#3B82F6',
-    advisory: 'Unusually sensitive individuals should consider reducing prolonged or heavy outdoor exertion.' },
-  { max: 55,       label: 'Unhealthy for Sensitive Groups', color: '#CA8A04',
-    advisory: 'Persons with heart or lung disease, the elderly and children should reduce prolonged outdoor exertion.' },
-  { max: 150,      label: 'Unhealthy',                      color: '#EA6B00',
+  { max: 150,      label: 'Moderate',    color: '#EAB308',
     advisory: 'Everyone should reduce prolonged or heavy outdoor exertion. Sensitive groups should avoid outdoor activities.' },
-  { max: 250,      label: 'Very Unhealthy',                 color: '#DC2626',
+  { max: 250,      label: 'High',        color: '#EA6B00',
     advisory: 'Everyone should avoid prolonged or heavy outdoor exertion. Sensitive groups should remain indoors.' },
-  { max: Infinity, label: 'Hazardous',                      color: '#7F1D1D',
+  { max: Infinity, label: 'Very High',   color: '#DC2626',
     advisory: 'Everyone should avoid all outdoor activities. Wear an N95 mask if you must go outdoors.' },
 ];
 
@@ -655,7 +651,7 @@ function drawChart(canvasId, labels, values, scale, ttSuffix, yTicks) {
       labels,
       datasets: [{
         data: values,
-        backgroundColor: values.map(v => hexRgba(levelFor(v, scale).color, 0.72)),
+        backgroundColor: values.map(v => v == null ? 'transparent' : hexRgba(levelFor(v, scale).color, 0.72)),
         borderWidth: 0,
         borderRadius: 5,
         borderSkipped: false,
@@ -715,8 +711,9 @@ function handleToggle(btn, bodyId, chartKey) {
 }
 
 function registerChart(key, fn) {
-  // Cards start open, so draw the chart immediately on data load
-  fn();
+  // Double-RAF ensures the browser has done at least one layout pass
+  // so the canvas has real pixel dimensions before Chart.js reads them
+  requestAnimationFrame(() => requestAnimationFrame(fn));
 }
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -738,9 +735,9 @@ async function loadPSIHistory(today, region) {
 
   const labels = days.map(d => d.toLocaleDateString('en-SG', { day: 'numeric', month: 'short' }));
   const values = results.map(data => {
-    if (!data) return 0;
+    if (!data) return null;
     const item = closestTo18(getItems(data));
-    return psiVal(item, region) ?? 0;
+    return psiVal(item, region) ?? null;
   });
 
   registerChart('psi7', () => drawChart('canvas-psi7', labels, values, PSI_SCALE, ' PSI', [0, 101, 201, 301]));
