@@ -685,6 +685,8 @@ function drawChart(canvasId, labels, values, scale, ttSuffix, yTicks) {
           border: { display: false },
           ticks:  { color: c.tick, font: FONT, padding: 6, maxTicksLimit: 5 },
           ...(yTicks ? {
+            min: yTicks[0],
+            max: yTicks[yTicks.length - 1],
             afterBuildTicks: axis => { axis.ticks = yTicks.map(v => ({ value: v })); }
           } : {})
         },
