@@ -719,12 +719,13 @@ function registerChart(key, fn) {
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 async function loadPSIHistory(today, region) {
-  // Last 7 complete days: today-7 to today-1 (exclude today — no 6pm reading yet)
-  const days = Array.from({ length: 7 }, (_, i) => {
+  // Past 7 complete days: today-7 (oldest) through today-1 (yesterday)
+  const days = [];
+  for (let i = 7; i >= 1; i--) {
     const d = new Date(today);
-    d.setDate(today.getDate() - (7 - i));
-    return d;
-  });
+    d.setDate(d.getDate() - i);
+    days.push(d);
+  }
 
   const results = await Promise.all(
     days.map(d => apiFetch('psi', { date: fmtDate(d) }).catch(() => null))
@@ -740,34 +741,33 @@ async function loadPSIHistory(today, region) {
   registerChart('psi7', () => drawChart('canvas-psi7', labels, values, PSI_SCALE, ' PSI'));
 }
 
-async function loadPM25History(today, yesterday, region) {
+async function loadPM25History(today, region) {
+  // Fetch yesterday + today, then keep only items within the past 24 hours
+  const yesterday = new Date(today);
+  yesterday.setDate(today.getDate() - 1);
+  const cutoff = Date.now() - 24 * 60 * 60 * 1000;
+
   const [yData, tData] = await Promise.all([
     apiFetch('pm25', { date: fmtDate(yesterday) }).catch(() => null),
     apiFetch('pm25', { date: fmtDate(today)     }).catch(() => null),
   ]);
 
-  // Collect qualifying items from both days, then sort chronologically
-  // (API returns newest-first, so we must sort before charting)
-  const collected = [];
-  const nowHour = new Date().getHours();
+  // Merge both days, filter to past 24 hours, deduplicate, sort chronologically
+  const seen = new Set();
+  const items = [...getItems(yData), ...getItems(tData)]
+    .filter(item => {
+      const ts = new Date(item.timestamp ?? item.update_timestamp ?? 0).getTime();
+      if (ts < cutoff || seen.has(ts)) return false;
+      seen.add(ts);
+      return true;
+    })
+    .sort((a, b) =>
+      new Date(a.timestamp ?? a.update_timestamp ?? 0) -
+      new Date(b.timestamp ?? b.update_timestamp ?? 0)
+    );
 
-  function collect(data, fromHour, toHour) {
-    for (const item of getItems(data)) {
-      const d = new Date(item.timestamp ?? item.update_timestamp ?? 0);
-      const h = d.getHours();
-      if (h >= fromHour && h < toHour) {
-        const v = pm25Val(item, region);
-        if (v != null) collected.push({ ts: d.getTime(), label: fmtHHMM(item.timestamp ?? item.update_timestamp), value: v });
-      }
-    }
-  }
-
-  collect(yData, 19, 24);
-  collect(tData, 0, nowHour + 1);
-  collected.sort((a, b) => a.ts - b.ts);
-
-  const labels = collected.map(x => x.label);
-  const values = collected.map(x => x.value);
+  const labels = items.map(item => fmtHHMM(item.timestamp ?? item.update_timestamp));
+  const values = items.map(item => pm25Val(item, region) ?? 0);
 
   registerChart('pm2524', () => drawChart('canvas-pm2524', labels, values, PM25_SCALE, ' μg/m³'));
 }
@@ -815,7 +815,7 @@ async function runApp() {
 
     if (curPSI) {
       const items = getItems(curPSI);
-      const item  = items[items.length - 1];
+      const item  = items[0]; // API returns newest-first
       renderPSI(psiVal(item, userRegion), userRegion);
       if (item?.timestamp)
         document.getElementById('psi-ts').textContent = `Reading as at ${fmtHHMM(item.timestamp)}`;
@@ -823,7 +823,7 @@ async function runApp() {
 
     if (curPM25) {
       const items = getItems(curPM25);
-      const item  = items[items.length - 1];
+      const item  = items[0]; // API returns newest-first
       renderPM25(pm25Val(item, userRegion), userRegion);
       if (item?.timestamp)
         document.getElementById('pm25-ts').textContent = `Reading as at ${fmtHHMM(item.timestamp)}`;
@@ -843,7 +843,7 @@ async function runApp() {
 
     await Promise.all([
       loadPSIHistory(today, userRegion),
-      loadPM25History(today, yesterday, userRegion),
+      loadPM25History(today, userRegion),
     ]);
 
     document.getElementById('update-time').textContent =
