@@ -702,14 +702,18 @@ function drawChart(canvasId, labels, values, scale, ttSuffix) {
 const PENDING = {};
 const BUILT   = {};
 
+const ANIM_DELAY = 400; // ms — wait for max-height CSS transition before drawing
+
 function handleToggle(btn, bodyId, chartKey) {
   const body = document.getElementById(bodyId);
   const open = btn.getAttribute('aria-expanded') === 'true';
   btn.setAttribute('aria-expanded', String(!open));
   body.classList.toggle('open', !open);
   if (!open && !BUILT[chartKey] && PENDING[chartKey]) {
-    PENDING[chartKey]();
-    BUILT[chartKey] = true;
+    setTimeout(() => {
+      PENDING[chartKey]();
+      BUILT[chartKey] = true;
+    }, ANIM_DELAY);
   }
 }
 
@@ -718,8 +722,8 @@ function registerChart(key, fn) {
   BUILT[key]   = false;
   const bodyMap = { psi7: 'chart-psi7-body', pm2524: 'chart-pm2524-body' };
   if (document.getElementById(bodyMap[key])?.classList.contains('open')) {
-    fn();
-    BUILT[key] = true;
+    // Body already open — draw after a short frame to ensure canvas has dimensions
+    requestAnimationFrame(() => { fn(); BUILT[key] = true; });
   }
 }
 
@@ -728,9 +732,10 @@ function registerChart(key, fn) {
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 async function loadPSIHistory(today, region) {
+  // Last 7 complete days: today-7 to today-1 (exclude today — no 6pm reading yet)
   const days = Array.from({ length: 7 }, (_, i) => {
     const d = new Date(today);
-    d.setDate(today.getDate() - (6 - i));
+    d.setDate(today.getDate() - (7 - i));
     return d;
   });
 
@@ -738,7 +743,7 @@ async function loadPSIHistory(today, region) {
     days.map(d => apiFetch('psi', { date: fmtDate(d) }).catch(() => null))
   );
 
-  const labels = days.map(fmtDayShort);
+  const labels = days.map(d => d.toLocaleDateString('en-SG', { day: 'numeric', month: 'short' }));
   const values = results.map(data => {
     if (!data) return 0;
     const item = closestTo18(getItems(data));
@@ -754,24 +759,28 @@ async function loadPM25History(today, yesterday, region) {
     apiFetch('pm25', { date: fmtDate(today)     }).catch(() => null),
   ]);
 
-  const labels = [], values = [];
+  // Collect qualifying items from both days, then sort chronologically
+  // (API returns newest-first, so we must sort before charting)
+  const collected = [];
+  const nowHour = new Date().getHours();
 
-  function extract(data, fromHour, toHour) {
+  function collect(data, fromHour, toHour) {
     for (const item of getItems(data)) {
       const d = new Date(item.timestamp ?? item.update_timestamp ?? 0);
       const h = d.getHours();
       if (h >= fromHour && h < toHour) {
         const v = pm25Val(item, region);
-        if (v != null) {
-          labels.push(fmtHHMM(item.timestamp ?? item.update_timestamp));
-          values.push(v);
-        }
+        if (v != null) collected.push({ ts: d.getTime(), label: fmtHHMM(item.timestamp ?? item.update_timestamp), value: v });
       }
     }
   }
 
-  extract(yData, 19, 24);
-  extract(tData, 0, new Date().getHours() + 1);
+  collect(yData, 19, 24);
+  collect(tData, 0, nowHour + 1);
+  collected.sort((a, b) => a.ts - b.ts);
+
+  const labels = collected.map(x => x.label);
+  const values = collected.map(x => x.value);
 
   registerChart('pm2524', () => drawChart('canvas-pm2524', labels, values, PM25_SCALE, ' μg/m³'));
 }
