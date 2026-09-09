@@ -25,20 +25,28 @@ export default {
     for (const [k, v] of url.searchParams) target.searchParams.set(k, v);
 
     try {
+      // Pass key as query parameter — header-based auth is stripped
+      // by some intermediaries on server-to-server requests
+      target.searchParams.set('api-key', env.API_KEY);
+
       const res = await fetch(target.toString(), {
-        headers: { Authorization: env.API_KEY },
-        // Cache identical requests at Cloudflare's edge for 5 minutes
-        cf: { cacheTtl: 300, cacheEverything: true },
+        cf: { cacheEverything: false },
       });
 
       const body = await res.text();
+
+      // Only cache successful responses
+      const cacheHeaders = res.ok
+        ? { 'Cache-Control': 'public, max-age=300' }
+        : { 'Cache-Control': 'no-store' };
 
       return new Response(body, {
         status: res.status,
         headers: {
           ...CORS,
           'Content-Type': 'application/json',
-          'Cache-Control': 'public, max-age=300',
+          'X-Upstream-Status': String(res.status),
+          ...cacheHeaders,
         },
       });
     } catch (err) {
