@@ -465,14 +465,14 @@ const PSI_SCALE = [
 ];
 
 const PM25_SCALE = [
-  { max: 55,       label: 'Low',         color: '#3B82F6',
-    advisory: 'Air quality is satisfactory. Normal activities can proceed.' },
-  { max: 150,      label: 'Moderate',    color: '#EAB308',
-    advisory: 'Everyone should reduce prolonged or heavy outdoor exertion. Sensitive groups should avoid outdoor activities.' },
-  { max: 250,      label: 'High',        color: '#EA6B00',
-    advisory: 'Everyone should avoid prolonged or heavy outdoor exertion. Sensitive groups should remain indoors.' },
-  { max: Infinity, label: 'Very High',   color: '#DC2626',
-    advisory: 'Everyone should avoid all outdoor activities. Wear an N95 mask if you must go outdoors.' },
+  { max: 55,       label: 'Normal',    color: '#3B82F6',
+    advisory: 'Air quality is normal. No restriction on outdoor activities.' },
+  { max: 150,      label: 'Elevated',  color: '#EAB308',
+    advisory: 'Air quality is elevated. Sensitive groups should reduce prolonged outdoor exertion.' },
+  { max: 250,      label: 'High',      color: '#EA6B00',
+    advisory: 'Air quality is high. Everyone should reduce outdoor activities. Sensitive groups should remain indoors.' },
+  { max: Infinity, label: 'Very High', color: '#DC2626',
+    advisory: 'Air quality is very high. Everyone should avoid outdoor activities. Wear an N95 mask if going outdoors.' },
 ];
 
 const REGIONS = ['north', 'south', 'east', 'west', 'central'];
