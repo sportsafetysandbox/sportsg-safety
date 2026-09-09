@@ -452,27 +452,27 @@
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 const PSI_SCALE = [
-  { max: 50,       label: 'Good',           color: '#22A05C', lightBg: '#EDF7F1', darkBg: '#0D1F16',
-    advisory: 'Air quality is satisfactory. Normal activities can proceed.' },
-  { max: 100,      label: 'Moderate',        color: '#3B82F6', lightBg: '#EFF6FF', darkBg: '#091525',
-    advisory: 'Air quality is acceptable. Unusually sensitive individuals may experience minor irritation.' },
-  { max: 200,      label: 'Unhealthy',       color: '#CA8A04', lightBg: '#FFFAEB', darkBg: '#1A1200',
-    advisory: 'Persons with heart or lung disease, the elderly and children should reduce prolonged outdoor physical activities.' },
-  { max: 300,      label: 'Very Unhealthy',  color: '#EA6B00', lightBg: '#FFF7ED', darkBg: '#1A0D00',
-    advisory: 'Persons with heart or lung disease, the elderly and children should avoid outdoor activities. Others should reduce prolonged or strenuous outdoor exertion.' },
-  { max: Infinity, label: 'Hazardous',       color: '#DC2626', lightBg: '#FFF1F0', darkBg: '#1A0000',
-    advisory: 'Everyone should avoid all outdoor activities. Wear an N95 mask if going outdoors is unavoidable.' },
+  { max: 50,       label: 'Good',          color: '#22A05C', lightBg: '#EDF7F1', darkBg: '#0D1F16',
+    advisory: 'Normal activities for all groups.' },
+  { max: 100,      label: 'Moderate',      color: '#3B82F6', lightBg: '#EFF6FF', darkBg: '#091525',
+    advisory: 'Normal activities for all groups.' },
+  { max: 200,      label: 'Unhealthy',     color: '#CA8A04', lightBg: '#FFFAEB', darkBg: '#1A1200',
+    advisory: 'Healthy persons: Reduce prolonged or strenuous outdoor physical exertion. Elderly, pregnant women and children: Minimise prolonged or strenuous outdoor physical exertion. Persons with chronic lung or heart disease: Avoid prolonged or strenuous outdoor physical exertion.' },
+  { max: 300,      label: 'Very Unhealthy', color: '#EA6B00', lightBg: '#FFF7ED', darkBg: '#1A0D00',
+    advisory: 'Healthy persons: Avoid prolonged or strenuous outdoor physical exertion. Elderly, pregnant women and children: Minimise outdoor activity. Persons with chronic lung or heart disease: Avoid outdoor activity.' },
+  { max: Infinity, label: 'Hazardous',     color: '#DC2626', lightBg: '#FFF1F0', darkBg: '#1A0000',
+    advisory: 'Healthy persons: Minimise outdoor activity. Elderly, pregnant women, children and persons with chronic lung or heart disease: Avoid outdoor activity.' },
 ];
 
 const PM25_SCALE = [
   { max: 55,       label: 'Normal',    color: '#3B82F6',
-    advisory: 'Air quality is normal. No restriction on outdoor activities.' },
+    advisory: 'Continue with normal activities.' },
   { max: 150,      label: 'Elevated',  color: '#EAB308',
-    advisory: 'Air quality is elevated. Sensitive groups should reduce prolonged outdoor exertion.' },
+    advisory: 'Reduce strenuous outdoor activity for the next hour. Vulnerable persons: Avoid strenuous outdoor activity for the next hour.' },
   { max: 250,      label: 'High',      color: '#EA6B00',
-    advisory: 'Air quality is high. Everyone should reduce outdoor activities. Sensitive groups should remain indoors.' },
+    advisory: 'Avoid strenuous outdoor activity for the next hour. Vulnerable persons: Avoid all outdoor activity for the next hour.' },
   { max: Infinity, label: 'Very High', color: '#DC2626',
-    advisory: 'Air quality is very high. Everyone should avoid outdoor activities. Wear an N95 mask if going outdoors.' },
+    advisory: 'Minimise all outdoor activity for the next hour. Vulnerable persons: Avoid all outdoor activity for the next hour.' },
 ];
 
 const REGIONS = ['north', 'south', 'east', 'west', 'central'];
