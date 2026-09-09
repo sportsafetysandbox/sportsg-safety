@@ -643,7 +643,7 @@ function chartColors() {
   };
 }
 
-function drawChart(canvasId, labels, values, scale, ttSuffix) {
+function drawChart(canvasId, labels, values, scale, ttSuffix, yTicks) {
   const ctx = document.getElementById(canvasId)?.getContext('2d');
   if (!ctx) return;
   if (CHARTS[canvasId]) CHARTS[canvasId].destroy();
@@ -683,7 +683,10 @@ function drawChart(canvasId, labels, values, scale, ttSuffix) {
           beginAtZero: true,
           grid:   { color: c.grid, drawTicks: false },
           border: { display: false },
-          ticks:  { color: c.tick, font: FONT, padding: 6, maxTicksLimit: 5 }
+          ticks:  { color: c.tick, font: FONT, padding: 6, maxTicksLimit: 5 },
+          ...(yTicks ? {
+            afterBuildTicks: axis => { axis.ticks = yTicks.map(v => ({ value: v })); }
+          } : {})
         },
         x: {
           grid:   { display: false },
@@ -738,7 +741,7 @@ async function loadPSIHistory(today, region) {
     return psiVal(item, region) ?? 0;
   });
 
-  registerChart('psi7', () => drawChart('canvas-psi7', labels, values, PSI_SCALE, ' PSI'));
+  registerChart('psi7', () => drawChart('canvas-psi7', labels, values, PSI_SCALE, ' PSI', [0, 101, 201, 301]));
 }
 
 async function loadPM25History(today, region) {
@@ -769,7 +772,7 @@ async function loadPM25History(today, region) {
   const labels = items.map(item => fmtHHMM(item.timestamp ?? item.update_timestamp));
   const values = items.map(item => pm25Val(item, region) ?? 0);
 
-  registerChart('pm2524', () => drawChart('canvas-pm2524', labels, values, PM25_SCALE, ' μg/m³'));
+  registerChart('pm2524', () => drawChart('canvas-pm2524', labels, values, PM25_SCALE, ' μg/m³', [0, 56, 151, 251]));
 }
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
